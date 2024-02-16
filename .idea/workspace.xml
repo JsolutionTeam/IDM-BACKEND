@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="24a8cfd8-8e11-42ed-836d-7f882b54007d" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/detekt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/saveactions_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/AccountController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/CompanyPolicyController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/DiscountController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/MasterOptionController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/ModelImgController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/PlanController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/SummitFormController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/TelecomController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/TelecomDataController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/UserAccountController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/config/SecurityConfig.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/config/SwaggerConfig.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/config/WebConfig.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/domain/BaseEntity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/enumeration/Role.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/handler/ErrorResponse.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/handler/GlobalExceptionHandler.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/responsedto/ResponseDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/security/filter/JwtAuthenticationFilter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/security/jwt/HeaderTokenExtractor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/security/jwt/JWTAuthProvider.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/security/jwt/JwtDecoder.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/security/jwt/JwtPreProcessingToken.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/security/jwt/JwtService.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/security/jwt/JwtTokenUtils.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/security/jwt/TokenDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/security/userdetails/UserDetailsServiceImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/timestamp/TimeStamp.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/detekt.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/application/dto/CreateAccountDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/entity/Account.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/color/entity/Color.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/device/entity/Device.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/deviceinfo/entity/DeviceInfo.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/Company/Company.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/Company/CompanyResDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/account/AccountDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/account/AccountReqDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/account/AccountResDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/account/AccountUpdateDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/companypolicy/CompanyPolicy.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/companypolicy/CompanyPolicyDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/companypolicy/CompanyPolicyResDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/discount/Discount.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/discount/DiscountDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/discount/DiscountResDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/masteroption/MasterOption.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/masteroption/MasterOptionDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/masteroption/MasterOptionResDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/modelimg/ModelImg.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/modelimg/ModelImgDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/modelimg/ModelImgResDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/plan/Plan.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/plan/PlanDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/plan/PlanResDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/sumittform/SummitForm.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/sumittform/SummitFormDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/sumittform/SummitFormResDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/telecom/Telecom.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/telecom/TelecomDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/telecom_data/TelecomData.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/telecom_data/TelecomDataDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/telecom_data/TelecomDataResDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/useraccount/UserAccount.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/useraccount/UserAccountDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/useraccount/UserAccountReqDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/useraccount/UserAccountResDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/useraccount/UserAccountUpdateDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/history/entity/History.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/maker/entity/Maker.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/entity/Telecom.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Enum" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2cRFKUyKYdHETh9n0WObPvhOAcZ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+    <option name="sortByType" value="true" />
+    <option name="sortKey" value="BY_TYPE" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/leeseongbok/workspace/Github/IDM-BACKEND/domain/src/main/kotlin/kr/co/jsol/domain",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "프로젝트",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.detekt",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain" />
+      <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/commoncode" />
+      <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/usim" />
+      <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/user" />
+      <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="kr.co.jsol.domain.commoncode.entity" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="kr.co.jsol.domain.history.entity" />
+      <recent name="kr.co.jsol.domain.deviceinfo.entity" />
+      <recent name="kr.co.jsol.domain.maker.entity" />
+      <recent name="kr.co.jsol.domain.commoncode" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-11.0.22-corretto-11.0.22-4caba194b151-396cc1b2" />
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-53826d6a" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="24a8cfd8-8e11-42ed-836d-7f882b54007d" name="변경" comment="" />
+      <created>1708066420293</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708066420293</updated>
+      <workItem from="1708066421544" duration="7674000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
