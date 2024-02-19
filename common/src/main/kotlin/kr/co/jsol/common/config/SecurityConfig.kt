@@ -1,7 +1,7 @@
 package kr.co.jsol.common.config
 
-import kr.co.jsol.common.security.filter.JwtAuthenticationFilter
-import kr.co.jsol.common.security.jwt.JwtService
+import kr.co.jsol.common.jwt.JwtAuthenticationFilter
+import kr.co.jsol.common.jwt.JwtService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager

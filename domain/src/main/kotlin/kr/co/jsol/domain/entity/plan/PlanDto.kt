@@ -1,7 +1,8 @@
 package kr.co.jsol.domain.entity.plan
 
-import lombok.Getter
-@Getter
-class PlanDto {
-    private val planIdx: @javax.validation.constraints.NotNull Long? = null
-}
+import javax.validation.constraints.NotNull
+
+class PlanDto(
+    @field:NotNull(message = "플랜 인덱스는 필수값입니다.")
+    val planIdx: Long,
+)

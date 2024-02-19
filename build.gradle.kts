@@ -12,7 +12,7 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-noarg:$kotlinVersion")
         classpath("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-        classpath("io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE")
+        classpath("io.spring.gradle:dependency-management-plugin:1.0.13.RELEASE")
     }
 }
 

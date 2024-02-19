@@ -1,0 +1,53 @@
+server:
+  port: 11201
+  servlet:
+    #    context-path: /api
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+      force-response: true
+  tomcat:
+    accesslog:
+      directory: log
+      enabled: true
+      file-date-format: .yyyy-MM-dd
+      max-days: 14
+      pattern: '%h %l %u %t "%r" %s %b "%{Referer}i" "%{User-Agent}i"' #combined
+      prefix: access
+      rotate: true
+      suffix: .log
+    basedir: ./logs
+
+spring:
+  profiles:
+    active: prod # 기본 프로파일
+
+  servlet:
+    multipart:
+      max-request-size: 10240KB #최대 요청 사이즈 : 10MB
+      max-file-size: 10240KB #최대 파일 사이즈 : 10MB
+
+
+  jwt:
+    secret: goblepol@$&
+
+  mvc:
+    format:
+      date: yyyy-MM-dd
+      date-time: yyyy-MM-dd HH:mm:ss
+      time: HH:mm:ss
+
+  jpa:
+    hibernate:
+      ddl-auto: update # 자동생성 설정 테스트(공부시 create권장.)
+    date-format: yyyy-MM-dd'T'hh:mm:ss
+#    database: mariadb # hibernate database 명시적 지정
+
+logging:
+  pattern:
+    file: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
+  level:
+    com.jsol.mcall: debug # com.jsol.mcall 로 시작하는 경로는 debug 로그를 출력하도록 설정
+#    org.hibernate.SQL: debug
+#    org.hibernate.type: trace # 디비 로그에 나오는 ?를 볼 수 있게 됨. 타입, 밸류 나옴. 기존에 나오는 쿼리에 바로 보이지 않음.

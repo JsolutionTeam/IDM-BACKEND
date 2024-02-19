@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    #    url: jdbc:mariadb://210.97.108.4:58806/integration_mcall?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&userSSL=false&zeroDateTimeBehavior=convertToNull
+    #    username: jsolution_developer
+    #    password: wpdlthffntus750jsolution750
+    url: jdbc:mariadb://192.168.0.224:58806/integration_idm_2024?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&userSSL=false&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: jsolwpdlthffntus750!@
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      # idm 테이블은 데이터가 fk로 묶여있기 때문에 재생성 되지 않는다. auth는 재생성된다...
+      # create 보단 update 설정 후 직접 mcall 테이블을 drop 하는게 편해보임.
+      ddl-auto: create
+    show-sql: true
+#    driver-class-name: com.mysql.jdbc.Driver # com.mysql.jdbc.Driver deprecated
+#    url: jdbc:mariadb://14.45.108.75:3306/mcall_edu
+#    username: mcallroot
+#    password: jsolwpdlthffntus750!@
+#    driver-class-name: org.mariadb.jdbc.Driver
+
+param:
+  idm:
+    #    url: http://localhost:3001/api/inout
+    url: https://idm.j-sol.co.kr/api
+  auth:
+    #    url: http://172.17.0.1:8088/api
+    url: https://api-auth.j-sol.co.kr/api
+
+catalog:
+  config:
+    idm: integration_idm
+    auth: integration_auth
+
+secret-key: RzJD4WSU-p_9OAK8t5z7h5qraLzK55zpZkgwztEtSQK-10AA9TO7FayFQfkGW5IK2gZ_wjRs_snO9Y_Ar3x5gogm1sSGEqzbCq9-7PNQ2uUEgFTgk9UBbRTRjJQzUi-b
+
+file:
+  dir: /var/jenkins_home/workspace/MCall-shop/MCall-shop-backend/src/main/resources/models
+
+media:
+  dir: /var/jenkins_home/workspace/MCall-shop/MCall-shop-backend/src/main/resources/models/
+

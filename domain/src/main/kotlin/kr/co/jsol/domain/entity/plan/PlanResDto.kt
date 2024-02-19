@@ -1,16 +1,14 @@
 package kr.co.jsol.domain.entity.plan
 
-import lombok.Getter
+class PlanResDto(
+    val id: Long,
+    val planIdx: Long,
+) {
 
-@Getter
-@NoArgsConstructor
-class PlanResDto(plan: Plan) {
-    private val idx: Long
-
-    private val planIdx: Long
-
-    init {
-        this.idx = plan.getIdx()
-        this.planIdx = plan.getPlanIdx()
-    }
+    constructor(
+        plan: Plan,
+    ) : this(
+        id = plan.id,
+        planIdx = plan.planIdx,
+    )
 }

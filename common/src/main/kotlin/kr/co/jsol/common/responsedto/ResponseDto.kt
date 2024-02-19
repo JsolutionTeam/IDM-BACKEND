@@ -6,14 +6,14 @@ import com.fasterxml.jackson.annotation.JsonInclude
 class ResponseDto {
     private var response: Boolean
     private var message: String
-    private var idx: Long? = null
+    private var id: Long? = null
 
     constructor(
-        idx: Long?,
+        id: Long?,
         response: Boolean,
         message: String,
     ) {
-        this.idx = idx
+        this.id = id
         this.response = response
         this.message = message
     }

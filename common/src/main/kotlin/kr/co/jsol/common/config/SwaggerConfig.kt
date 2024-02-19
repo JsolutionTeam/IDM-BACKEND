@@ -1,74 +1,51 @@
 package kr.co.jsol.common.config
 
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType
+import io.swagger.v3.oas.annotations.security.SecurityScheme
+import io.swagger.v3.oas.models.OpenAPI
+import io.swagger.v3.oas.models.info.Info
+import org.springdoc.core.GroupedOpenApi
 import org.springframework.context.annotation.Bean
-import java.util.Arrays
+import org.springframework.context.annotation.Configuration
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter.ofPattern
 
 @Configuration
-@EnableWebMvc
+@SecurityScheme(
+    name = "Bearer Authentication",
+    type = SecuritySchemeType.HTTP,
+    bearerFormat = "JWT",
+    scheme = "bearer",
+)
 class SwaggerConfig {
-    @Bean
-    fun api(): Docket {
-        return Docket(DocumentationType.SWAGGER_2) //그룹이룸 설정으로 페이지를 나눌수 있다.
-            .groupName("JWT NEED")
-            .ignoredParameterTypes(AuthenticationPrincipal::class.java) // @AuthenticationPrincipal의 파라미터 요구 필드를 없애기 위함
-            .useDefaultResponseMessages(false)
-            .securityContexts(Arrays.asList(securityContext())) // swagger에서 jwt 토큰값 넣기위한 설정
-            .securitySchemes(Arrays.asList(apiKey())) // swagger에서 jwt 토큰값 넣기위한 설정
-            .select()
-            .apis(RequestHandlerSelectors.basePackage("org.example.controller")) // Swagger가 controller를 전부 스캔을 한다.
-            //                .paths(PathSelectors.any())
-            // API 의 URL 경로를 지정할 수 있다.
-            .paths(PathSelectors.ant("/api/v1/**")) // .paths(PathSelectors.ant("/api/v1/**")) 와 같이 하면
-            // http://localhost/api/v1/ 하위 경로를 가지는 API에 대해 문서를 생성해준다.
-            .build()
-            .apiInfo(apiInfo())
-    }
+
+    private val QR_URL = "/api/qr/**"
 
     @Bean
-    fun api2(): Docket {
-        return Docket(DocumentationType.SWAGGER_2)
-            .groupName("JWT NO NEED")
-            .ignoredParameterTypes(AuthenticationPrincipal::class.java) // @AuthenticationPrincipal의 파라미터 요구 필드를 없애기 위함
-            .useDefaultResponseMessages(false)
-            .securityContexts(Arrays.asList(securityContext())) // swagger에서 jwt 토큰값 넣기위한 설정
-            .securitySchemes(Arrays.asList(apiKey())) // swagger에서 jwt 토큰값 넣기위한 설정
-            .select()
-            .apis(RequestHandlerSelectors.basePackage("org.example.controller"))
-            .paths(PathSelectors.ant("/api/v2/**"))
-            .build()
-            .apiInfo(apiInfo())
-    }
+    fun swagger(): OpenAPI = OpenAPI().info(
+        Info()
+            .title("J-ERP API Doc")
+            .description(
+                "API 문서입니다. 마지막 업데이트 시간 : ${
+                    LocalDateTime.now()
+                        .format(ofPattern("yyyy-MM-dd HH:mm"))
+                }",
+            )
+            .version("0.0.1-SNAPSHOT"),
+    )
 
-    private fun apiInfo(): ApiInfo {
-        return ApiInfoBuilder()
-            .title("MCall-shop API documentation")
-            .description("")
-            .version("1.0") //                .termsOfServiceUrl("")
-            //                .license("LICENSE")
-            //                .licenseUrl("")
-            .build()
-    }
+    @Bean
+    fun api(): GroupedOpenApi = GroupedOpenApi.builder()
+        .group("001.api v1")
+        .pathsToMatch("/api/**")
+        .pathsToExclude(QR_URL)
+        .displayName("API V1 버전")
+        .build()
 
-    // 이하 swagger에서 jwt 토큰값 넣기위한 설정
-    private fun securityContext(): SecurityContext {
-        return SecurityContext.builder()
-            .securityReferences(defaultAuth())
-            .build()
-    }
-
-    private fun defaultAuth(): List<SecurityReference> {
-        val authorizationScope: AuthorizationScope = AuthorizationScope(AUTHORIZATION_SCOPE_GLOBAL, AUTHORIZATION_SCOPE_GLOBAL_DESC)
-        val authorizationScopes: Array<AuthorizationScope?> = arrayOfNulls<AuthorizationScope>(1)
-        authorizationScopes[0] = authorizationScope
-        return Arrays.asList<SecurityReference>(SecurityReference("JWT", authorizationScopes))
-    }
-
-    private fun apiKey(): ApiKey {
-        return ApiKey("JWT", "Authorization", "header")
-    }
-
-    companion object {
-        const val AUTHORIZATION_SCOPE_GLOBAL: String = "global"
-        const val AUTHORIZATION_SCOPE_GLOBAL_DESC: String = "accessEverything"
-    }
+    @Bean
+    fun qr(): GroupedOpenApi = GroupedOpenApi.builder()
+        .group("999.qr")
+        .pathsToMatch(QR_URL)
+        .displayName("QR코드 API")
+        .build()
 }
