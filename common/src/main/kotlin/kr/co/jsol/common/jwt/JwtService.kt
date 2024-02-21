@@ -1,5 +1,6 @@
 package kr.co.jsol.common.jwt
 
+import io.jsonwebtoken.Claims
 import io.jsonwebtoken.JwtException
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
@@ -8,10 +9,10 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
-import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Component
 import java.security.Key
+import java.time.LocalDateTime
 import java.util.Date
 import javax.servlet.http.HttpServletRequest
 
@@ -22,23 +23,39 @@ class JwtService(
     private val strSecretKey: String,
 ) {
     private val logger = LoggerFactory.getLogger(this.javaClass)
-    private val userPkKey = "userPk"
-    private val companyIdKey = "companyId"
-    private val depthIdKey = "depth"
 
     private var secretKey: Key =
         Keys.hmacShaKeyFor(strSecretKey.toByteArray()) ?: Keys.secretKeyFor(SignatureAlgorithm.HS256)
 
+    private val userPkKey = "userPk"
+    private val companyIdKey = "companyId"
+    private val depthIdKey = "depth"
+
+    fun createToken(): String {
+        val claims: Claims = Jwts.claims()
+            .setSubject("js0518")
+        claims["name"] = "신화경"
+        claims["role"] = "ROLE_AGENCY_OWN"
+        return Jwts.builder()
+            .setClaims(claims)
+            .setIssuer("jwt server")
+            .setIssuedAt(Date())
+            .setExpiration(
+                Date(
+                    LocalDateTime.of(2999, 1, 1, 1, 1)
+                        .atZone(java.time.ZoneId.systemDefault())
+                        .toInstant()
+                        .toEpochMilli()
+                )
+            )
+            .signWith(secretKey, SignatureAlgorithm.HS256)
+            .compact()
+    }
+
     fun getAuthentication(token: String): Authentication {
         val userDetailsImpl = userDetailsService.loadUserByUsername(getUserPk(token))
-
-        class PayloadUserDetailsImpl(
-            userDetails: UserDetails,
-            payload: Payload,
-        )
-
         val payload = getPayload(token)
-        val payloadUserDetails = PayloadUserDetailsImpl(userDetailsImpl, payload)
+        val payloadUserDetails = PayloadUserDetailsImpl(payload, userDetailsImpl)
         return UsernamePasswordAuthenticationToken(payloadUserDetails, "", userDetailsImpl.authorities)
     }
 
@@ -47,7 +64,8 @@ class JwtService(
             .setSigningKey(secretKey)
             .build()
             .parseClaimsJws(token)
-            .body[userPkKey].toString()
+            .body
+            .subject
     }
 
     fun getPayload(token: String): Payload {

@@ -1,5 +1,5 @@
 server:
-  port: 11201
+  port: 11402
   servlet:
     #    context-path: /api
     encoding:
@@ -51,3 +51,9 @@ logging:
     com.jsol.mcall: debug # com.jsol.mcall 로 시작하는 경로는 debug 로그를 출력하도록 설정
 #    org.hibernate.SQL: debug
 #    org.hibernate.type: trace # 디비 로그에 나오는 ?를 볼 수 있게 됨. 타입, 밸류 나옴. 기존에 나오는 쿼리에 바로 보이지 않음.
+
+catalog:
+  config:
+    mcall: integration_mcall
+    idm: integration_idm
+    auth: integration_auth

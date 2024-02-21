@@ -1,6 +1,6 @@
 package kr.co.jsol.domain.userdetails
 
-import kr.co.jsol.domain.entity.account.entity.Account
+import kr.co.jsol.domain.account.entity.Account
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 

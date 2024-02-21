@@ -24,7 +24,7 @@ class SwaggerConfig {
     @Bean
     fun swagger(): OpenAPI = OpenAPI().info(
         Info()
-            .title("J-ERP API Doc")
+            .title("IDM-2024 API Doc")
             .description(
                 "API 문서입니다. 마지막 업데이트 시간 : ${
                     LocalDateTime.now()

@@ -1,6 +1,6 @@
 package kr.co.jsol.domain.userdetails
 
-import kr.co.jsol.domain.entity.account.infrastructure.query.AccountQueryRepository
+import kr.co.jsol.domain.account.infrastructure.query.AccountQueryRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service

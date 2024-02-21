@@ -20,5 +20,45 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
+    <data-source name="@221.157.170.22" uuid="7bedf4da-2331-415a-80fc-9a507fdf847c">
+      <database-info product="MariaDB" version="11.2.3-MariaDB-1:11.2.3+maria~ubu2204" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="3.0.7" dbms="MARIADB" exact-version="11.2.3" exact-driver-version="3.0">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema">
+            <name qname="@" />
+            <name qname="integration_idm" />
+            <name qname="integration_mcall" />
+            <name qname="mcall_shop" />
+            <name qname="integration_idm_2024" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="localhost" uuid="bfa4a74e-9da3-4f90-b1f6-5baff6f9b49e">
+      <database-info product="MariaDB" version="11.2.2-MariaDB-1:11.2.2+maria~ubu2204" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="3.0.7" dbms="MARIADB" exact-version="11.2.2" exact-driver-version="3.0">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema">
+            <name qname="mcall_shop" />
+            <name qname="@" />
+            <name qname="integration_idm" />
+            <name qname="integration_mcall" />
+            <name qname="integration_idm_2024" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
   </component>
 </project>
