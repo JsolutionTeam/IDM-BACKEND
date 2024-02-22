@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24a8cfd8-8e11-42ed-836d-7f882b54007d" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7bedf4da-2331-415a-80fc-9a507fdf847c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7bedf4da-2331-415a-80fc-9a507fdf847c.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bfa4a74e-9da3-4f90-b1f6-5baff6f9b49e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bfa4a74e-9da3-4f90-b1f6-5baff6f9b49e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/AccountController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/AccountController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application-local-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application-local-prod.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/JwtService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/JwtService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/Payload.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/Payload.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/PayloadUserDetailsImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/PayloadUserDetailsImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/entity/Account.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/entity/Account.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/entity/Shop.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/entity/Shop.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/userdetails/UserDetailsImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/userdetails/UserDetailsImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/info.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/info.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -249,7 +236,7 @@
       <workItem from="1708312469441" duration="15899000" />
       <workItem from="1708389474940" duration="11105000" />
       <workItem from="1708475566418" duration="17404000" />
-      <workItem from="1708584646221" duration="4237000" />
+      <workItem from="1708584646221" duration="4308000" />
     </task>
     <servers />
   </component>
