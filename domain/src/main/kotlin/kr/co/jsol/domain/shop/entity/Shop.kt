@@ -61,4 +61,9 @@ class Shop(
 
     @ManyToMany(fetch = javax.persistence.FetchType.EAGER, mappedBy = "parent")
     val child: Set<Shop> = setOf(),
-) : BaseEntity()
+) : BaseEntity() {
+
+    override fun toString(): String {
+        return "Shop(id=$id, name='$name', role='$role', status='$status', phone='$phone', managerId='$managerId', managerName='$managerName', managerPhone='$managerPhone')"
+    }
+}

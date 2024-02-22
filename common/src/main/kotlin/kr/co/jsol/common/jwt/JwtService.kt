@@ -4,15 +4,14 @@ import io.jsonwebtoken.Claims
 import io.jsonwebtoken.JwtException
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
-import io.jsonwebtoken.security.Keys
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Component
-import java.security.Key
 import java.time.LocalDateTime
+import java.util.Base64
 import java.util.Date
 import javax.servlet.http.HttpServletRequest
 
@@ -24,8 +23,11 @@ class JwtService(
 ) {
     private val logger = LoggerFactory.getLogger(this.javaClass)
 
-    private var secretKey: Key =
-        Keys.hmacShaKeyFor(strSecretKey.toByteArray()) ?: Keys.secretKeyFor(SignatureAlgorithm.HS256)
+    private var secretKey: String =
+        Base64.getEncoder()
+            .encodeToString(strSecretKey.toByteArray());
+//        Keys.hmacShaKeyFor(strSecretKey.toByteArray())
+//            ?: Keys.secretKeyFor(SignatureAlgorithm.HS512)
 
     private val userPkKey = "userPk"
     private val companyIdKey = "companyId"
@@ -48,7 +50,7 @@ class JwtService(
                         .toEpochMilli()
                 )
             )
-            .signWith(secretKey, SignatureAlgorithm.HS256)
+            .signWith(SignatureAlgorithm.HS512, secretKey)
             .compact()
     }
 
@@ -95,16 +97,19 @@ class JwtService(
 
     fun validateToken(token: String): Boolean {
         return try {
+//            val secretKeySpec = SecretKeySpec(strSecretKey.toByteArray(), SignatureAlgorithm.HS256.jcaName)
             val claims = Jwts.parserBuilder()
                 .setSigningKey(secretKey)
+//                .setSigningKey(secretKeySpec)
                 .build()
                 .parseClaimsJws(token)
-            !claims.body.expiration.before(Date())
+            !claims.body
+                .expiration.before(Date())
         } catch (e: JwtException) {
-            logger.debug(e.localizedMessage)
+            logger.info(e.localizedMessage)
             false
         } catch (e: IllegalArgumentException) {
-            logger.debug(e.localizedMessage)
+            logger.info(e.localizedMessage)
             false
         }
     }

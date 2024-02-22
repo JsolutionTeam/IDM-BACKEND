@@ -19,4 +19,8 @@ class PayloadUserDetailsImpl(
     override fun isCredentialsNonExpired() = userDetails.isCredentialsNonExpired
 
     override fun isEnabled() = userDetails.isEnabled
+
+    override fun toString(): String {
+        return "PayloadUserDetailsImpl(payload=$payload, userDetails=$userDetails)"
+    }
 }

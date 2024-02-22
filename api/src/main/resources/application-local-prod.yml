@@ -32,7 +32,7 @@ catalog:
     idm: integration_idm
     auth: integration_auth
 
-secret-key: goblepol@$&fbadsgjasdhglakjshdcbvaceughdgjhdlkjhgqweoiguhdlkjvcxlvzxzxvcnalskgfjaelgkjqweoi
+secret-key: kGU3Ss72dpWehaSOeFcHuhmYnp80KZbGx2QTcWhBueYCDNovsEzE2jGsYXfqaTyy5MgK3y1XBHhJzeMQsXnrYkYPWnH
 
 file:
   dir: /var/jenkins_home/workspace/MCall-shop/MCall-shop-backend/src/main/resources/models

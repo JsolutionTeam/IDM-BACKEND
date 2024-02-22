@@ -9,6 +9,10 @@ data class Payload(
 //    val shopId: Long,
 ) {
 
+    override fun toString(): String {
+        return "Payload(name='$name', role='$role')"
+    }
+
     companion object {
         fun of(claims: Claims): Payload {
             return Payload(

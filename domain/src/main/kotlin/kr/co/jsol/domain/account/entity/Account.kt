@@ -35,4 +35,9 @@ class Account(
     @JoinColumn(name = "shop_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("업체 아이디")
     var shop: Shop,
-) : BaseEntity()
+) : BaseEntity() {
+
+    override fun toString(): String {
+        return "Account(id='$id', name='$name', role='$role', phone='$phone', shop=$shop)"
+    }
+}

@@ -1,11 +1,9 @@
 package kr.co.jsol.api.controller
 
 import io.swagger.v3.oas.annotations.Operation
-import io.swagger.v3.oas.annotations.responses.ApiResponse
-import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import kr.co.jsol.common.jwt.JwtService
-import kr.co.jsol.domain.userdetails.UserDetailsImpl
+import kr.co.jsol.common.jwt.PayloadUserDetailsImpl
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -23,9 +21,6 @@ class AccountController(
 ) {
 
     @Operation(summary = "JWT Creation TEST")
-    @ApiResponses(ApiResponse(responseCode = "201", description = "건물 등록 성공"))
-//    @PreAuthorize("hasAnyAuthority(\"USER\")")
-    @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     fun cr(): String {
@@ -33,14 +28,13 @@ class AccountController(
     }
 
     @Operation(summary = "JWT Validation TEST")
-    @ApiResponses(ApiResponse(responseCode = "201", description = "건물 등록 성공"))
 //    @PreAuthorize("hasAnyAuthority(\"USER\")")
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     fun createBuilding(
         @AuthenticationPrincipal
-        userDetails: UserDetailsImpl?,
+        userDetails: PayloadUserDetailsImpl?,
     ) {
         val log = LoggerFactory.getLogger(this.javaClass)
         log.info("userDetails : $userDetails")

@@ -23,4 +23,8 @@ class UserDetailsImpl(val entity: Account) : UserDetails {
     override fun isEnabled(): Boolean = true
 
     val id get() = this.entity.id
+
+    override fun toString(): String {
+        return "UserDetailsImpl(entity=$entity, id=$id username=${this.entity.id})"
+    }
 }
