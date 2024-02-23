@@ -51,8 +51,8 @@
       <schema-mapping>
         <introspection-scope>
           <node kind="schema">
-            <name qname="mcall_shop" />
             <name qname="@" />
+            <name qname="mcall_shop" />
             <name qname="integration_idm" />
             <name qname="integration_mcall" />
             <name qname="integration_idm_2024" />

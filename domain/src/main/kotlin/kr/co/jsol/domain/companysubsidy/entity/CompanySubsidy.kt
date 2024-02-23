@@ -1,12 +1,23 @@
 package kr.co.jsol.domain.companysubsidy.entity
 
 import kr.co.jsol.common.domain.BaseEntity
+import kr.co.jsol.domain.device.entity.Device
+import kr.co.jsol.domain.shop.entity.Shop
+import kr.co.jsol.domain.telecom.entity.Telecom
+import kr.co.jsol.domain.telecom.entity.enums.DiscountType
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.Table
+import javax.persistence.ConstraintMode
 import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
+import javax.persistence.FetchType
+import javax.persistence.ForeignKey
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 
 @Entity
 @javax.persistence.Table(name = "company_subsidy")
@@ -14,12 +25,31 @@ import javax.persistence.Id
 class CompanySubsidy(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Comment("마스터 옵션 ID")
+    @Comment("회사 지원금 ID")
     var id: Long = 0,
 
-    @Comment("마스터 옵션 명")
-    var name: String,
+    @Enumerated(EnumType.STRING)
+    @Comment("선약/공시 할인 유형")
+    var discountType: DiscountType,
 
-    @Comment("노출 여부")
-    var isShow: Boolean,
+    @Comment("공시지원금액")
+    var price: Long,
+
+    @Comment("요금제 아이디")
+    var phonePlanId: Long,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "telecom_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @Comment("통신사 아이디")
+    var telecom: Telecom,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "device_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @Comment("단말 아이디")
+    var deviceInfo: Device,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @Comment("업체 아이디")
+    var shop: Shop,
 ) : BaseEntity()

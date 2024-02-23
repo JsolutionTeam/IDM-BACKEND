@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/v1/account")
 class AccountController(
     private val jwtService: JwtService,
-//    private val accountService: AccountService,
 ) {
 
     @Operation(summary = "JWT Creation TEST")

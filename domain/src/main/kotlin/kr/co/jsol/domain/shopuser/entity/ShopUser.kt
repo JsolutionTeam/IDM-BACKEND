@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne
 @SQLDelete(sql = "UPDATE user SET deleted_at = now() WHERE id = ?")
 @Entity
 @javax.persistence.Table(name = "shop_user")
-@Table(appliesTo = "shop_user")
+@Table(appliesTo = "shop_user", comment = "인원 정보[ 현재 키오스크에서 사용 중 ]")
 class ShopUser(
     @Id
     @Column(name = "id")
