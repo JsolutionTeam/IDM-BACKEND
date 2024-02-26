@@ -27,25 +27,28 @@ class ShopDepot(
     @Comment("아이디")
     var id: Long,
 
-    @Comment("")
+    @Comment("입고처명")
     var name: String,
 
-    @Comment("")
-    var addr: String,
+    @Comment("주소")
+    var address: String,
 
-    @Comment("")
-    var daddr: String,
+    @Column(name = "address_detail")
+    @Comment("상세 주소")
+    var addressDetail: String,
 
-    @Comment("")
-    var telNo: String,
+    @Comment("전화번호")
+    var phone: String,
 
-    @Comment("")
+    @Column(name = "zip_code")
+    @Comment("우편번호")
     var zipCode: String,
 
-    @Comment("")
-    var isEnabled: String,
+    @Column(name = "is_enabled")
+    @Comment("활성화 여부, 0: false, 1: true")
+    var isEnabled: Boolean,
 
-    @Comment("")
+    @Comment("메모")
     var memo: String,
 
     @ManyToOne(fetch = FetchType.LAZY)

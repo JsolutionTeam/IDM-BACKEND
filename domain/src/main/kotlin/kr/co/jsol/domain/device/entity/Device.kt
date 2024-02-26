@@ -5,6 +5,7 @@ import kr.co.jsol.domain.maker.entity.Maker
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.Table
+import javax.persistence.Column
 import javax.persistence.ConstraintMode
 import javax.persistence.Entity
 import javax.persistence.FetchType
@@ -25,9 +26,11 @@ class Device(
     @Comment("아이디")
     var id: Long,
 
+    @Column(name = "pet_name")
     @Comment("펫네임 ex)갤럭시 S10")
     var petName: String,
 
+    @Column(name = "model_name")
     @Comment("모델명 ex)SM-G973N")
     var modelName: String,
 

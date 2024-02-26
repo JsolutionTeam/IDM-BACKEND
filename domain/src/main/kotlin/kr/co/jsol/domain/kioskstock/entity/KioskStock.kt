@@ -26,12 +26,15 @@ class KioskStock(
     @Comment("아이디")
     var id: Long,
 
+    @Column(name = "device_name")
     @Comment("기기 이름")
     var deviceName: String,
 
+    @Column(name = "serial_number")
     @Comment("시리얼넘버")
     var serialNumber: String,
 
+    @Column(name = "user_name")
     @Comment("사용자명")
     var userName: String,
 

@@ -10,5 +10,12 @@ enum class ShopDeviceStatus(
     BROKEN("파손", "out"),
     REFUND("환불", "in"),
     REPAIR("수리", "tempOut"),
-    RENTAL("대여", "tempOut");
+    RENTAL("대여", "tempOut"),
+    ;
+
+    class Response(shopDeviceStatus: ShopDeviceStatus) {
+        val name = shopDeviceStatus.name
+        val kor = shopDeviceStatus.kor
+        val type = shopDeviceStatus.type
+    }
 }

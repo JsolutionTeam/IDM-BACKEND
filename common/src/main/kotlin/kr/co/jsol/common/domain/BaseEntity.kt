@@ -12,17 +12,17 @@ import javax.persistence.MappedSuperclass
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
 abstract class BaseEntity(
-    @Column
+    @Column(name = "created_at")
     @CreatedDate
     @Comment("생성일시")
-    val createdAt: LocalDateTime = LocalDateTime.now(),
+    var createdAt: LocalDateTime = LocalDateTime.now(),
 
-    @Column
+    @Column(name = "updated_at")
     @LastModifiedDate
     @Comment("수정일시")
     var updatedAt: LocalDateTime? = null,
 
-    @Column
+    @Column(name = "deleted_at")
     @Comment("삭제일시")
     var deletedAt: LocalDateTime? = null,
 ) {

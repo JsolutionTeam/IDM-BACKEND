@@ -5,17 +5,63 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24a8cfd8-8e11-42ed-836d-7f882b54007d" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/entity/enums/OpenType.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/ShopController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/customresttemplate/CustomRestTemplate.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/domain/Authority.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/exception/domain/account/AccountException.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/exception/domain/shop/ShopException.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/application/AuthRest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/infrastructure/dto/AccountDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/infrastructure/dto/UserAuthority.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/application/ShopService.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/application/dto/CreateShopDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/entity/enums/ShopStatus.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/infrastructure/dto/ShopDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/infrastructure/query/ShopQueryRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/infrastructure/repository/ShopRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bfa4a74e-9da3-4f90-b1f6-5baff6f9b49e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bfa4a74e-9da3-4f90-b1f6-5baff6f9b49e.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/da7c78a1-bf3d-4bc7-8ce7-dcb1845a9a08.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/da7c78a1-bf3d-4bc7-8ce7-dcb1845a9a08.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/AccountController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/AccountController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application-dev.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application-local-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application-local-prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application-prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/domain/BaseEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/domain/BaseEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/enumeration/Role.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/exception/ApiExceptionHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/exception/ApiExceptionHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/JwtService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/JwtService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/application/AccountService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/application/AccountService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/application/dto/CreateAccountDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/application/dto/CreateAccountDto.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/entity/Account.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/entity/Account.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/infrastructure/query/AccountQueryRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/infrastructure/query/AccountQueryRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/color/entity/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/color/entity/Color.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/entity/CompanySubsidy.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/entity/CompanySubsidy.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/device/entity/Device.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/device/entity/Device.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/deviceinfo/entity/DeviceInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/deviceinfo/entity/DeviceInfo.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/devicesubsidy/entity/DeviceSubsidy.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/devicesubsidy/entity/DeviceSubsidy.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/inouthistory/entity/InOutHistory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/inouthistory/entity/InOutHistory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/kioskstock/entity/KioskStock.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/kioskstock/entity/KioskStock.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/phoneplan/entity/PhonePlan.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/phoneplan/entity/PhonePlan.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/entity/Shop.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/entity/Shop.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shopdepot/entity/ShopDepot.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shopdepot/entity/ShopDepot.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shopdevice/entity/ShopDevice.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shopdevice/entity/ShopDevice.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shopdevice/entity/enums/ShopDeviceStatus.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shopdevice/entity/enums/ShopDeviceStatus.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shopuser/entity/ShopUser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shopuser/entity/ShopUser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/entity/enums/OpenSubsidyType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/entity/enums/DiscountType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/log/access.2024-02-22.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/log/access.2024-02-22.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/TelecomDto.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/entity/Telecom.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/entity/Telecom.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/entity/enums/DiscountType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/entity/enums/DiscountType.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/entity/enums/OpenType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/entity/enums/OpenType.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/shopTelecom.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/useraccount/UserAccount.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/useraccount/UserAccountDto.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/useraccount/UserAccountReqDto.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/useraccount/UserAccountResDto.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/useraccount/UserAccountUpdateDto.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/info.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/info.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,10 +110,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Data Class" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Enum" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Data Class" />
       </list>
     </option>
   </component>
@@ -98,45 +144,46 @@
     <option name="sortByType" value="true" />
     <option name="sortKey" value="BY_TYPE" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.IDM-BACKEND [compileKotlin].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.IDM-BACKEND 빌드.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.ApiApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/leeseongbok/workspace/Github/IDM-BACKEND/common/src/main/kotlin/kr/co/jsol/common&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.detekt&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.IDM-BACKEND [compileKotlin].executor": "Run",
+    "Gradle.IDM-BACKEND 빌드.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.ApiApplication.executor": "Debug",
+    "Spring Boot.DEV.executor": "Debug",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/leeseongbok/workspace/Github/IDM-BACKEND/domain/src/main/kotlin/kr/co/jsol/domain/shop/entity",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "모듈",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.detekt",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mariadb&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common" />
-      <recent name="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/config/db" />
-      <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/devicesubsidy" />
-      <recent name="$PROJECT_DIR$/domain/src/main/resources" />
-      <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity" />
+      <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/entity" />
+      <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/infrastructure" />
+      <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shopuser/infrastructure" />
+      <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shopdevice/infrastructure" />
+      <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shopdepot/infrastructure" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/api/src/main/resources" />
@@ -146,24 +193,24 @@
       <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/companypolicy/application/dto" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="kr.co.jsol.common.domain" />
+      <recent name="kr.co.jsol.domain.shop.infrastructure.repository" />
       <recent name="kr.co.jsol.domain.devicesubsidy.entity" />
       <recent name="kr.co.jsol.domain.devicesubsidy" />
       <recent name="kr.co.jsol.domain.companysubsidy.entity" />
-      <recent name="kr.co.jsol.domain.companysubsidy" />
-      <recent name="kr.co.jsol.domain.company.infrastructure.dto" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="kr.co.jsol.domain.shop.entity.enums" />
+      <recent name="kr.co.jsol.domain.account.infrastructure.dto" />
+      <recent name="kr.co.jsol.common.exception.domain.account" />
+      <recent name="kr.co.jsol.common.exception.domain.shop" />
       <recent name="kr.co.jsol.common.handler" />
-      <recent name="kr.co.jsol.domain.entity.companypolicy.application.dto" />
-      <recent name="kr.co.jsol.domain.entity.modelimg.application.dto" />
-      <recent name="kr.co.jsol.domain.entity.masteroption.application.dto" />
-      <recent name="kr.co.jsol.domain.entity.account.infrastructure.query" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="kr.co.jsol.domain.telecom.entity.enums" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.ApiApplication">
+  <component name="RunManager" selected="Spring Boot.DEV">
     <configuration name="IDM-BACKEND [compileKotlin]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -186,7 +233,37 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="ApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="DEV" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
+      <option name="ACTIVE_PROFILES" value="dev" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="IDM-BACKEND.api.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="kr.co.jsol.ApiApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="kr.co.jsol.api.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Local_Prod" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <option name="ACTIVE_PROFILES" value="local-prod" />
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="IDM-BACKEND.api.main" />
@@ -218,11 +295,12 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.IDM-BACKEND [compileKotlin]" />
-      <item itemvalue="Spring Boot.ApiApplication" />
+      <item itemvalue="Spring Boot.Local_Prod" />
+      <item itemvalue="Spring Boot.DEV" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.ApiApplication" />
+        <item itemvalue="Spring Boot.DEV" />
         <item itemvalue="Gradle.IDM-BACKEND [compileKotlin]" />
       </list>
     </recent_temporary>
@@ -250,7 +328,8 @@
       <workItem from="1708389474940" duration="11105000" />
       <workItem from="1708475566418" duration="17404000" />
       <workItem from="1708584646221" duration="4308000" />
-      <workItem from="1708648317571" duration="6713000" />
+      <workItem from="1708648317571" duration="7325000" />
+      <workItem from="1708907604406" duration="23952000" />
     </task>
     <servers />
   </component>
@@ -262,23 +341,41 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/JwtService.kt</url>
-          <line>57</line>
+          <line>61</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/JwtService.kt</url>
-          <line>59</line>
+          <line>63</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/JwtService.kt</url>
-          <line>60</line>
+          <line>64</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint type="kotlin-line">
           <url>file://$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/JwtService.kt</url>
-          <line>103</line>
+          <line>107</line>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/exception/ApiExceptionHandler.kt</url>
+          <line>221</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/exception/ApiExceptionHandler.kt</url>
+          <line>222</line>
+          <properties>
+            <option name="lambda-ordinal" value="0" />
+          </properties>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/application/AccountService.kt</url>
+          <line>64</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.7.11/6c79c2f22d238f89abe3e75af80dc442c4087c62/spring-security-core-5.7.11.jar!/org/springframework/security/authentication/UsernamePasswordAuthenticationToken.class</url>

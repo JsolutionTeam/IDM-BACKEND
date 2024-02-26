@@ -37,6 +37,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update # 자동생성 설정 테스트(공부시 create권장.)
+
     date-format: yyyy-MM-dd'T'hh:mm:ss
 #    database: mariadb # hibernate database 명시적 지정
 

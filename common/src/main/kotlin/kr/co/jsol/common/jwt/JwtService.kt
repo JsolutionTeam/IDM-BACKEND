@@ -33,11 +33,15 @@ class JwtService(
     private val companyIdKey = "companyId"
     private val depthIdKey = "depth"
 
-    fun createToken(): String {
+    fun createToken(
+        subject: String,
+        name: String,
+        role: String,
+    ): String {
         val claims: Claims = Jwts.claims()
-            .setSubject("js0518")
-        claims["name"] = "신화경"
-        claims["role"] = "ROLE_AGENCY_OWN"
+        claims.subject = subject
+        claims["name"] = name
+        claims["role"] = role
         return Jwts.builder()
             .setClaims(claims)
             .setIssuer("jwt server")

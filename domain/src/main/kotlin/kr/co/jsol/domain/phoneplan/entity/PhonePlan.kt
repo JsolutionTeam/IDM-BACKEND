@@ -19,34 +19,55 @@ class PhonePlan(
     @Column(name = "phone_plan_id", insertable = false, updatable = false)
     val id: Long,
 
-    @Column(insertable = false, updatable = false)
-    val cellExp: String,
-
-    @Column(insertable = false, updatable = false)
-    val category: String,
-
-    @Column(insertable = false, updatable = false)
-    val crtdDt: LocalDateTime,
-
-    @Column(insertable = false, updatable = false)
-    val dataExp: String,
-
-    @Column(insertable = false, updatable = false)
-    val frequency: String,
-
-    @Column(insertable = false, updatable = false)
-    val mailExp: String,
-
-    @Column(insertable = false, updatable = false)
+    /**
+     * 요금제명
+     */
+    @Column(name = "name", insertable = false, updatable = false)
     val name: String,
 
-    @Column(insertable = false, updatable = false)
+    /**
+     * 가격
+     */
+    @Column(name = "price", insertable = false, updatable = false)
     val price: Long,
 
-    @Column(insertable = false, updatable = false)
-    val updtDt: LocalDateTime,
+    /**
+     * 카테고리 ex) 5G일반, LTE일반 등...
+     */
+    @Column(name = "category", insertable = false, updatable = false)
+    val category: String,
+
+    /**
+     * 음성통화 설명
+     */
+    @Column(name = "cell_exp", insertable = false, updatable = false)
+    val cellExp: String,
+
+    /**
+     * 데이터 설명
+     */
+    @Column(name = "data_exp", insertable = false, updatable = false)
+    val dataExp: String,
+
+    /**
+     * 문자 설명
+     */
+    @Column(name = "mail_exp", insertable = false, updatable = false)
+    val mailExp: String,
+
+    /**
+     *  사용된 회수
+     */
+    @Column(name = "frequency", insertable = false, updatable = false)
+    val frequency: Long,
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "telecom_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT), insertable = false, updatable = false)
     val telecom: Telecom,
+
+    @Column(name = "crtd_dt", insertable = false, updatable = false)
+    val createdAt: LocalDateTime,
+
+    @Column(name = "updt_dt", insertable = false, updatable = false)
+    val updatedAt: LocalDateTime,
 )

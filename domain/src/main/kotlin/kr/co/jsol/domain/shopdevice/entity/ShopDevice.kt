@@ -35,27 +35,34 @@ class ShopDevice(
     @Comment("아이디")
     var id: Long,
 
+    @Column(name = "serial_number")
     @Comment("시리얼넘버[일련번호]")
     var serialNumber: String,
 
+    @Column(name = "model_name")
     @Comment("모델명 ex) SM-G950N")
     var modelName: String,
 
+    @Column(name = "volume")
     @Comment("용량 ex) 256GB")
     var volume: String,
 
+    @Column(name = "device_color")
     @Comment("색상 ex) 블랙")
     var deviceColor: String,
 
     @Comment("출고가")
     var price: String,
 
+    @Column(name = "qr_base")
     @Comment("qr코드 기본값[시리얼넘버]")
     var qrBase: String,
 
+    @Column(name = "entered_at")
     @Comment("입고일자")
     var enteredAt: LocalDateTime,
 
+    @Column(name = "moved_at")
     @Comment("이동일시")
     var movedAt: LocalDateTime,
 
@@ -97,18 +104,23 @@ class ShopDevice(
     var maker: Maker,
 ) : BaseEntity() {
 
+    @Column(name = "exited_at")
     @Comment("출고일자")
     var exitedAt: LocalDateTime? = null
 
+    @Column(name = "client_id")
     @Comment("고객사 아이디 [ mcall 고객사 용도 ]")
     var clientId: Long? = null
 
+    @Column(name = "client_name")
     @Comment("고객사 이름 [ mcall 고객사 용도 ]")
     var clientName: String? = null
 
+    @Column(name = "department_id")
     @Comment("부서 아이디 [ mcall 고객사 용도]")
     var departmentId: Long? = null
 
+    @Column(name = "department_name")
     @Comment("부서 이름 [ mcall 고객사 용도]")
     var departmentName: String? = null
 }

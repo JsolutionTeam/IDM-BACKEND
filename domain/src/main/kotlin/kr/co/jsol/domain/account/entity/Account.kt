@@ -1,12 +1,16 @@
 package kr.co.jsol.domain.account.entity
 
+import kr.co.jsol.common.domain.Authority
 import kr.co.jsol.common.domain.BaseEntity
 import kr.co.jsol.domain.shop.entity.Shop
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.Table
+import javax.persistence.Column
 import javax.persistence.ConstraintMode
 import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
 import javax.persistence.FetchType
 import javax.persistence.ForeignKey
 import javax.persistence.Id
@@ -19,14 +23,16 @@ import javax.persistence.ManyToOne
 @Table(appliesTo = "account", comment = "계정")
 class Account(
     @Id
+    @Column(name = "id")
     @Comment("계정 아이디[로그인시 사용]")
     var id: String,
 
     @Comment("사용자명")
     var name: String,
 
+    @Enumerated(EnumType.STRING)
     @Comment("계정 권한")
-    var role: String,
+    var role: Authority,
 
     @Comment("전화번호")
     val phone: String,

@@ -4,6 +4,7 @@ import kr.co.jsol.common.domain.BaseEntity
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.Table
+import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -22,9 +23,11 @@ class Color(
     @Comment("색상 한글명")
     var name: String,
 
+    @Column(name = "name_eng")
     @Comment("색상 영문명")
     var nameEng: String = "",
 
+    @Column(name = "display_value")
     @Comment("색상 코드[사용자 사용하기 나름] ex) hex값, rgb값")
-    var display_value: String = "",
+    var displayValue: String = "",
 ) : BaseEntity()

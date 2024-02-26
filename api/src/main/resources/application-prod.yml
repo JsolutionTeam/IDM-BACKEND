@@ -5,7 +5,7 @@ spring:
     #    url: jdbc:mariadb://localhost:58806/integration_mcall?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&userSSL=false&zeroDateTimeBehavior=convertToNull&validationQuery="select 1"
 
     ### docker container 배포환경, docker host 설정
-    url: jdbc:mariadb://mariadb:3306/integration_mcall?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&userSSL=false&zeroDateTimeBehavior=convertToNull&validationQuery="select 1"
+    url: jdbc:mariadb://mariadb:3306/integration_idm?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&userSSL=false&zeroDateTimeBehavior=convertToNull&validationQuery="select 1"
     username: integration
     password: jsolwpdlthffntus750!@
     driver-class-name: org.mariadb.jdbc.Driver
@@ -13,18 +13,18 @@ spring:
     hibernate:
       ddl-auto: update
 
-param:
-  idm:
-    #    url: http://localhost:3001/api/inout
-    url: http://172.17.0.1:3001/api/inout
-  auth:
-    #    url: http://210.97.108.4:8088/api
-    url: http://172.17.0.1:8088/api
-
 catalog:
   config:
     idm: integration_idm
     auth: integration_auth
+
+custom:
+  api-url:
+    auth: http://172.168.0.1:11001
+    mcall: http://172.168.0.1:11201
+    idm: http://172.168.0.1:11301
+
+secret-key: kGU3Ss72dpWehaSOeFcHuhmYnp80KZbGx2QTcWhBueYCDNovsEzE2jGsYXfqaTyy5MgK3y1XBHhJzeMQsXnrYkYPWnH
 
 file:
   dir: /var/jenkins_home/workspace/MCall-shop/MCall-shop-backend/src/main/resources/models

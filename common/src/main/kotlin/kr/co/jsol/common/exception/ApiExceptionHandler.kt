@@ -15,7 +15,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.ServletRequestBindingException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import org.springframework.web.filter.GenericFilterBean
 import java.security.InvalidParameterException
 import javax.validation.UnexpectedTypeException
 
@@ -220,7 +219,7 @@ class ApiExceptionHandler {
     @ExceptionHandler(Exception::class)
     fun handleException(ex: Exception): ResponseEntity<CustomException.ExceptionBody> {
         ex.printStackTrace()
-        log.error("Exception - message : ${ex.message}")
+        log.error("kotlin.Exception - message : ${ex.localizedMessage}")
         ex.let {
             log.error(it.message, it)
             return CustomException("000", it.message.toString(), HttpStatus.INTERNAL_SERVER_ERROR).toEntity()

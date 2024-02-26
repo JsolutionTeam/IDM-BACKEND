@@ -2,6 +2,7 @@ package kr.co.jsol.domain.devicesubsidy.entity
 
 import kr.co.jsol.common.domain.BaseEntity
 import kr.co.jsol.domain.device.entity.Device
+import kr.co.jsol.domain.phoneplan.entity.PhonePlan
 import kr.co.jsol.domain.telecom.entity.Telecom
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.Table
@@ -27,13 +28,15 @@ class DeviceSubsidy(
     @Comment("공시지원금액")
     var price: Long,
 
-    @Comment("요금제 아이디")
-    var phonePlanId: Long,
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "telecom_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("통신사 아이디")
     var telecom: Telecom,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "phone_plan_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @Comment("요금제 아이디")
+    var phonePlan: PhonePlan,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "device_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))

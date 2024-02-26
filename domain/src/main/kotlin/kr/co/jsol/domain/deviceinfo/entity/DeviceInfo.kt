@@ -6,6 +6,7 @@ import kr.co.jsol.domain.device.entity.Device
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.Table
+import javax.persistence.Column
 import javax.persistence.ConstraintMode
 import javax.persistence.Entity
 import javax.persistence.FetchType
@@ -29,9 +30,11 @@ class DeviceInfo(
     @Comment("바코드 모델구분")
     var barcode: String,
 
+    @Column(name = "barcode_color")
     @Comment("바코드 색상구분")
     var barcodeColor: String,
 
+    @Column(name = "model_img")
     @Comment("모델 이미지 링크")
     var modelImg: String,
 

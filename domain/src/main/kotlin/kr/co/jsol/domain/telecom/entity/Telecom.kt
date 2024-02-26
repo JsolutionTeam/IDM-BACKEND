@@ -23,4 +23,7 @@ class Telecom(
 
     @Comment("이름")
     var name: String,
+    
+    @Comment("공식 홈페이지")
+    var homepage: String,
 ) : BaseEntity()

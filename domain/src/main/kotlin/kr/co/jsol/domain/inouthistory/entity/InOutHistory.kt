@@ -1,12 +1,14 @@
 package kr.co.jsol.domain.inouthistory.entity
 
 import kr.co.jsol.common.domain.BaseEntity
+import kr.co.jsol.domain.device.entity.Device
 import kr.co.jsol.domain.shop.entity.Shop
 import kr.co.jsol.domain.shopdepot.entity.ShopDepot
 import kr.co.jsol.domain.telecom.entity.Telecom
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.Table
+import javax.persistence.Column
 import javax.persistence.ConstraintMode
 import javax.persistence.Entity
 import javax.persistence.FetchType
@@ -27,25 +29,28 @@ class InOutHistory(
     @Comment("아이디")
     var id: Long,
 
-    @Comment("모델명")
-    var modelName: String,
-
+    @Column(name = "serial_number")
     @Comment("일련번호")
     var serialNumber: String,
 
+    @Column(name = "device_color")
     @Comment("색상")
     var deviceColor: String,
 
+    @Column(name = "operation")
     @Comment("처리작업 ex) 입고,출고, 반품 등..")
     var operation: String,
 
+    @Column(name = "operator")
     @Comment("처리자")
-    var operatior: String,
+    var operator: String,
 
     // 현재는 Kiosk 입/출고 시에만 사용 중
+    @Column(name = "user_name")
     @Comment("사용자 이름")
     var userName: String,
 
+    @Column(name = "user_serial_number")
     @Comment("사용자 일련번호(고유번호) ex) 군번, 사번")
     var userSerialNumber: Long,
 
@@ -71,4 +76,9 @@ class InOutHistory(
     @JoinColumn(name = "telecom_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("통신사 아이디")
     var telecom: Telecom,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "device_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @Comment("단말 기초 정보 아이디")
+    var device: Device,
 ) : BaseEntity()

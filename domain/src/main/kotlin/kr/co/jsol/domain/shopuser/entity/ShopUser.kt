@@ -34,8 +34,9 @@ class ShopUser(
     @Comment("직급/계급")
     val rank: String,
 
+    @Column(name = "serial_number")
     @Comment("사번/군번")
-    val serial: String,
+    val serialNumber: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shop_id", foreignKey = javax.persistence.ForeignKey(ConstraintMode.NO_CONSTRAINT))
