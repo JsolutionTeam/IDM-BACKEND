@@ -17,7 +17,7 @@ import javax.persistence.Table
 class PhonePlan(
     @Id
     @Column(name = "phone_plan_id", insertable = false, updatable = false)
-    val id: Long,
+    var id: Long,
 
     /**
      * 요금제명

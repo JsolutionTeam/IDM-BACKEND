@@ -1,7 +1,7 @@
 package kr.co.jsol.domain.shop.application.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
-import kr.co.jsol.common.domain.Authority
+import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.domain.shop.entity.enums.ShopStatus
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
@@ -43,7 +43,7 @@ data class CreateCompanyDto(
 ) {
     fun toEntity() = kr.co.jsol.domain.shop.entity.Shop(
         name = name,
-        role = Authority.ROLE_COMPANY,
+        role = AccountAuthority.COMPANY,
         status = status ?: ShopStatus.REQUEST,
         phone = phone,
         managerId = managerId,

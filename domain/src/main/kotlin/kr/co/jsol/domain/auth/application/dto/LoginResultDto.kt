@@ -1,14 +1,13 @@
-package kr.co.jsol.domain.account.infrastructure.dto
+package kr.co.jsol.domain.auth.application.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
 import kr.co.jsol.common.domain.AccountAuthority
-import kr.co.jsol.domain.account.entity.Account
 import kr.co.jsol.domain.shop.infrastructure.dto.ShopDto
 
-@Schema(name = "계정 응답")
-data class AccountDto(
-    @field:Schema(description = "아이디", example = "js")
-    val id: String,
+@Schema(name = "로그인 결과")
+data class LoginResultDto(
+    val accessToken: String,
+    val refreshToken: String,
 
     @field:Schema(description = "이름", example = "권세기")
     val name: String,
@@ -21,13 +20,4 @@ data class AccountDto(
 
     @field:Schema(description = "업체 정보")
     val shop: ShopDto,
-) {
-
-    constructor(account: Account) : this(
-        id = account.id,
-        name = account.name,
-        role = account.role,
-        phone = account.phone,
-        shop = ShopDto(account.shop)
-    )
-}
+)

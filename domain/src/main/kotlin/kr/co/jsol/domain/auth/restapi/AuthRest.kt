@@ -1,4 +1,4 @@
-package kr.co.jsol.domain.account.application
+package kr.co.jsol.domain.auth.restapi
 
 import kr.co.jsol.common.customresttemplate.CustomRestTemplate
 import org.springframework.beans.factory.annotation.Value
@@ -29,6 +29,9 @@ class AuthRest : CustomRestTemplate() {
 
         return restTemplate.postForEntity(requestUrl, requestMessage, T::class.java)
     }
+
+    // https://api-auth.j-sol.co.kr/api/users/login
+    // https://api-auth.jsol.co.kr/api/users/login
 
     fun delete(
         endpoint: String,

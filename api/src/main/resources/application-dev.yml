@@ -30,16 +30,16 @@ secret-key: kGU3Ss72dpWehaSOeFcHuhmYnp80KZbGx2QTcWhBueYCDNovsEzE2jGsYXfqaTyy5MgK
 
 custom:
   api-url:
-    #    mcall: https://api-mcall.jsol.co.kr
-    #    idm: https://api-idm.jsol.co.kr
-    #    auth: https://api-auth.jsol.co.kr
-    auth: http://localhost:11001
-    mcall: http://localhost:11201
-    idm: http://localhost:11301
+    mcall: https://api-mcall.j-sol.co.kr
+    idm: https://api-idm.j-sol.co.kr
+    auth: https://api-auth.j-sol.co.kr
+#    auth: http://localhost:11001
+#    mcall: http://localhost:11201
+#    idm: http://localhost:11301
 
 file:
   dir: /Users/leeseongbok/workspace/Github/IDM-BACKEND/src/main/resources/models
 
 media:
-  dir: /Users/leeseongbok/workspace/Github/IDM-BACKEND/src/main/resources/models
+  dir: /Users/leeseongbok/workspace/Github/IDM-BACKEND/api/src/main/resources/models
 

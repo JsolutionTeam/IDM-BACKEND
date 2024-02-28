@@ -38,7 +38,7 @@ class Device(
     var series: String,
 
     @Comment("가격")
-    var price: Int,
+    var price: Long,
 
     @Comment("용량 ex) 125GB, 256TB 등..")
     var volume: String,

@@ -11,7 +11,7 @@ import kr.co.jsol.domain.telecom.entity.enums.OpenType
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
 
-@Schema(name = "회사 지원금 등록 DTO")
+@Schema(name = "회사 지원금 등록 요청")
 data class CreateCompanySubsidyDto(
     @field:NotNull(message = "개통 유형은 필수입력입니다.")
     @field:Schema(description = "개통 유형", implementation = OpenType::class)

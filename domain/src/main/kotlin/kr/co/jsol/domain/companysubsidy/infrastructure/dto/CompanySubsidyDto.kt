@@ -2,10 +2,12 @@ package kr.co.jsol.domain.companysubsidy.infrastructure.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
 import kr.co.jsol.domain.companysubsidy.entity.CompanySubsidy
+import kr.co.jsol.domain.device.infrastructure.dto.DeviceDto
+import kr.co.jsol.domain.phoneplan.infrastructure.dto.PhonePlanDto
 import kr.co.jsol.domain.shop.infrastructure.dto.ShopDto
 import kr.co.jsol.domain.telecom.entity.enums.DiscountType
 import kr.co.jsol.domain.telecom.entity.enums.OpenType
-import kr.co.jsol.domain.telecom.infrastructure.dto.PhonePlanDto
+import kr.co.jsol.domain.telecom.infrastructure.dto.TelecomDto
 
 @Schema(name = "회사 지원금 등록 DTO")
 data class CompanySubsidyDto(
@@ -25,7 +27,7 @@ data class CompanySubsidyDto(
     val shop: ShopDto,
 
     @field:Schema(description = "idm - telecom")
-    val telecom: PhonePlanDto,
+    val telecom: TelecomDto,
 
     @field:Schema(description = "mcall - phone-plan")
     val phonePlan: PhonePlanDto,
@@ -39,7 +41,7 @@ data class CompanySubsidyDto(
         openType = companySubsidy.openType,
         discountType = companySubsidy.discountType,
         price = companySubsidy.price,
-        telecom = PhonePlanDto(companySubsidy.telecom),
+        telecom = TelecomDto(companySubsidy.telecom),
         phonePlan = PhonePlanDto(companySubsidy.phonePlan),
         device = DeviceDto(companySubsidy.device),
         shop = ShopDto(companySubsidy.shop),

@@ -1,6 +1,7 @@
 package kr.co.jsol.domain.companysubsidy.entity
 
 import kr.co.jsol.common.domain.BaseEntity
+import kr.co.jsol.domain.companysubsidy.application.dto.UpdateCompanySubsidyDto
 import kr.co.jsol.domain.device.entity.Device
 import kr.co.jsol.domain.phoneplan.entity.PhonePlan
 import kr.co.jsol.domain.shop.entity.Shop
@@ -64,4 +65,11 @@ class CompanySubsidy(
     @JoinColumn(name = "shop_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("업체 아이디")
     var shop: Shop,
-) : BaseEntity()
+) : BaseEntity() {
+
+    fun update(updateDto: UpdateCompanySubsidyDto) {
+        updateDto.openType?.let { openType = it }
+        updateDto.discountType?.let { discountType = it }
+        updateDto.price?.let { price = it }
+    }
+}

@@ -2,7 +2,7 @@ package kr.co.jsol.api.controller
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
-import kr.co.jsol.common.domain.Authority
+import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.domain.companysubsidy.application.CompanySubsidyService
 import kr.co.jsol.domain.companysubsidy.application.dto.CreateCompanySubsidyDto
 import kr.co.jsol.domain.companysubsidy.application.dto.UpdateCompanySubsidiesDto
@@ -24,7 +24,7 @@ class CompanySubsidyController(
 ) {
 
     @Operation(summary = "회사 지원금 등록")
-    @PreAuthorize(Authority.ROLECHECK.HasAdminRole)
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -38,9 +38,9 @@ class CompanySubsidyController(
     }
 
     @Operation(summary = "회사 지원금 다중 수정")
-    @PreAuthorize(Authority.ROLECHECK.HasAdminRole)
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)
     @SecurityRequirement(name = "Bearer Authentication")
-    @PatchMapping()
+    @PatchMapping
     @ResponseStatus(HttpStatus.OK)
     fun updateCompanySubsidy(
         @Valid

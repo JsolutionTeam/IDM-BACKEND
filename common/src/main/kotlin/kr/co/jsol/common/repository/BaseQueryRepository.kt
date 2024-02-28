@@ -10,14 +10,14 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import kotlin.jvm.optionals.getOrNull
 
-open class BaseQueryRepository<T : BaseEntity, ID : Any>(
+abstract class BaseQueryRepository<T : BaseEntity, ID : Any>(
     private val qEntity: BeanPath<T>,
     private val crudRepository: CrudRepository<T, ID>,
 ) {
 
     private val logger = LoggerFactory.getLogger(this::class.java)
 
-    open fun findById(id: ID): T? {
+    fun findById(id: ID): T? {
         val entity = crudRepository.findById(id)
             .getOrNull() ?: return null
 
@@ -26,14 +26,6 @@ open class BaseQueryRepository<T : BaseEntity, ID : Any>(
         }
 
         return entity
-    }
-
-    /**
-     * 주의, deletedAt 처리가 없어 분기를 어플리케이션에서 처리해야 함
-     */
-    open fun findManyByIds(ids: List<ID>): List<T> {
-        return crudRepository.findAllById(ids)
-            .toList()
     }
 
     fun DateTimePath<LocalDateTime>.between(

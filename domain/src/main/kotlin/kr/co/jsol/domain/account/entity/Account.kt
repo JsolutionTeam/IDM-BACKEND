@@ -1,6 +1,6 @@
 package kr.co.jsol.domain.account.entity
 
-import kr.co.jsol.common.domain.Authority
+import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.common.domain.BaseEntity
 import kr.co.jsol.domain.shop.entity.Shop
 import org.hibernate.annotations.Comment
@@ -32,7 +32,7 @@ class Account(
 
     @Enumerated(EnumType.STRING)
     @Comment("계정 권한")
-    var role: Authority,
+    var role: AccountAuthority,
 
     @Comment("전화번호")
     val phone: String,

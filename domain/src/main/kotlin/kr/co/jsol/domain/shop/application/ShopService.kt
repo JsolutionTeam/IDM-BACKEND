@@ -1,6 +1,6 @@
 package kr.co.jsol.domain.shop.application
 
-import kr.co.jsol.common.domain.Authority
+import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.domain.account.application.AccountService
 import kr.co.jsol.domain.account.application.dto.CreateAccountDto
 import kr.co.jsol.domain.shop.application.dto.CreateCompanyDto
@@ -27,7 +27,7 @@ class ShopService(
             val shop = repository.save(
                 Shop(
                     name = "제이솔루션",
-                    role = Authority.ROLE_ADMIN,
+                    role = AccountAuthority.ADMIN,
                     status = ShopStatus.DONE,
                     phone = "1644-3950",
                     managerId = "js",
@@ -41,7 +41,7 @@ class ShopService(
                     id = "js",
                     password = "js",
                     name = "권세기",
-                    role = Authority.ROLE_COMPANY,
+                    role = AccountAuthority.COMPANY,
                     phone = "010-0000-0000",
                     shopId = shop.id,
                 )
@@ -57,7 +57,7 @@ class ShopService(
                 id = createCompanyDto.managerId,
                 password = createCompanyDto.managerPassword,
                 name = createCompanyDto.managerName,
-                role = Authority.ROLE_COMPANY,
+                role = AccountAuthority.COMPANY,
                 phone = createCompanyDto.managerPhone,
                 shopId = shop.id,
             )

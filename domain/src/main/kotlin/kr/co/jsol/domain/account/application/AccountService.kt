@@ -6,6 +6,7 @@ import kr.co.jsol.domain.account.application.dto.CreateAccountDto
 import kr.co.jsol.domain.account.infrastructure.dto.AccountDto
 import kr.co.jsol.domain.account.infrastructure.query.AccountQueryRepository
 import kr.co.jsol.domain.account.infrastructure.repository.AccountRepository
+import kr.co.jsol.domain.auth.application.AuthService
 import kr.co.jsol.domain.shop.infrastructure.query.ShopQueryRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -15,7 +16,7 @@ import org.springframework.web.client.HttpClientErrorException
 class AccountService(
     private val repository: AccountRepository,
     private val query: AccountQueryRepository,
-    private val authRest: AuthRest,
+    private val authService: AuthService,
     private val shopQueryRepository: ShopQueryRepository,
 ) {
 
@@ -26,10 +27,7 @@ class AccountService(
 
         return try {
             // auth 서버에 먼저 계정 정보를 등록한다
-            val response = authRest.post<Map<String, Any>>(
-                "/api/users",
-                createAccountDto.toMap(),
-            )
+            val response = authService.postUsers(createAccountDto.toAuthDto())
             println("response = $response")
             // auth 서버에 계정 정보 등록 성공시, DB에 계정 정보를 등록한다
             AccountDto(repository.save(createAccountDto.toEntity(shop)))
@@ -62,7 +60,7 @@ class AccountService(
         } catch (e: Exception) {
             // 기타 예외 발생시 auth 서버에 등록된 계정 정보를 삭제한다
             try {
-                deleteAuthById(createAccountDto.id)
+                authService.deleteAuthById(createAccountDto.id)
             } catch (_: Exception) {
             }
             throw GeneralServerException.InternalServerException()
@@ -72,11 +70,6 @@ class AccountService(
     @Transactional
     fun patch() {
         // TODO 작성
-    }
-
-    @Transactional
-    fun deleteAuthById(id: String) {
-        authRest.delete("/api/users/${id}")
     }
 
     @Transactional(readOnly = true)

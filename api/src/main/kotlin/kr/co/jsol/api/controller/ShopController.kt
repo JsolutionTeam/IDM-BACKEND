@@ -2,7 +2,7 @@ package kr.co.jsol.api.controller
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
-import kr.co.jsol.common.domain.Authority
+import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.domain.shop.application.ShopService
 import kr.co.jsol.domain.shop.application.dto.CreateCompanyDto
 import kr.co.jsol.domain.shop.infrastructure.dto.ShopDto
@@ -22,7 +22,7 @@ class ShopController(
 ) {
 
     @Operation(summary = "COMPANY(업체) 등록 - 최종 관리자만 가능")
-    @PreAuthorize(Authority.ROLECHECK.HasAdminRole)
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("company")
     @ResponseStatus(HttpStatus.CREATED)
@@ -31,7 +31,6 @@ class ShopController(
         @RequestBody
         createCompanyDto: CreateCompanyDto,
     ): ShopDto {
-        val shop = service.createCompany(createCompanyDto)
-        return shop
+        return service.createCompany(createCompanyDto)
     }
 }

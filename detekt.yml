@@ -670,6 +670,7 @@ style:
     max: 3
     excludedFunctions:
       - 'equals'
+      - 'of'
     excludeLabeled: false
     excludeReturnFromLambda: true
     excludeGuardClauses: true

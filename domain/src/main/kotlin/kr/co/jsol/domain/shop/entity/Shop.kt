@@ -1,6 +1,6 @@
 package kr.co.jsol.domain.shop.entity
 
-import kr.co.jsol.common.domain.Authority
+import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.common.domain.BaseEntity
 import kr.co.jsol.domain.shop.entity.enums.ShopStatus
 import org.hibernate.annotations.Comment
@@ -29,7 +29,7 @@ class Shop(
 
     @Enumerated(EnumType.STRING)
     @Comment("권한")
-    var role: Authority,
+    var role: AccountAuthority,
 
     @Enumerated(EnumType.STRING)
     @Comment("상태")

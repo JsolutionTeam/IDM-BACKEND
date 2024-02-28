@@ -39,8 +39,16 @@ class CompanySubsidyService(
 
     @Transactional
     fun updateMultiple(updateCompanySubsidiesDto: UpdateCompanySubsidiesDto) {
-//        updateCompanySubsidiesDto.companySubsidies.forEach {
-//            val companySubsidy = query.getById(it.id)
-//        }
+        repository.saveAll(updateCompanySubsidiesDto.companySubsidies.map { cs ->
+            val companySubsidy = query.getById(cs.id)
+
+            cs.shopId?.let { companySubsidy.shop = shopQuery.getById(it) }
+            cs.telecomId?.let { companySubsidy.telecom = telecomQuery.getById(it) }
+            cs.phonePlanId?.let { companySubsidy.phonePlan = phonePlanQuery.getById(it) }
+            cs.deviceId?.let { companySubsidy.device = deviceQuery.getById(it) }
+
+            companySubsidy.update(cs)
+            companySubsidy
+        })
     }
 }
