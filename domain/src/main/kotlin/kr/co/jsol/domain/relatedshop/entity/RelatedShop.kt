@@ -16,7 +16,7 @@ import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 
-@SQLDelete(sql = "UPDATE shop_depot SET deleted_at = now() WHERE id = ?")
+@SQLDelete(sql = "UPDATE tb_releated_shop SET deleted_at = now() WHERE id = ?")
 @Entity
 @javax.persistence.Table(name = "tb_releated_shop")
 @Table(appliesTo = "tb_releated_shop", comment = "관계 업체")

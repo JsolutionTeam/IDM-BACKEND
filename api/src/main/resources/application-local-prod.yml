@@ -29,8 +29,15 @@ param:
 
 catalog:
   config:
+    mcall: integration_mcall
     idm: integration_idm
     auth: integration_auth
+
+custom:
+  api-url:
+    auth: http://localhost:11001
+    mcall: http://localhost:11201
+    idm: http://localhost:11301
 
 secret-key: kGU3Ss72dpWehaSOeFcHuhmYnp80KZbGx2QTcWhBueYCDNovsEzE2jGsYXfqaTyy5MgK3y1XBHhJzeMQsXnrYkYPWnH
 

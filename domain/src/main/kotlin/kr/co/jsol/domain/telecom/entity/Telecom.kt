@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 
-@SQLDelete(sql = "UPDATE telecom SET deleted_at = now() WHERE id = ?")
+@SQLDelete(sql = "UPDATE tb_telecom SET deleted_at = now() WHERE idx = ?")
 @Entity
 @javax.persistence.Table(name = "tb_telecom")
 @Table(appliesTo = "tb_telecom")

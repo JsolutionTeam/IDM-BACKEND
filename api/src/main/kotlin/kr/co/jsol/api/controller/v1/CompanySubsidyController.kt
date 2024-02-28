@@ -1,14 +1,20 @@
-package kr.co.jsol.api.controller
+package kr.co.jsol.api.controller.v1
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import kr.co.jsol.common.domain.AccountAuthority
+import kr.co.jsol.common.jwt.PayloadUserDetailsImpl
 import kr.co.jsol.domain.companysubsidy.application.CompanySubsidyService
 import kr.co.jsol.domain.companysubsidy.application.dto.CreateCompanySubsidyDto
+import kr.co.jsol.domain.companysubsidy.application.dto.DeleteCompanySubsidiesDto
+import kr.co.jsol.domain.companysubsidy.application.dto.GetCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.application.dto.UpdateCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.infrastructure.dto.CompanySubsidyDto
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.security.core.annotation.AuthenticationPrincipal
+import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -32,8 +38,7 @@ class CompanySubsidyController(
         @Valid
         @RequestBody
         createCompanySubsidyDto: CreateCompanySubsidyDto,
-
-        ): CompanySubsidyDto {
+    ): CompanySubsidyDto {
         return service.create(createCompanySubsidyDto)
     }
 
@@ -48,5 +53,34 @@ class CompanySubsidyController(
         updateCompanySubsidiesDto: UpdateCompanySubsidiesDto,
     ) {
         return service.updateMultiple(updateCompanySubsidiesDto)
+    }
+
+    @Operation(summary = "회사 지원금 다중 삭제")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    fun deleteCompanySubsidy(
+        @Valid
+        @RequestBody
+        deleteCompanySubsidiesDto: DeleteCompanySubsidiesDto,
+    ) {
+        return service.deleteMultiple(deleteCompanySubsidiesDto)
+    }
+
+    @Operation(summary = "회사 지원금 페이지 조회")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    fun page(
+        @Valid
+        getCompanySubsidiesDto: GetCompanySubsidiesDto,
+        @AuthenticationPrincipal
+        userDetails: PayloadUserDetailsImpl,
+    ) {
+//        if ()
+//
+//            return service.deleteMultiple(deleteCompanySubsidiesDto)
     }
 }

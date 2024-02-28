@@ -21,8 +21,10 @@ spring:
 #    password: jsolwpdlthffntus750!@
 #    driver-class-name: org.mariadb.jdbc.Driver
 
+
 catalog:
   config:
+    mcall: integration_mcall
     idm: integration_idm
     auth: integration_auth
 
@@ -36,6 +38,7 @@ custom:
 #    auth: http://localhost:11001
 #    mcall: http://localhost:11201
 #    idm: http://localhost:11301
+
 
 file:
   dir: /Users/leeseongbok/workspace/Github/IDM-BACKEND/src/main/resources/models

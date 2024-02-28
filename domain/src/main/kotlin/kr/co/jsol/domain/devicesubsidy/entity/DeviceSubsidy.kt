@@ -5,6 +5,7 @@ import kr.co.jsol.domain.device.entity.Device
 import kr.co.jsol.domain.phoneplan.entity.PhonePlan
 import kr.co.jsol.domain.telecom.entity.Telecom
 import org.hibernate.annotations.Comment
+import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.Table
 import javax.persistence.ConstraintMode
 import javax.persistence.Entity
@@ -16,6 +17,7 @@ import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 
+@SQLDelete(sql = "UPDATE tb_device_subsidy SET deleted_at = now() WHERE id = ?")
 @Entity
 @javax.persistence.Table(name = "tb_device_subsidy")
 @Table(appliesTo = "tb_device_subsidy", comment = "공시 지원금(통신사가 제이솔루션에게 지급하는 통신사/모델/요금제별 추가 지원금)")

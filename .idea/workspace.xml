@@ -5,38 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24a8cfd8-8e11-42ed-836d-7f882b54007d" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/paging/PageRequest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/application/dto/DeleteCompanySubsidiesDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/application/dto/GetCompanySubsidiesDto.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/bfa4a74e-9da3-4f90-b1f6-5baff6f9b49e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bfa4a74e-9da3-4f90-b1f6-5baff6f9b49e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/da7c78a1-bf3d-4bc7-8ce7-dcb1845a9a08.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/da7c78a1-bf3d-4bc7-8ce7-dcb1845a9a08.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/AccountController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/AccountController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/CompanySubsidyController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/CompanySubsidyController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/ShopController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/ShopController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/CompanySubsidyController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/v1/CompanySubsidyController.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/domain/Authority.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/JwtService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/JwtService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/Payload.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/Payload.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/PayloadUserDetailsImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/PayloadUserDetailsImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/repository/BaseQueryRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/repository/BaseQueryRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/detekt.yml" beforeDir="false" afterPath="$PROJECT_DIR$/detekt.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/application/AccountService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/application/AccountService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/application/AuthRest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/application/dto/CreateAccountDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/application/dto/CreateAccountDto.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application-local-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application-local-prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application-prod.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/entity/Account.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/entity/Account.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/infrastructure/dto/AccountDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/account/infrastructure/dto/AccountDto.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/color/entity/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/color/entity/Color.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/application/CompanySubsidyService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/application/CompanySubsidyService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/application/dto/CreateCompanySubsidyDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/application/dto/CreateCompanySubsidyDto.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/application/dto/UpdateCompanySubsidiesDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/application/dto/UpdateCompanySubsidiesDto.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/entity/CompanySubsidy.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/entity/CompanySubsidy.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/infrastructure/dto/CompanySubsidyDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/infrastructure/dto/CompanySubsidyDto.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/infrastructure/query/CompanySubsidyQueryRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/infrastructure/query/CompanySubsidyQueryRepository.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/device/entity/Device.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/device/entity/Device.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/device/infrastructure/dto/DeviceDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/device/infrastructure/dto/DeviceDto.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/phoneplan/entity/PhonePlan.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/phoneplan/entity/PhonePlan.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/application/ShopService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/application/ShopService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/application/dto/CreateCompanyDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/application/dto/CreateCompanyDto.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/deviceinfo/entity/DeviceInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/deviceinfo/entity/DeviceInfo.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/devicesubsidy/entity/DeviceSubsidy.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/devicesubsidy/entity/DeviceSubsidy.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/inouthistory/entity/InOutHistory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/inouthistory/entity/InOutHistory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/kiosk/entity/Kiosk.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/kiosk/entity/Kiosk.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/kioskstock/entity/KioskStock.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/kioskstock/entity/KioskStock.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/maker/entity/Maker.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/maker/entity/Maker.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/masteroption/entity/MasterOption.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/masteroption/entity/MasterOption.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/relatedshop/entity/RelatedShop.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/relatedshop/entity/RelatedShop.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/entity/Shop.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/entity/Shop.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/infrastructure/dto/ShopDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/infrastructure/dto/ShopDto.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/entity/enums/DiscountType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/entity/enums/DiscountType.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shopdevice/entity/ShopDevice.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shopdevice/entity/ShopDevice.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/entity/Telecom.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/entity/Telecom.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/user/entity/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/user/entity/User.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/info.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/info.log" afterDir="false" />
     </list>
@@ -157,47 +153,47 @@
     <option name="sortByType" value="true" />
     <option name="sortKey" value="BY_TYPE" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.IDM-BACKEND [clean].executor": "Run",
-    "Gradle.IDM-BACKEND [compileKotlin].executor": "Run",
-    "Gradle.IDM-BACKEND [compileTestKotlin].executor": "Run",
-    "Gradle.IDM-BACKEND 빌드.executor": "Run",
-    "Gradle.소스 다운로드.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.ApiApplication.executor": "Debug",
-    "Spring Boot.DEV).executor": "Debug",
-    "Spring Boot.DEV.executor": "Debug",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/leeseongbok/workspace/Github/IDM-BACKEND/common/src/main/kotlin/kr/co/jsol/common/exception/domain",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "모듈",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.detekt",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.IDM-BACKEND [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.IDM-BACKEND [compileKotlin].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.IDM-BACKEND [compileTestKotlin].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.IDM-BACKEND 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.소스 다운로드.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ApiApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.DEV).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.DEV.executor&quot;: &quot;Debug&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/leeseongbok/workspace/Github/IDM-BACKEND/common/src/main/kotlin/kr/co/jsol/common&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2254184&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.detekt&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mariadb"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/exception/domain" />
       <recent name="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common" />
+      <recent name="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/exception/domain" />
       <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shop/entity" />
       <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/telecom/infrastructure" />
       <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/shopuser/infrastructure" />
@@ -210,15 +206,15 @@
       <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/entity/companypolicy/application/dto" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="kr.co.jsol.api.controller.v1" />
+      <recent name="kr.co.jsol.api.controller.v1.companysubsidy" />
       <recent name="kr.co.jsol.domain.auth.application" />
       <recent name="kr.co.jsol.domain.auth.extapi" />
       <recent name="kr.co.jsol.domain.account.application.auth" />
-      <recent name="kr.co.jsol.common.domain" />
-      <recent name="kr.co.jsol.domain.shop.infrastructure.repository" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
-      <recent name="kr.co.jsol.api.controller" />
       <recent name="kr.co.jsol.domain.companysubsidy.application.dto" />
+      <recent name="kr.co.jsol.api.controller" />
       <recent name="kr.co.jsol.common.repository" />
       <recent name="kr.co.jsol.domain.shop.entity.enums" />
       <recent name="kr.co.jsol.domain.account.infrastructure.dto" />
@@ -442,7 +438,8 @@
       <workItem from="1708584646221" duration="4308000" />
       <workItem from="1708648317571" duration="7325000" />
       <workItem from="1708907604406" duration="23952000" />
-      <workItem from="1709083248869" duration="14156000" />
+      <workItem from="1709083248869" duration="17586000" />
+      <workItem from="1709111922735" duration="599000" />
     </task>
     <servers />
   </component>
@@ -477,17 +474,17 @@
         </line-breakpoint>
         <line-breakpoint type="kotlin-line">
           <url>file://$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/application/CompanySubsidyService.kt</url>
-          <line>49</line>
+          <line>50</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint type="kotlin-line">
           <url>file://$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/companysubsidy/application/CompanySubsidyService.kt</url>
-          <line>42</line>
+          <line>43</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint type="kotlin-line">
-          <url>file://$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/CompanySubsidyController.kt</url>
-          <line>49</line>
+          <url>file://$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/v1/CompanySubsidyController.kt</url>
+          <line>51</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint type="kotlin-line">
@@ -500,11 +497,6 @@
           <line>82</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/jwt/JwtAuthenticationFilter.kt</url>
-          <line>43</line>
-          <option name="timeStamp" value="51" />
-        </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-core/5.7.11/6c79c2f22d238f89abe3e75af80dc442c4087c62/spring-security-core-5.7.11.jar!/org/springframework/security/authentication/UsernamePasswordAuthenticationToken.class</url>
           <line>25</line>
@@ -516,9 +508,9 @@
           <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint type="kotlin-function">
-          <url>file://$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/CompanySubsidyController.kt</url>
-          <line>44</line>
-          <properties class="kr.co.jsol.api.controller.CompanySubsidyController" method="updateCompanySubsidy">
+          <url>file://$PROJECT_DIR$/api/src/main/kotlin/kr/co/jsol/api/controller/v1/CompanySubsidyController.kt</url>
+          <line>46</line>
+          <properties class="kr.co.jsol.api.controller.v1.CompanySubsidyController" method="updateCompanySubsidy">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>

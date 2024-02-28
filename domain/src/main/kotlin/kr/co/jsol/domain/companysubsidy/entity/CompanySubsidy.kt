@@ -9,6 +9,7 @@ import kr.co.jsol.domain.telecom.entity.Telecom
 import kr.co.jsol.domain.telecom.entity.enums.DiscountType
 import kr.co.jsol.domain.telecom.entity.enums.OpenType
 import org.hibernate.annotations.Comment
+import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.Table
 import javax.persistence.Column
 import javax.persistence.ConstraintMode
@@ -23,6 +24,7 @@ import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 
+@SQLDelete(sql = "UPDATE tb_company_subsidy SET deleted_at = now() WHERE id = ?")
 @Entity
 @javax.persistence.Table(name = "tb_company_subsidy")
 @Table(appliesTo = "tb_company_subsidy", comment = "회사 지원금(제이솔루션이 특정 회사에 지급하는 회사/통신사/모델/유형/요금제별 추가 지원금)")

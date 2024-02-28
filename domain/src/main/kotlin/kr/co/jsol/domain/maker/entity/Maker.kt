@@ -10,7 +10,7 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.UniqueConstraint
 
-@SQLDelete(sql = "UPDATE maker SET deleted_at = now() WHERE id = ?")
+@SQLDelete(sql = "UPDATE tb_maker SET deleted_at = now() WHERE idx = ?")
 @Entity
 @javax.persistence.Table(
     name = "tb_maker",

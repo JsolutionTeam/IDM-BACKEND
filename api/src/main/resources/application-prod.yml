@@ -15,8 +15,10 @@ spring:
 
 catalog:
   config:
+    mcall: integration_mcall
     idm: integration_idm
     auth: integration_auth
+
 
 custom:
   api-url:

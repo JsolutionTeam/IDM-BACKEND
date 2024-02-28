@@ -1,6 +1,7 @@
 package kr.co.jsol.domain.companysubsidy.application
 
 import kr.co.jsol.domain.companysubsidy.application.dto.CreateCompanySubsidyDto
+import kr.co.jsol.domain.companysubsidy.application.dto.DeleteCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.application.dto.UpdateCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.infrastructure.dto.CompanySubsidyDto
 import kr.co.jsol.domain.companysubsidy.infrastructure.query.CompanySubsidyQueryRepository
@@ -50,5 +51,16 @@ class CompanySubsidyService(
             companySubsidy.update(cs)
             companySubsidy
         })
+    }
+
+    @Transactional
+    fun deleteMultiple(deleteCompanySubsidiesDto: DeleteCompanySubsidiesDto) {
+        repository.deleteAll(deleteCompanySubsidiesDto.ids.map { query.getById(it) })
+    }
+
+    @Transactional(readOnly = true)
+    fun getCompanySubsidies(companyId: Long): List<CompanySubsidyDto> {
+        return query.findAllByCompanyId(companyId)
+            .map { CompanySubsidyDto(it) }
     }
 }

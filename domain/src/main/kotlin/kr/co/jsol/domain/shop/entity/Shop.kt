@@ -14,7 +14,7 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 
-@SQLDelete(sql = "UPDATE shop SET deleted_at = now() WHERE id = ?")
+@SQLDelete(sql = "UPDATE tb_shop SET deleted_at = now() WHERE idx = ?")
 @Entity
 @javax.persistence.Table(name = "tb_shop")
 @Table(appliesTo = "tb_shop", comment = "업체[매장], 대리점, 판매점 등")
