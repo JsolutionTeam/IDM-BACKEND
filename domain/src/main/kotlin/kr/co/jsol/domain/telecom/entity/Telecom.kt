@@ -12,8 +12,8 @@ import javax.persistence.Id
 
 @SQLDelete(sql = "UPDATE telecom SET deleted_at = now() WHERE id = ?")
 @Entity
-@javax.persistence.Table(name = "telecom")
-@Table(appliesTo = "telecom")
+@javax.persistence.Table(name = "tb_telecom")
+@Table(appliesTo = "tb_telecom")
 class Telecom(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ class Telecom(
 
     @Comment("이름")
     var name: String,
-    
-    @Comment("공식 홈페이지")
+
+    @Comment("통신사 공식 홈페이지")
     var homepage: String,
 ) : BaseEntity()

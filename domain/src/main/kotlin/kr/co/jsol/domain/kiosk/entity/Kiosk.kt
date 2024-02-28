@@ -2,7 +2,7 @@ package kr.co.jsol.domain.kiosk.entity
 
 import kr.co.jsol.common.domain.BaseEntity
 import kr.co.jsol.domain.shop.entity.Shop
-import kr.co.jsol.domain.shopuser.entity.ShopUser
+import kr.co.jsol.domain.user.entity.User
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.Table
@@ -18,8 +18,8 @@ import javax.persistence.OneToMany
 
 @SQLDelete(sql = "UPDATE kiosk SET deleted_at = now() WHERE id = ?")
 @Entity
-@javax.persistence.Table(name = "kiosk")
-@Table(appliesTo = "kiosk", comment = "단말 보관함")
+@javax.persistence.Table(name = "tb_kiosk")
+@Table(appliesTo = "tb_kiosk", comment = "단말 보관함")
 class Kiosk(
     @Id
     @Comment("아이디")
@@ -46,5 +46,5 @@ class Kiosk(
         cascade = [CascadeType.ALL],
     )
     @Comment("사용자")
-    var shopUsers: MutableList<ShopUser>,
+    var users: MutableList<User>,
 ) : BaseEntity()

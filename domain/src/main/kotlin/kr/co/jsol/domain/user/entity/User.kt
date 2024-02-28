@@ -1,4 +1,4 @@
-package kr.co.jsol.domain.shopuser.entity
+package kr.co.jsol.domain.user.entity
 
 import kr.co.jsol.common.domain.BaseEntity
 import kr.co.jsol.domain.kiosk.entity.Kiosk
@@ -17,9 +17,9 @@ import javax.persistence.ManyToOne
 
 @SQLDelete(sql = "UPDATE user SET deleted_at = now() WHERE id = ?")
 @Entity
-@javax.persistence.Table(name = "shop_user")
-@Table(appliesTo = "shop_user", comment = "인원 정보[ 현재 키오스크에서 사용 중 ]")
-class ShopUser(
+@javax.persistence.Table(name = "tb_user")
+@Table(appliesTo = "tb_user", comment = "인원 정보[ 현재 키오스크에서 사용 중 ]")
+class User(
     @Id
     @Column(name = "id")
     @Comment("아이디")

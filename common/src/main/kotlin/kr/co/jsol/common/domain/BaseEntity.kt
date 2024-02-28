@@ -12,12 +12,14 @@ import javax.persistence.MappedSuperclass
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
 abstract class BaseEntity(
-    @Column(name = "created_at")
+
+    // TODO 모든 기능이 이전됐을때 속성명을 created_at, updated_at 으로 변경해야 함
+    @Column(name = "crtd_dt")
     @CreatedDate
     @Comment("생성일시")
     var createdAt: LocalDateTime = LocalDateTime.now(),
 
-    @Column(name = "updated_at")
+    @Column(name = "updt_dt")
     @LastModifiedDate
     @Comment("수정일시")
     var updatedAt: LocalDateTime? = null,
@@ -26,10 +28,6 @@ abstract class BaseEntity(
     @Comment("삭제일시")
     var deletedAt: LocalDateTime? = null,
 ) {
-
-    fun softDelete() {
-        this.deletedAt = LocalDateTime.now()
-    }
 
     fun isDeleted(): Boolean {
         return this.deletedAt != null

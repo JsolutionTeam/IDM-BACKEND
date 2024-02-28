@@ -15,25 +15,15 @@ open class BaseCommandRepository<T : BaseEntity, ID : Any>(
     }
 
     fun saveMultiple(entities: List<T>): List<T> {
-        return curdRepository.saveAll(entities).toList()
+        return curdRepository.saveAll(entities)
+            .toList()
     }
 
-    fun softDelete(entity: T): T {
-        entity.softDelete()
-        return curdRepository.save(entity)
-    }
-
-    fun softDeleteMultiple(entities: List<T>): List<T> {
-        entities.forEach { it.softDelete() }
-
-        return curdRepository.saveAll(entities).toList()
-    }
-
-    fun hardDelete(entity: T) {
+    fun delete(entity: T) {
         curdRepository.delete(entity)
     }
 
-    fun hardDeleteMultiple(entities: List<T>) {
+    fun deleteMultiple(entities: List<T>) {
         curdRepository.deleteAll(entities)
     }
 }

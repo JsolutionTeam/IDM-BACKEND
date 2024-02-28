@@ -2,6 +2,8 @@ package kr.co.jsol.api.controller
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
+import kr.co.jsol.common.domain.Authority
+import kr.co.jsol.common.exception.GeneralClientException
 import kr.co.jsol.common.jwt.JwtService
 import kr.co.jsol.common.jwt.PayloadUserDetailsImpl
 import kr.co.jsol.domain.account.application.AccountService
@@ -48,20 +50,35 @@ class AccountController(
     @ResponseStatus(HttpStatus.OK)
     fun jwtValidationTest(
         @AuthenticationPrincipal
-        userDetails: PayloadUserDetailsImpl?,
+        userDetails: PayloadUserDetailsImpl,
     ) {
         val log = LoggerFactory.getLogger(this.javaClass)
         log.info("userDetails : $userDetails")
     }
 
     @Operation(summary = "Create Account")
+    @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     fun createAccount(
         @Valid
         @RequestBody
         createAccountDto: CreateAccountDto,
+        @AuthenticationPrincipal
+        userDetails: PayloadUserDetailsImpl,
     ): AccountDto {
+        val requesterRole = userDetails.payload.role
+        val requestedRole = createAccountDto.role
+
+
+        if (requesterRole != Authority.ROLE_ADMIN.name) {
+            if (requesterRole == Authority.ROLE_COMPANY.name) {
+                if (requestedRole != Authority.ROLE_USER) {
+                    throw GeneralClientException.ForbiddenException()
+                }
+            }
+        }
+
         return accountService.create(createAccountDto)
     }
 }

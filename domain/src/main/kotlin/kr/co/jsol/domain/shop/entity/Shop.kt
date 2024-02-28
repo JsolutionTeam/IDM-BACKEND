@@ -13,14 +13,11 @@ import javax.persistence.Enumerated
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.ManyToMany
 
 @SQLDelete(sql = "UPDATE shop SET deleted_at = now() WHERE id = ?")
 @Entity
-@javax.persistence.Table(
-    name = "shop",
-)
-@Table(appliesTo = "shop", comment = "업체[매장], 대리점, 판매점 등")
+@javax.persistence.Table(name = "tb_shop")
+@Table(appliesTo = "tb_shop", comment = "업체[매장], 대리점, 판매점 등")
 class Shop(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,12 +49,6 @@ class Shop(
     @Column(name = "manager_phone")
     @Comment("관리자 전화번호")
     var managerPhone: String,
-
-    @ManyToMany(fetch = javax.persistence.FetchType.EAGER)
-    val parent: MutableSet<Shop> = mutableSetOf(),
-
-    @ManyToMany(fetch = javax.persistence.FetchType.EAGER, mappedBy = "parent")
-    val child: MutableSet<Shop> = mutableSetOf(),
 ) : BaseEntity() {
 
     override fun toString(): String {

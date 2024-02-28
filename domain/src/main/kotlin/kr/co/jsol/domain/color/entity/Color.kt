@@ -12,8 +12,8 @@ import javax.persistence.Id
 
 @SQLDelete(sql = "UPDATE color SET deleted_at = now() WHERE id = ?")
 @Entity
-@javax.persistence.Table(name = "color")
-@Table(appliesTo = "color", comment = "색상")
+@javax.persistence.Table(name = "tb_color")
+@Table(appliesTo = "tb_color", comment = "색상")
 class Color(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

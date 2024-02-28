@@ -21,8 +21,8 @@ import javax.persistence.ManyToOne
 
 @SQLDelete(sql = "UPDATE in_out_history SET deleted_at = now() WHERE id = ?")
 @Entity
-@javax.persistence.Table(name = "in_out_history")
-@Table(appliesTo = "in_out_history", comment = "입/출고 이력")
+@javax.persistence.Table(name = "tb_in_out_history")
+@Table(appliesTo = "tb_in_out_history", comment = "입/출고 이력")
 class InOutHistory(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

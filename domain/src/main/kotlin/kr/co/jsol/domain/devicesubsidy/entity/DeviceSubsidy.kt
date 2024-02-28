@@ -17,8 +17,8 @@ import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 
 @Entity
-@javax.persistence.Table(name = "device_subsidy")
-@Table(appliesTo = "device_subsidy", comment = "공시 지원금(통신사가 제이솔루션에게 지급하는 통신사/모델/요금제별 추가 지원금)")
+@javax.persistence.Table(name = "tb_device_subsidy")
+@Table(appliesTo = "tb_device_subsidy", comment = "공시 지원금(통신사가 제이솔루션에게 지급하는 통신사/모델/요금제별 추가 지원금)")
 class DeviceSubsidy(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

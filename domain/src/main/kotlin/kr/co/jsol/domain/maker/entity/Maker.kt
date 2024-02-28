@@ -13,7 +13,7 @@ import javax.persistence.UniqueConstraint
 @SQLDelete(sql = "UPDATE maker SET deleted_at = now() WHERE id = ?")
 @Entity
 @javax.persistence.Table(
-    name = "maker",
+    name = "tb_maker",
     uniqueConstraints = [
         UniqueConstraint(
             name = "uk_maker_name",
@@ -21,7 +21,7 @@ import javax.persistence.UniqueConstraint
         ),
     ]
 )
-@Table(appliesTo = "maker", comment = "제조사")
+@Table(appliesTo = "tb_maker", comment = "제조사")
 class Maker(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

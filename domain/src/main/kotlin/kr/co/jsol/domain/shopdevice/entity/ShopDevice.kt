@@ -26,8 +26,8 @@ import javax.persistence.ManyToOne
 
 @SQLDelete(sql = "UPDATE shop_device SET deleted_at = now() WHERE id = ?")
 @Entity
-@javax.persistence.Table(name = "shop_device")
-@Table(appliesTo = "shop_device")
+@javax.persistence.Table(name = "tb_shop_device")
+@Table(appliesTo = "tb_shop_device")
 class ShopDevice(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

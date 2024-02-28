@@ -14,10 +14,14 @@ class ShopQueryRepository(
     private val queryFactory: JPAQueryFactory,
 ) : BaseQueryRepository<Shop, Long>(shop, repository) {
 
+    fun existsAny(): Boolean {
+        return repository.exists(
+            shop.id.isNotNull
+                .and(shop.deletedAt.isNull),
+        )
+    }
+
     fun getById(id: Long): Shop {
-        return repository.findById(id)
-            .orElseThrow {
-                throw ShopException.NotFoundByIdException()
-            }
+        return findById(id) ?: throw ShopException.NotFoundByIdException()
     }
 }

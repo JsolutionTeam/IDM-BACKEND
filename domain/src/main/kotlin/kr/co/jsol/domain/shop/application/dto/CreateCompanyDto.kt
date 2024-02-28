@@ -4,19 +4,14 @@ import io.swagger.v3.oas.annotations.media.Schema
 import kr.co.jsol.common.domain.Authority
 import kr.co.jsol.domain.shop.entity.enums.ShopStatus
 import javax.validation.constraints.NotBlank
-import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 @Schema(name = "업체 생성 요청")
-data class CreateShopDto(
+data class CreateCompanyDto(
     @field:NotBlank(message = "업체명은 필수입니다.")
     @field:Size(max = 100, message = "업체명은 100자 이내로 입력해주세요.")
     @field:Schema(description = "업체명", example = "제이솔루션")
     val name: String,
-
-    @field:NotNull(message = "권한은 필수입니다.")
-    @field:Schema(description = "권한", example = "ROLE_ADMIN", implementation = Authority::class)
-    val role: Authority,
 
     @field:Schema(description = "업체 상태 null로 입력시 REQUEST로 처리합니다.", example = "DONE", implementation = ShopStatus::class)
     val status: ShopStatus? = null, // default
@@ -48,7 +43,7 @@ data class CreateShopDto(
 ) {
     fun toEntity() = kr.co.jsol.domain.shop.entity.Shop(
         name = name,
-        role = role,
+        role = Authority.ROLE_COMPANY,
         status = status ?: ShopStatus.REQUEST,
         phone = phone,
         managerId = managerId,

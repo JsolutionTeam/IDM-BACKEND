@@ -9,8 +9,8 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-@javax.persistence.Table(name = "master_option")
-@Table(appliesTo = "master_option", comment = "마스터 옵션")
+@javax.persistence.Table(name = "tb_master_option")
+@Table(appliesTo = "tb_master_option", comment = "마스터 옵션")
 class MasterOption(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

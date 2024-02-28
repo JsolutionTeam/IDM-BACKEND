@@ -7,6 +7,7 @@ import kr.co.jsol.common.domain.BaseEntity
 import org.slf4j.LoggerFactory
 import org.springframework.data.repository.CrudRepository
 import java.time.LocalDate
+import java.time.LocalDateTime
 import kotlin.jvm.optionals.getOrNull
 
 open class BaseQueryRepository<T : BaseEntity, ID : Any>(
@@ -27,12 +28,15 @@ open class BaseQueryRepository<T : BaseEntity, ID : Any>(
         return entity
     }
 
+    /**
+     * 주의, deletedAt 처리가 없어 분기를 어플리케이션에서 처리해야 함
+     */
     open fun findManyByIds(ids: List<ID>): List<T> {
         return crudRepository.findAllById(ids)
             .toList()
     }
 
-    fun DateTimePath<java.time.LocalDateTime>.between(
+    fun DateTimePath<LocalDateTime>.between(
         start: LocalDate,
         end: LocalDate,
     ): BooleanExpression {
