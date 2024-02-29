@@ -19,7 +19,7 @@ data class UpdateCompanySubsidyDto(
     @field:Schema(description = "선약/공시 할인 유형", implementation = DiscountType::class)
     val discountType: DiscountType? = null,
 
-    @field:Schema(description = "공시지원금 가격")
+    @field:Schema(description = "공시 지원금 가격")
     val price: Long? = null,
 
     @field:Schema(description = "idm - shop idx")

@@ -59,10 +59,9 @@ class JwtService(
     }
 
     fun getAuthentication(token: String): Authentication {
-        val payload = getPayload(token)
-        val payloadUserDetails = PayloadUserDetailsImpl(payload)
+        val userDetailsImpl = userDetailsService.loadUserByUsername(getUserPk(token))
         // 마지막 인자인 payloadUserDetails.authorities 값으로 @PreAuthorize를 사용할 수 있다.
-        return UsernamePasswordAuthenticationToken(payloadUserDetails, "", payloadUserDetails.authorities)
+        return UsernamePasswordAuthenticationToken(userDetailsImpl, "", userDetailsImpl.authorities)
     }
 
     fun getUserPk(token: String): String {

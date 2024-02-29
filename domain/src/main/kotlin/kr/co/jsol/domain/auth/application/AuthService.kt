@@ -4,7 +4,6 @@ import kr.co.jsol.common.exception.GeneralClientException
 import kr.co.jsol.domain.auth.application.dto.AuthCreateUserDto
 import kr.co.jsol.domain.auth.application.dto.AuthLoginResultDto
 import kr.co.jsol.domain.auth.application.dto.LoginDto
-import kr.co.jsol.domain.auth.application.dto.LoginResultDto
 import kr.co.jsol.domain.auth.restapi.AuthRest
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service

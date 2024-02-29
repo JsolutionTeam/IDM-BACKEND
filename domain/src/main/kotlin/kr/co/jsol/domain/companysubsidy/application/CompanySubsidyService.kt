@@ -1,7 +1,9 @@
 package kr.co.jsol.domain.companysubsidy.application
 
+import kr.co.jsol.domain.account.infrastructure.query.AccountQueryRepository
 import kr.co.jsol.domain.companysubsidy.application.dto.CreateCompanySubsidyDto
 import kr.co.jsol.domain.companysubsidy.application.dto.DeleteCompanySubsidiesDto
+import kr.co.jsol.domain.companysubsidy.application.dto.GetCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.application.dto.UpdateCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.infrastructure.dto.CompanySubsidyDto
 import kr.co.jsol.domain.companysubsidy.infrastructure.query.CompanySubsidyQueryRepository
@@ -10,6 +12,9 @@ import kr.co.jsol.domain.device.infrastructure.query.DeviceQueryRepository
 import kr.co.jsol.domain.phoneplan.infrastructure.query.PhonePlanQueryRepository
 import kr.co.jsol.domain.shop.infrastructure.query.ShopQueryRepository
 import kr.co.jsol.domain.telecom.infrastructure.query.TelecomQueryRepository
+import kr.co.jsol.domain.userdetails.UserDetailsImpl
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -18,6 +23,7 @@ class CompanySubsidyService(
     private val repository: CompanySubsidyRepository,
     private val query: CompanySubsidyQueryRepository,
 
+    private val accountQuery: AccountQueryRepository,
     private val shopQuery: ShopQueryRepository,
     private val telecomQuery: TelecomQueryRepository,
     private val phonePlanQuery: PhonePlanQueryRepository,
@@ -59,8 +65,23 @@ class CompanySubsidyService(
     }
 
     @Transactional(readOnly = true)
-    fun getCompanySubsidies(companyId: Long): List<CompanySubsidyDto> {
-        return query.findAllByCompanyId(companyId)
+    fun findOffsetPageBySearch(
+        getCompanySubsidiesDto: GetCompanySubsidiesDto,
+        pageable: Pageable,
+        requester: UserDetailsImpl,
+    ): Page<CompanySubsidyDto> {
+
+        // 최종 관리자가 아니라면 해당 업체의 데이터만 조회 가능
+        if (requester.isNotAdmin()) {
+            getCompanySubsidiesDto.shopId = requester.shop.id
+        }
+
+        return query.findOffsetPageBySearch(getCompanySubsidiesDto, pageable)
             .map { CompanySubsidyDto(it) }
+    }
+
+    @Transactional(readOnly = true)
+    fun getById(id: Long): CompanySubsidyDto {
+        return CompanySubsidyDto(query.getById(id))
     }
 }

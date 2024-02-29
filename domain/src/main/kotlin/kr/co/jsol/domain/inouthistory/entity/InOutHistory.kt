@@ -58,7 +58,7 @@ class InOutHistory(
     var memo: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "manager_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "owner_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("등록처 아이디")
     var owner: Shop,
 
@@ -68,9 +68,9 @@ class InOutHistory(
     var location: Shop,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "shop_depot_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("입고처 아이디")
-    var depot: ShopDepot,
+    var shopDepot: ShopDepot,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "telecom_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))

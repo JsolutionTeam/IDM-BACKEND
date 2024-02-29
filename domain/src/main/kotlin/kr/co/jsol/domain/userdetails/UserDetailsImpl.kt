@@ -1,30 +1,47 @@
 package kr.co.jsol.domain.userdetails
 
+import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.domain.account.entity.Account
+import org.slf4j.LoggerFactory
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
-class UserDetailsImpl(val entity: Account) : UserDetails {
+data class UserDetailsImpl(
+    private val account: Account,
+) : UserDetails {
+
+    val id = account.id
+    val name = account.name
+    val role = account.role
+    val shop = account.shop
+
+    fun isNotAdmin() = isAdmin().not()
+    fun isAdmin() = role == AccountAuthority.ADMIN
+
+    fun isNotCompany() = isCompany().not()
+    fun isCompany() = role == AccountAuthority.COMPANY
+
+    fun isNotUser() = isUser().not()
+    fun isUser() = role == AccountAuthority.USER
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        return mutableListOf<GrantedAuthority>(GrantedAuthority { "" })
+        log.info("role : $role")
+        return mutableListOf<GrantedAuthority>(role)
     }
+
+    override fun isEnabled() = true
+
+    override fun getUsername(): String = account.id
+
+    override fun isCredentialsNonExpired() = true
 
     override fun getPassword(): String = ""
 
-    override fun getUsername(): String = this.entity.id.toString()
+    override fun isAccountNonExpired() = true
 
-    override fun isAccountNonExpired(): Boolean = true
+    override fun isAccountNonLocked() = true
 
-    override fun isAccountNonLocked(): Boolean = true
-
-    override fun isCredentialsNonExpired(): Boolean = true
-
-    override fun isEnabled(): Boolean = true
-
-    val id get() = this.entity.id
-
-    override fun toString(): String {
-        return "UserDetailsImpl(entity=$entity, id=$id username=${this.entity.id})"
+    companion object {
+        private val log = LoggerFactory.getLogger(this::class.java)
     }
 }

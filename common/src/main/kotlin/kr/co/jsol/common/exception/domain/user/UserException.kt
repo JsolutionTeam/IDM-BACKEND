@@ -3,34 +3,12 @@ package kr.co.jsol.common.exception.domain.user
 import kr.co.jsol.common.exception.CustomException
 import org.springframework.http.HttpStatus
 
+private const val NAME = "사용자"
+private const val CODE = "USER"
+
 sealed class UserException {
     class NotFoundByIdException(
-        message: String = "id로 사용자 정보를 찾을 수 없습니다.",
+        message: String = "id로 $NAME 정보를 찾을 수 없습니다.",
         e: Throwable? = null,
-    ) : CustomException("USER-0001", message, HttpStatus.NOT_FOUND, e)
-
-    class NotFoundExceptionByEmployeeNumber(
-        message: String = "사원아이디로 사용자 정보를 찾을 수 없습니다.",
-        e: Throwable? = null,
-    ) : CustomException("USER-0002", message, HttpStatus.NOT_FOUND, e)
-
-    class ForbiddenCompanyAccess(
-        message: String = "요청한 회사 정보에 대한 접근 권한이 없습니다.",
-        e: Throwable? = null,
-    ) : CustomException("USER-0003", message, HttpStatus.FORBIDDEN, e)
-
-    class ForbiddenClientCompanyAccess(
-        message: String = "요청한 고객사 정보에 대한 접근 권한이 없습니다.",
-        e: Throwable? = null,
-    ) : CustomException("USER-0004", message, HttpStatus.FORBIDDEN, e)
-
-    class DuplicatedUid(
-        message: String = "중복된 아이디가 존재합니다.",
-        e: Throwable? = null,
-    ) : CustomException("USER-0005", message, HttpStatus.CONFLICT, e)
-
-    class DuplicatedEmployeeNumber(
-        message: String = "중복된 사원아이디가 존재합니다.",
-        e: Throwable? = null,
-    ) : CustomException("USER-0020", message, HttpStatus.CONFLICT, e)
+    ) : CustomException("$CODE-0001", message, HttpStatus.NOT_FOUND, e)
 }

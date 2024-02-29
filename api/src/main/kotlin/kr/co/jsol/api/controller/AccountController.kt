@@ -5,10 +5,10 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.common.exception.GeneralClientException
 import kr.co.jsol.common.jwt.JwtService
-import kr.co.jsol.common.jwt.PayloadUserDetailsImpl
 import kr.co.jsol.domain.account.application.AccountService
 import kr.co.jsol.domain.account.application.dto.CreateAccountDto
 import kr.co.jsol.domain.account.infrastructure.dto.AccountDto
+import kr.co.jsol.domain.userdetails.UserDetailsImpl
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -50,7 +50,7 @@ class AccountController(
     @ResponseStatus(HttpStatus.OK)
     fun jwtValidationTest(
         @AuthenticationPrincipal
-        userDetails: PayloadUserDetailsImpl,
+        userDetails: UserDetailsImpl,
     ) {
         val log = LoggerFactory.getLogger(this.javaClass)
         log.info("userDetails : $userDetails")
@@ -65,14 +65,14 @@ class AccountController(
         @RequestBody
         createAccountDto: CreateAccountDto,
         @AuthenticationPrincipal
-        userDetails: PayloadUserDetailsImpl,
+        userDetails: UserDetailsImpl,
     ): AccountDto {
-        val requesterRole = userDetails.payload.role
+        val requesterRole = userDetails.role
         val requestedRole = createAccountDto.role
 
 
-        if (requesterRole != AccountAuthority.ADMIN.name) {
-            if (requesterRole == AccountAuthority.COMPANY.name) {
+        if (requesterRole != AccountAuthority.ADMIN) {
+            if (requesterRole == AccountAuthority.COMPANY) {
                 if (requestedRole != AccountAuthority.USER) {
                     throw GeneralClientException.ForbiddenException()
                 }

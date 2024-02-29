@@ -2,10 +2,7 @@ package kr.co.jsol.common.config
 
 import kr.co.jsol.common.exception.ExceptionHandlerFilter
 import kr.co.jsol.common.jwt.JwtAuthenticationFilter
-import kr.co.jsol.common.jwt.JwtService
-import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -20,10 +17,7 @@ class SecurityConfig(
     private val jwtAuthenticationFilter: JwtAuthenticationFilter,
     private val exceptionHandlerFilter: ExceptionHandlerFilter,
 ) : WebSecurityConfigurerAdapter() {
-
-    @Bean
-    override fun authenticationManagerBean(): AuthenticationManager = super.authenticationManagerBean()
-
+    
     override fun configure(http: HttpSecurity) {
         http.httpBasic()
             .disable()

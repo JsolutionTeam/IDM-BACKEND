@@ -2,6 +2,7 @@ package kr.co.jsol.domain.devicesubsidy.entity
 
 import kr.co.jsol.common.domain.BaseEntity
 import kr.co.jsol.domain.device.entity.Device
+import kr.co.jsol.domain.devicesubsidy.application.dto.UpdateDeviceSubsidyDto
 import kr.co.jsol.domain.phoneplan.entity.PhonePlan
 import kr.co.jsol.domain.telecom.entity.Telecom
 import org.hibernate.annotations.Comment
@@ -24,7 +25,7 @@ import javax.persistence.ManyToOne
 class DeviceSubsidy(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Comment("공시지원금 아이디")
+    @Comment("공시 지원금 아이디")
     var id: Long = 0,
 
     @Comment("공시지원금액")
@@ -43,5 +44,10 @@ class DeviceSubsidy(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "device_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("단말 아이디")
-    var deviceInfo: Device,
-) : BaseEntity()
+    var device: Device,
+) : BaseEntity() {
+
+    fun update(deviceSubsidy: UpdateDeviceSubsidyDto) {
+        deviceSubsidy.price?.let { this.price = it }
+    }
+}

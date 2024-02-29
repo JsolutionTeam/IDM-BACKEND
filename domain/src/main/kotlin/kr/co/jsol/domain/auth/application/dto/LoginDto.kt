@@ -9,7 +9,7 @@ data class LoginDto(
     @Schema(description = "비밀번호", example = "js")
     val password: String,
 ) {
-    
+
     fun toMap(): Map<String, String> {
         return mapOf(
             "id" to id,

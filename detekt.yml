@@ -142,6 +142,13 @@ complexity:
     ignoreDefaultParameters: false
     ignoreDataClasses: true
     ignoreAnnotatedParameter: [ Column, OneToMany, ManyToOne ]
+    ignoreFunction:
+      - 'equals'
+      - 'hashCode'
+      - 'toString'
+      - 'init'
+      - 'update' # for entity classes
+      - 'toEntity' # for DTO classes
   MethodOverloading:
     active: false
     threshold: 6

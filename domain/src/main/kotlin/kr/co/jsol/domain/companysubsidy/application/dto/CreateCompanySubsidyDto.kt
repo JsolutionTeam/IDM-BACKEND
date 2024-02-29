@@ -21,9 +21,9 @@ data class CreateCompanySubsidyDto(
     @field:Schema(description = "선약/공시 할인 유형", implementation = DiscountType::class)
     val discountType: DiscountType,
 
-    @field:NotNull(message = "공시지원금 가격은 필수입력입니다.")
-    @field:Min(value = 0, message = "공시지원금 가격은 0원 이상이어야 합니다.")
-    @field:Schema(description = "공시지원금 가격")
+    @field:NotNull(message = "공시 지원금 가격은 필수입력입니다.")
+    @field:Min(value = 0, message = "공시 지원금 가격은 0원 이상이어야 합니다.")
+    @field:Schema(description = "공시 지원금 가격")
     val price: Long,
 
     @field:NotNull(message = "idm - shop idx는 필수입력입니다.")

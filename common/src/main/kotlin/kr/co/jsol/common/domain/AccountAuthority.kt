@@ -61,5 +61,23 @@ enum class AccountAuthority(
             return entries.find { it.name == role }
                 ?: SimpleGrantedAuthority(value)
         }
+
+//        fun of(value: String): MutableList<GrantedAuthority> {
+//            log.info("value : $value")
+//            log.info("entries : ${entries.joinToString(", ") { it.name }}")
+//
+//            val role = value.uppercase()
+//
+//            if (role.contains("ADMIN") || role.contains("ROOT") || role.contains("JSOL")) {
+//                return mutableListOf(ADMIN, COMPANY, USER)
+//            } else if (role.contains("COMPANY") || role.contains("PARENT") || role.contains("AGENCY")) {
+//                return mutableListOf(COMPANY, USER)
+//            } else if (role.contains("USER") || role.contains("BELONG") || role.contains("STORE")) {
+//                return mutableListOf(USER)
+//            }
+//
+//            return mutableListOf(entries.find { it.name == role }
+//                                     ?: SimpleGrantedAuthority(value))
+//        }
     }
 }

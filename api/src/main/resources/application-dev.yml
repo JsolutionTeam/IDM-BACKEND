@@ -41,8 +41,6 @@ custom:
 
 
 file:
-  dir: /Users/leeseongbok/workspace/Github/IDM-BACKEND/src/main/resources/models
-
-media:
-  dir: /Users/leeseongbok/workspace/Github/IDM-BACKEND/api/src/main/resources/models
-
+  mode: local
+  #미디어 저장 디렉터리
+  dir: /Users/leeseongbok/Desktop/mp4

@@ -23,7 +23,7 @@ noArg {
 val kotestVersion: String by System.getProperties()
 
 dependencies {
-    api(project(":common"))
+    implementation(project(":common"))
     val kapt by configurations // // spring-boot-starter
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")

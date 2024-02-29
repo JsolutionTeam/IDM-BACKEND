@@ -25,7 +25,7 @@ class DeviceInfo(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("아이디")
-    var id: Long,
+    var id: Long = 0,
 
     @Comment("바코드 모델구분")
     var barcode: String,
@@ -34,9 +34,9 @@ class DeviceInfo(
     @Comment("바코드 색상구분")
     var barcodeColor: String,
 
-    @Column(name = "model_img")
+    @Column(name = "image_url")
     @Comment("모델 이미지 링크")
-    var modelImg: String,
+    var imageUrl: String = "",
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "device_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))

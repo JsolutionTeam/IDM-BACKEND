@@ -29,7 +29,5 @@ custom:
 secret-key: kGU3Ss72dpWehaSOeFcHuhmYnp80KZbGx2QTcWhBueYCDNovsEzE2jGsYXfqaTyy5MgK3y1XBHhJzeMQsXnrYkYPWnH
 
 file:
-  dir: /var/jenkins_home/workspace/MCall-shop/MCall-shop-backend/src/main/resources/models
-
-media:
-  dir: /var/jenkins_home/workspace/MCall-shop/MCall-shop-backend/src/main/resources/models/
+  mode: local # local, minio
+  dir: /home/jsolution/files/integration/shop
