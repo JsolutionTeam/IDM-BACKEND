@@ -27,7 +27,7 @@ class ShopService(
             val shop = repository.save(
                 Shop(
                     name = "제이솔루션",
-                    role = AccountAuthority.ADMIN,
+                    role = "JSOL",
                     status = ShopStatus.DONE,
                     phone = "1644-3950",
                     managerId = "js",

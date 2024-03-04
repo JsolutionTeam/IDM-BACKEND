@@ -60,13 +60,13 @@ class DeviceInfoQueryRepository(
             booleanBuilder.and(deviceInfo.barcodeColor.eq(it))
         }
         getDeviceInfosDto.devicePetName?.let {
-            booleanBuilder.and(deviceInfo.device.petName.eq(it))
+            if (it.isNotBlank()) booleanBuilder.and(deviceInfo.device.petName.contains(it))
         }
         getDeviceInfosDto.deviceModelName?.let {
-            booleanBuilder.and(deviceInfo.device.modelName.eq(it))
+            if (it.isNotBlank()) booleanBuilder.and(deviceInfo.device.modelName.contains(it))
         }
         getDeviceInfosDto.deviceSeries?.let {
-            booleanBuilder.and(deviceInfo.device.series.eq(it))
+            if (it.isNotBlank()) booleanBuilder.and(deviceInfo.device.series.contains(it))
         }
         getDeviceInfosDto.devicePriceMin?.let {
             booleanBuilder.and(deviceInfo.device.price.goe(it))
@@ -75,7 +75,7 @@ class DeviceInfoQueryRepository(
             booleanBuilder.and(deviceInfo.device.price.loe(it))
         }
         getDeviceInfosDto.deviceVolume?.let {
-            booleanBuilder.and(deviceInfo.device.volume.eq(it))
+            if (it.isNotBlank()) booleanBuilder.and(deviceInfo.device.volume.contains(it))
         }
         getDeviceInfosDto.makerId?.let {
             booleanBuilder.and(deviceInfo.device.maker.id.eq(it))
@@ -84,7 +84,7 @@ class DeviceInfoQueryRepository(
             booleanBuilder.and(deviceInfo.color.id.eq(it))
         }
         getDeviceInfosDto.colorName?.let {
-            booleanBuilder.and(deviceInfo.color.name.eq(it))
+            if (it.isNotBlank()) booleanBuilder.and(deviceInfo.color.name.contains(it))
         }
 
         return repository.findAll(

@@ -3,14 +3,15 @@ package kr.co.jsol.api.controller
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import kr.co.jsol.common.domain.AccountAuthority
+import kr.co.jsol.common.paging.PageRequest
 import kr.co.jsol.domain.deviceinfo.application.DeviceInfoService
 import kr.co.jsol.domain.deviceinfo.application.dto.CreateDeviceInfoDto
+import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfosDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoGroupByDeviceSeriesDto
-import kr.co.jsol.domain.userdetails.UserDetailsImpl
+import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.prepost.PreAuthorize
-import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -65,19 +66,19 @@ class DeviceInfoController(
 //        return service.deleteMultiple(deleteDeviceSubsidiesDto)
 //    }
 
-//    @Operation(summary = "단말 상세 페이지 조회")
-//    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
-//    @SecurityRequirement(name = "Bearer Authentication")
-//    @GetMapping
-//    @ResponseStatus(HttpStatus.OK)
-//    fun findOffsetPageBySearch(
-//        @Valid
-//        getDeviceSubsidiesDto: GetDeviceSubsidiesDto,
-//        pageRequest: PageRequest,
-//    ): Page<DeviceInfoDto> {
-//        val pageable = pageRequest.of()
-//        return service.findOffsetPageBySearch(getDeviceSubsidiesDto, pageable)
-//    }
+    @Operation(summary = "단말 상세 페이지 조회")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    fun findOffsetPageBySearch(
+        @Valid
+        getDeviceInfosDto: GetDeviceInfosDto,
+        pageRequest: PageRequest,
+    ): Page<DeviceInfoDto> {
+        val pageable = pageRequest.of()
+        return service.findOffsetPageBySearch(getDeviceInfosDto, pageable)
+    }
 
     @Operation(summary = "단말 상세 시리즈별 조회")
     @GetMapping("device/{series}")
@@ -95,8 +96,6 @@ class DeviceInfoController(
     fun getById(
         @PathVariable
         id: Long,
-        @AuthenticationPrincipal
-        userDetails: UserDetailsImpl,
     ): DeviceInfoDto {
         val companySubsidyDto = service.getById(id)
         return companySubsidyDto

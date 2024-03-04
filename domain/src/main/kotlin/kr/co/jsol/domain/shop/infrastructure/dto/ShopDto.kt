@@ -1,13 +1,12 @@
 package kr.co.jsol.domain.shop.infrastructure.dto
 
-import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.domain.shop.entity.Shop
 import kr.co.jsol.domain.shop.entity.enums.ShopStatus
 
 data class ShopDto(
     val id: Long,
     val name: String,
-    val role: AccountAuthority,
+    val role: String,
     val status: ShopStatus,
     val phone: String,
     val managerId: String,

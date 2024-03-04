@@ -22,7 +22,7 @@ spring:
 param:
   idm:
     #    url: http://localhost:3001/api/inout
-    url: https://idm.j-sol.co.kr/api
+    url: https://api-idm.j-sol.co.kr/api
   auth:
     #    url: http://172.17.0.1:8088/api
     url: https://api-auth.j-sol.co.kr/api
@@ -35,15 +35,17 @@ catalog:
 
 custom:
   api-url:
-    auth: http://localhost:11001
-    mcall: http://localhost:11201
-    idm: http://localhost:11301
+    mcall: https://api-mcall.j-sol.co.kr
+    idm: https://api-idm.j-sol.co.kr
+    auth: https://api-auth.j-sol.co.kr
+#    auth: http://localhost:11001
+#    mcall: http://localhost:11201
+#    idm: http://localhost:11301
 
 secret-key: kGU3Ss72dpWehaSOeFcHuhmYnp80KZbGx2QTcWhBueYCDNovsEzE2jGsYXfqaTyy5MgK3y1XBHhJzeMQsXnrYkYPWnH
 
+
 file:
-  dir: /var/jenkins_home/workspace/INTEGRATION/IDM-BACKEND/src/main/resources/models
-
-media:
-  dir: /var/jenkins_home/workspace/INTEGRATION/IDM-BACKEND/src/main/resources/models/
-
+  mode: local
+  #미디어 저장 디렉터리
+  dir: /Users/leeseongbok/Desktop/mp4

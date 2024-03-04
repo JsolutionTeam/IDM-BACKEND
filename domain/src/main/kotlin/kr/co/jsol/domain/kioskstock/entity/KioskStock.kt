@@ -4,7 +4,6 @@ import kr.co.jsol.common.domain.BaseEntity
 import kr.co.jsol.domain.kiosk.entity.Kiosk
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
-import org.hibernate.annotations.Table
 import javax.persistence.Column
 import javax.persistence.ConstraintMode
 import javax.persistence.Entity
@@ -17,29 +16,30 @@ import javax.persistence.ManyToOne
 
 @SQLDelete(sql = "UPDATE tb_kiosk_stock SET deleted_at = now() WHERE id = ?")
 @Entity
-@javax.persistence.Table(name = "tb_kiosk_stock")
-@Table(appliesTo = "tb_kiosk_stock", comment = "단말 보관함 재고 현황")
+@javax.persistence.Table(name = "tb_stock", catalog = "idm")
 class KioskStock(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "idx")
     @Comment("아이디")
     var id: Long,
 
-    @Column(name = "device_name")
+    @Column(name = "device_nm")
     @Comment("기기 이름")
     var deviceName: String,
 
-    @Column(name = "serial_number")
+    @Column(name = "serial_no")
     @Comment("시리얼넘버")
     var serialNumber: String,
 
-    @Column(name = "user_name")
     @Comment("사용자명")
-    var userName: String,
+    var username: String,
 
-    @ManyToOne(fetch = javax.persistence.FetchType.LAZY)
-    @JoinColumn(name = "kiosk_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    @Comment("키오스크 id")
-    var kiosk: Kiosk,
+    @Comment("키오스크 uid")
+    var uid: String,
+
+//    @ManyToOne(fetch = javax.persistence.FetchType.LAZY)
+//    @JoinColumn(name = "kiosk_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+//    @Comment("키오스크 id")
+//    var kiosk: Kiosk,
 ) : BaseEntity()

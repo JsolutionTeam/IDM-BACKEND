@@ -89,6 +89,8 @@ data class CreateDeviceApplicationFormDto(
     @field:Schema(description = "부가서비스 아이디")
     var subserviceId: Long,
 ) {
+    // shopId는 로그인한 사용자의 업체 아이디를 받아올 예정
+    var shopId: Long = 0L
 
     fun toEntity(
         shop: Shop,

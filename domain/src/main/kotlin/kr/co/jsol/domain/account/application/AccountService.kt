@@ -8,6 +8,7 @@ import kr.co.jsol.domain.account.infrastructure.query.AccountQueryRepository
 import kr.co.jsol.domain.account.infrastructure.repository.AccountRepository
 import kr.co.jsol.domain.auth.application.AuthService
 import kr.co.jsol.domain.shop.infrastructure.query.ShopQueryRepository
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.client.HttpClientErrorException
@@ -19,6 +20,8 @@ class AccountService(
     private val authService: AuthService,
     private val shopQueryRepository: ShopQueryRepository,
 ) {
+
+    private final val log = LoggerFactory.getLogger(this.javaClass)
 
     @Transactional
     fun create(createAccountDto: CreateAccountDto): AccountDto {
@@ -50,13 +53,15 @@ class AccountService(
                     e.statusCode,
                     e,
                 )
-            else
+            else {
+                log.error("auth 서버에 계정 정보 등록 중 에러가 발생했습니다.", e)
                 throw CustomException(
                     "AUTH-0011",
                     message,
                     e.statusCode,
                     e,
                 )
+            }
         } catch (e: Exception) {
             // 기타 예외 발생시 auth 서버에 등록된 계정 정보를 삭제한다
             try {

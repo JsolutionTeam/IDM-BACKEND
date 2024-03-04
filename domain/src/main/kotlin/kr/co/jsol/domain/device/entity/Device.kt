@@ -4,7 +4,6 @@ import kr.co.jsol.common.domain.BaseEntity
 import kr.co.jsol.domain.maker.entity.Maker
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
-import org.hibernate.annotations.Table
 import javax.persistence.Column
 import javax.persistence.ConstraintMode
 import javax.persistence.Entity
@@ -15,22 +14,23 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.Table
 
 @SQLDelete(sql = "UPDATE tb_device SET deleted_at = now() WHERE idx = ?")
 @Entity
-@javax.persistence.Table(name = "tb_device")
-@Table(appliesTo = "tb_device", comment = "단말")
+@Table(name = "tb_device", catalog = "idm")
 class Device(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idx")
     @Comment("아이디")
     var id: Long,
 
-    @Column(name = "pet_name")
+    @Column(name = "pet_nm")
     @Comment("펫네임 ex) 아이폰 15 프로 맥스")
     var petName: String,
 
-    @Column(name = "model_name")
+    @Column(name = "model_nm")
     @Comment("모델명 ex) AIP-15PM")
     var modelName: String,
 
@@ -44,7 +44,7 @@ class Device(
     var volume: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "maker_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "maker_idx", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("제조사 아이디")
     var maker: Maker,
 ) : BaseEntity()

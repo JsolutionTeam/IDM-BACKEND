@@ -32,6 +32,10 @@ data class CreateAccountDto(
     @field:Schema(description = "권한, ROLE_로 시작하지 않으면 자동으로 ROLE_가 붙습니다.", implementation = AccountAuthority::class)
     val role: AccountAuthority,
 
+    @field:NotNull(message = "관리자 여부는 필수 입력값입니다.")
+    @field:Schema(description = "관리자 여부")
+    val isManager: Boolean = false,
+
     @field:Schema(description = "전화번호, 없을 경우 null로 입력해주세요.")
     val phone: String? = null,
 
@@ -55,6 +59,7 @@ data class CreateAccountDto(
             id = this.id,
             name = name,
             role = role,
+            isManager = isManager,
             phone = phone ?: "",
             shop = shop,
         )

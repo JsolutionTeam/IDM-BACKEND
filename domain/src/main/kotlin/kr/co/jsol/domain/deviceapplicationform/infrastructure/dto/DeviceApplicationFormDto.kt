@@ -1,8 +1,14 @@
 package kr.co.jsol.domain.deviceapplicationform.infrastructure.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
+import kr.co.jsol.domain.deviceapplicationform.entity.DeviceApplicationForm
+import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoDto
+import kr.co.jsol.domain.insurance.infrastructure.dto.InsuranceDto
+import kr.co.jsol.domain.phoneplan.infrastructure.dto.PhonePlanDto
+import kr.co.jsol.domain.subservice.infrastructure.dto.SubserviceDto
 import kr.co.jsol.domain.telecom.entity.enums.DiscountType
 import kr.co.jsol.domain.telecom.entity.enums.OpenType
+import kr.co.jsol.domain.telecom.infrastructure.dto.TelecomDto
 
 @Schema(name = "단말 신청서 응답")
 data class DeviceApplicationFormDto(
@@ -40,17 +46,37 @@ data class DeviceApplicationFormDto(
     var memo: String,
 
     @field:Schema(description = "통신사 아이디")
-    var telecomId: Long,
+    var telecom: TelecomDto,
 
     @field:Schema(description = "단말 상세 아이디")
-    var deviceInfoId: Long,
+    var deviceInfo: DeviceInfoDto,
 
     @field:Schema(description = "요금제 아이디")
-    var phonePlanId: Long,
+    var phonePlan: PhonePlanDto,
 
     @field:Schema(description = "보험 아이디")
-    var insuranceId: Long,
+    var insurance: InsuranceDto,
 
     @field:Schema(description = "부가서비스 아이디")
-    var subserviceId: Long,
-)
+    var subservice: SubserviceDto,
+) {
+
+    constructor(deviceApplicationForm: DeviceApplicationForm) : this(
+        id = deviceApplicationForm.id,
+        phoneNumber = deviceApplicationForm.phoneNumber,
+        openType = deviceApplicationForm.openType,
+        discountType = deviceApplicationForm.discountType,
+        companySubsidyPrice = deviceApplicationForm.companySubsidyPrice,
+        usimChange = deviceApplicationForm.usimChange,
+        contractMonth = deviceApplicationForm.contractMonth,
+        deviceSubsidyPrice = deviceApplicationForm.deviceSubsidyPrice,
+        prePaymentPrice = deviceApplicationForm.prePaymentPrice,
+        installmentMonth = deviceApplicationForm.installmentMonth,
+        memo = deviceApplicationForm.memo,
+        telecom = TelecomDto(deviceApplicationForm.telecom),
+        deviceInfo = DeviceInfoDto(deviceApplicationForm.deviceInfo),
+        phonePlan = PhonePlanDto(deviceApplicationForm.phonePlan),
+        insurance = InsuranceDto(deviceApplicationForm.insurance),
+        subservice = SubserviceDto(deviceApplicationForm.subservice)
+    )
+}

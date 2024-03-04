@@ -2,31 +2,31 @@ package kr.co.jsol.domain.kiosk.entity
 
 import kr.co.jsol.common.domain.BaseEntity
 import kr.co.jsol.domain.shop.entity.Shop
-import kr.co.jsol.domain.user.entity.User
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
-import org.hibernate.annotations.Table
-import javax.persistence.CascadeType
+import javax.persistence.Column
 import javax.persistence.ConstraintMode
 import javax.persistence.Entity
-import javax.persistence.FetchType
 import javax.persistence.ForeignKey
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
-import javax.persistence.OneToMany
+import javax.persistence.Table
 
 @SQLDelete(sql = "UPDATE tb_kiosk SET deleted_at = now() WHERE idx = ?")
 @Entity
-@javax.persistence.Table(name = "tb_kiosk")
-@Table(appliesTo = "tb_kiosk", comment = "단말 보관함")
+@Table(name = "tb_kiosk", catalog = "idm")
 class Kiosk(
     @Id
+    @Column(name = "idx")
     @Comment("아이디")
-    val uid: String,
+    var id: String,
 
     @Comment("이름")
     var name: String,
+
+    @Comment("고유키")
+    val uid: String,
 
     @Comment("메모")
     var memo: String,
@@ -35,16 +35,16 @@ class Kiosk(
     var max: Int,
 
     @ManyToOne(fetch = javax.persistence.FetchType.LAZY)
-    @JoinColumn(name = "shop_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "belong_idx", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("소속")
     var shop: Shop,
 
-    @OneToMany(
-        mappedBy = "kiosk",
-        fetch = FetchType.LAZY,
-        orphanRemoval = true,
-        cascade = [CascadeType.ALL],
-    )
-    @Comment("사용자")
-    var users: MutableList<User>,
+//    @OneToMany(
+//        mappedBy = "kiosk",
+//        fetch = FetchType.LAZY,
+//        orphanRemoval = true,
+//        cascade = [CascadeType.ALL],
+//    )
+//    @Comment("사용자")
+//    var users: MutableList<User>,
 ) : BaseEntity()

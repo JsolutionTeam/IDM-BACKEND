@@ -23,20 +23,22 @@ import javax.persistence.ManyToOne
 class ShopDepot(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "idx")
     @Comment("아이디")
     var id: Long,
 
     @Comment("입고처명")
     var name: String,
 
+    @Column(name = "addr")
     @Comment("주소")
     var address: String,
 
-    @Column(name = "address_detail")
+    @Column(name = "daddr")
     @Comment("상세 주소")
     var addressDetail: String,
 
+    @Column(name = "tel_no")
     @Comment("전화번호")
     var phone: String,
 
@@ -52,7 +54,6 @@ class ShopDepot(
     var memo: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "shop_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    @Comment("")
+    @JoinColumn(name = "shop_idx", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     var shop: Shop,
 ) : BaseEntity()

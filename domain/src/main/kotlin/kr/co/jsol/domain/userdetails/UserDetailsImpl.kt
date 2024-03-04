@@ -21,9 +21,6 @@ data class UserDetailsImpl(
     fun isNotCompany() = isCompany().not()
     fun isCompany() = role == AccountAuthority.COMPANY
 
-    fun isNotUser() = isUser().not()
-    fun isUser() = role == AccountAuthority.USER
-
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         log.info("role : $role")
         return mutableListOf<GrantedAuthority>(role)

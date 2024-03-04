@@ -1,11 +1,11 @@
-package kr.co.jsol.common.domain
+package kr.co.jsol.domain.shop.entity.enums
 
 import io.swagger.v3.oas.annotations.media.Schema
 import org.slf4j.LoggerFactory
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 
-enum class AccountAuthority(
+enum class ShopAuthority(
     @field:Schema(description = "권한")
     private val authority: String,
     @field:Schema(description = "설명")
@@ -29,7 +29,7 @@ enum class AccountAuthority(
         const val HasAnyRole = "hasAnyAuthority(\"ADMIN\", \"COMPANY\")"
     }
 
-    class Response(role: AccountAuthority) {
+    class Response(role: ShopAuthority) {
         val name = role.name
         val description = role.description
     }

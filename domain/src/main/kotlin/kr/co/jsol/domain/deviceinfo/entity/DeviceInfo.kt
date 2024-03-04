@@ -24,6 +24,7 @@ import javax.persistence.ManyToOne
 class DeviceInfo(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idx")
     @Comment("아이디")
     var id: Long = 0,
 
@@ -39,12 +40,12 @@ class DeviceInfo(
     var imageUrl: String = "",
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "device_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "device_idx", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("단말 아이디")
     var device: Device,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "color_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @JoinColumn(name = "color_idx", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("색상 아이디")
     var color: Color,
 ) : BaseEntity()

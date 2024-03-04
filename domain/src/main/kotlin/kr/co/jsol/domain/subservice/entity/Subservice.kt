@@ -15,7 +15,7 @@ import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 
 @Entity
-@javax.persistence.Table(name = "tb_subservice", schema = "mcall")
+@javax.persistence.Table(name = "tb_subservice", catalog = "mcall")
 class Subservice(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +37,7 @@ class Subservice(
     @Column(name = "point")
     @Comment("포인트 사용량")
     var point: Long,
-    
+
 //    @Column(name = "etc")
 //    @Comment("기타")
 //    var etc: String,

@@ -2,8 +2,6 @@ package kr.co.jsol.api.controller
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
-import kr.co.jsol.common.domain.AccountAuthority
-import kr.co.jsol.common.exception.GeneralClientException
 import kr.co.jsol.common.jwt.JwtService
 import kr.co.jsol.domain.account.application.AccountService
 import kr.co.jsol.domain.account.application.dto.CreateAccountDto
@@ -67,18 +65,6 @@ class AccountController(
         @AuthenticationPrincipal
         userDetails: UserDetailsImpl,
     ): AccountDto {
-        val requesterRole = userDetails.role
-        val requestedRole = createAccountDto.role
-
-
-        if (requesterRole != AccountAuthority.ADMIN) {
-            if (requesterRole == AccountAuthority.COMPANY) {
-                if (requestedRole != AccountAuthority.USER) {
-                    throw GeneralClientException.ForbiddenException()
-                }
-            }
-        }
-
         return accountService.create(createAccountDto)
     }
 }

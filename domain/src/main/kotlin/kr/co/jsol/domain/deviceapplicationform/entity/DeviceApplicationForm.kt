@@ -69,7 +69,7 @@ class DeviceApplicationForm(
     @Comment("현금 선입 금액")
     var prePaymentPrice: Long,
 
-    @Column(name = "contract_month")
+    @Column(name = "installment_month")
     @Comment("단말 할부 개월 수")
     var installmentMonth: Int,
 
