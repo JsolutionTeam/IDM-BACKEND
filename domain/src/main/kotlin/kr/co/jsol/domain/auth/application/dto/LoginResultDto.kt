@@ -14,6 +14,9 @@ data class LoginResultDto(
     @field:Schema(description = "권한")
     val role: String,
 
+    @field:Schema(description = "관리자 여부, true = 회사, false = 사용자", implementation = Boolean::class)
+    val isManager: Boolean,
+
     @field:Schema(description = "연락처", example = "010-0000-0000")
     val phone: String,
 

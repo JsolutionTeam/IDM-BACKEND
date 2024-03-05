@@ -35,6 +35,10 @@ class AccountController(
         @AuthenticationPrincipal
         userDetails: UserDetailsImpl,
     ): AccountDto {
+        // 요청자가 관리자인지 확인
+        if (!userDetails.isManager) {
+            throw IllegalAccessException("관리자만 계정을 생성할 수 있습니다.") // TODO 사용자 정의 예외 처리
+        }
         return service.create(createAccountDto)
     }
 

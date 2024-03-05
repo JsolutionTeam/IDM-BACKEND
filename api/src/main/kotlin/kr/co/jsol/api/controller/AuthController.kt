@@ -34,6 +34,7 @@ class AuthController(
             refreshToken = refreshToken,
             name = account.name,
             role = account.role,
+            isManager = account.isManager,
             phone = account.phone,
             shop = account.shop,
         )
