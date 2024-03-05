@@ -27,8 +27,13 @@ class AuthController(
         @RequestBody
         loginDto: LoginDto,
     ): LoginResultDto {
-        val (accessToken, refreshToken) = service.login(loginDto)
+        var (accessToken, refreshToken) = service.login(loginDto)
         val account = accountService.getById(loginDto.id)
+
+        // Auth 서버에서 내려주는 accessToken은 Bearer이 붙어있지 않아 이를 붙여줘야 한다.
+        if (accessToken.isNotBlank()) accessToken = "Bearer $accessToken"
+        if (refreshToken.isNotBlank()) refreshToken = "Bearer $refreshToken"
+
         return LoginResultDto(
             accessToken = accessToken,
             refreshToken = refreshToken,

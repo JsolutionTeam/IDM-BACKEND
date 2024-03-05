@@ -165,7 +165,7 @@ class ApiExceptionHandler {
         ex.printStackTrace()
         log.error("Spring Security - AccessDeniedException - message : ${ex.message}")
         return GeneralClientException.ForbiddenException()
-            .toEntity(ex.message)
+            .toEntity(ex.message) // ex.message = 접근이 거부되었습니다
     }
 
     /**
