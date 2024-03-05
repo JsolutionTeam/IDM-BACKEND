@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24a8cfd8-8e11-42ed-836d-7f882b54007d" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker/production/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/production/Dockerfile" afterDir="false" />
     </list>
@@ -27,6 +29,9 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/api">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -37,30 +42,25 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="IDM-BACKEND" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="IDM-BACKEND" type="f1a62948:ProjectNode" />
+                <item name="api" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="IDM-BACKEND" type="f1a62948:ProjectNode" />
+                <item name="api" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="IDM-BACKEND" type="f1a62948:ProjectNode" />
+                <item name="api" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="IDM-BACKEND" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="other" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="IDM-BACKEND" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="verification" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="IDM-BACKEND" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
               </path>
             </expand>
             <select />
@@ -130,10 +130,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.production/Dockerfile.executor": "Run",
     "Gradle.IDM-BACKEND [clean].executor": "Run",
     "Gradle.IDM-BACKEND [compileKotlin].executor": "Run",
     "Gradle.IDM-BACKEND [compileTestKotlin].executor": "Run",
     "Gradle.IDM-BACKEND 빌드.executor": "Run",
+    "Gradle.IDM-BACKEND:api [build].executor": "Run",
     "Gradle.소스 다운로드.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -149,7 +151,7 @@
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/leeseongbok/workspace/Github/IDM-BACKEND/docker/production",
+    "last_opened_file_path": "/Users/leeseongbok/workspace/Github/IDM-BACKEND",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -169,11 +171,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/docker/production" />
       <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain" />
       <recent name="$PROJECT_DIR$/common/src/main/kotlin/kr/co/jsol/common/exception/domain" />
       <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/subservice/infrastructure" />
-      <recent name="$PROJECT_DIR$/domain/src/main/kotlin/kr/co/jsol/domain/insurance/infrastructure" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/api/src/main/resources" />
@@ -200,7 +202,7 @@
       <recent name="kr.co.jsol.domain.telecom.entity.enums" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.Local_Prod">
+  <component name="RunManager" selected="Docker.production/Dockerfile">
     <configuration name="IDM-BACKEND [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -245,28 +247,6 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="IDM-BACKEND [compileTestJava]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="compileTestJava" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration name="IDM-BACKEND [compileTestKotlin]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -289,18 +269,18 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="IDM-BACKEND [kaptGenerateStubsTestKotlin]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="IDM-BACKEND:api [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/api" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--stacktrace" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="kaptGenerateStubsTestKotlin" />
+            <option value="build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -371,22 +351,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile" />
+      <method v="2" />
+    </configuration>
+    <configuration name="production/Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="docker/production/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="Docker.production/Dockerfile" />
+      <item itemvalue="Gradle.IDM-BACKEND:api [build]" />
       <item itemvalue="Gradle.IDM-BACKEND [clean]" />
-      <item itemvalue="Gradle.IDM-BACKEND [compileTestJava]" />
       <item itemvalue="Gradle.IDM-BACKEND [compileTestKotlin]" />
-      <item itemvalue="Gradle.IDM-BACKEND [kaptGenerateStubsTestKotlin]" />
       <item itemvalue="Gradle.IDM-BACKEND [compileKotlin]" />
       <item itemvalue="Spring Boot.Local_Prod" />
       <item itemvalue="Spring Boot.DEV" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.production/Dockerfile" />
+        <item itemvalue="Gradle.IDM-BACKEND:api [build]" />
         <item itemvalue="Gradle.IDM-BACKEND [compileKotlin]" />
         <item itemvalue="Gradle.IDM-BACKEND [clean]" />
         <item itemvalue="Gradle.IDM-BACKEND [compileTestKotlin]" />
-        <item itemvalue="Gradle.IDM-BACKEND [compileTestJava]" />
-        <item itemvalue="Gradle.IDM-BACKEND [kaptGenerateStubsTestKotlin]" />
       </list>
     </recent_temporary>
   </component>
@@ -419,7 +411,7 @@
       <workItem from="1709111922735" duration="599000" />
       <workItem from="1709166579734" duration="24894000" />
       <workItem from="1709515683834" duration="16429000" />
-      <workItem from="1709598954234" duration="7492000" />
+      <workItem from="1709598954234" duration="8614000" />
     </task>
     <servers />
   </component>
