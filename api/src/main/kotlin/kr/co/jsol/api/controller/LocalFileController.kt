@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.concurrent.TimeUnit
 
 @RestController
-@RequestMapping("api/v2/local-file")
+@RequestMapping("api/v2/local-files")
 @Tag(name = "로컬 파일 관련 공개 API")
 class LocalFileController(
     private val localFileService: FileService,
