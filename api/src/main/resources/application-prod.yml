@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:3306/integration_idm_2024?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&userSSL=false&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mariadb://mariadb:3306/integration_idm_2024?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&userSSL=false&zeroDateTimeBehavior=convertToNull
     username: root
     password: jsolwpdlthffntus750!@
     driver-class-name: org.mariadb.jdbc.Driver
