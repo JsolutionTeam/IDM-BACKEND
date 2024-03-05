@@ -33,7 +33,7 @@ class CompanySubsidyController(
 ) {
 
     @Operation(summary = "회사 지원금 등록")
-    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -46,7 +46,7 @@ class CompanySubsidyController(
     }
 
     @Operation(summary = "회사 지원금 다중 수정")
-    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
     @SecurityRequirement(name = "Bearer Authentication")
     @PatchMapping
     @ResponseStatus(HttpStatus.OK)
@@ -59,7 +59,7 @@ class CompanySubsidyController(
     }
 
     @Operation(summary = "회사 지원금 다중 삭제")
-    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
     @SecurityRequirement(name = "Bearer Authentication")
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)

@@ -34,7 +34,7 @@ class DeviceInfoController(
 ) {
 
     @Operation(summary = "단말 상세 등록")
-    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -47,7 +47,7 @@ class DeviceInfoController(
     }
 
     @Operation(summary = "단말 상세 이미지 등록 (수정, 삭제X) 기존 이미지 파일이 남아있게 됨")
-    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("image", consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
     @ResponseStatus(HttpStatus.CREATED)

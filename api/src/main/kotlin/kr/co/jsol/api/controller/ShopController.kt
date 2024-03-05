@@ -22,7 +22,7 @@ class ShopController(
 ) {
 
     @Operation(summary = "COMPANY(업체) 등록 - 최종 관리자만 가능")
-    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("company")
     @ResponseStatus(HttpStatus.CREATED)

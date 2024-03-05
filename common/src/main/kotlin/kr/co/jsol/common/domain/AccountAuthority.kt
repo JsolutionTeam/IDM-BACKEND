@@ -13,20 +13,20 @@ enum class AccountAuthority(
 ) : GrantedAuthority {
 
     COMPANY(ROLES.COMPANY, "회사 계정 권한으로 최종 관리자 권한이 회사를 관리할 때 직접 부여합니다."),
-    ADMIN(ROLES.ADMIN, "최종 관리자 계정 권한 (제이솔루션)"),
+    MASTER(ROLES.MASTER, "최종 관리자 계정 권한 (제이솔루션)"),
     ;
 
     object ROLES {
         const val COMPANY = "COMPANY"
-        const val ADMIN = "ADMIN"
+        const val MASTER = "MASTER"
     }
 
     object ROLECHECK {
         const val HasCompanyRole = "hasAnyAuthority(\"COMPANY\")"
-        const val HasAdminRole = "hasAnyAuthority(\"ADMIN\")"
-        const val HasAdminAndCompanyRole = "hasAnyAuthority(\"ADMIN\", \"COMPANY\")"
-        const val HasCompanyAndUserRole = "hasAnyAuthority(\"ADMIN\", \"COMPANY\")"
-        const val HasAnyRole = "hasAnyAuthority(\"ADMIN\", \"COMPANY\")"
+        const val HasMasterRole = "hasAnyAuthority(\"MASTER\")"
+        const val HasMasterAndCompanyRole = "hasAnyAuthority(\"MASTER\", \"COMPANY\")"
+        const val HasCompanyAndUserRole = "hasAnyAuthority(\"MASTER\", \"COMPANY\")"
+        const val HasAnyRole = "hasAnyAuthority(\"MASTER\", \"COMPANY\")"
     }
 
     class Response(role: AccountAuthority) {
@@ -47,8 +47,8 @@ enum class AccountAuthority(
 
             val role = value.uppercase()
 
-            if (role.contains("ADMIN") || role.contains("ROOT") || role.contains("JSOL")) {
-                return ADMIN
+            if (role.contains("MASTER") || role.contains("ADMIN") || role.contains("ROOT") || role.contains("JSOL")) {
+                return MASTER
             } else if (role.contains("COMPANY") || role.contains("PARENT") || role.contains("AGENCY")) {
                 return COMPANY
             }
@@ -63,8 +63,8 @@ enum class AccountAuthority(
 //
 //            val role = value.uppercase()
 //
-//            if (role.contains("ADMIN") || role.contains("ROOT") || role.contains("JSOL")) {
-//                return mutableListOf(ADMIN, COMPANY, USER)
+//            if (role.contains("MASTER") || role.contains("ROOT") || role.contains("JSOL")) {
+//                return mutableListOf(MASTER, COMPANY, USER)
 //            } else if (role.contains("COMPANY") || role.contains("PARENT") || role.contains("AGENCY")) {
 //                return mutableListOf(COMPANY, USER)
 //            } else if (role.contains("USER") || role.contains("BELONG") || role.contains("STORE")) {
