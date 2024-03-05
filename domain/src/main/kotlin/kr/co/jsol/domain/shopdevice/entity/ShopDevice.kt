@@ -28,7 +28,7 @@ import javax.persistence.Table
 class ShopDevice(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "idx")
     @Comment("아이디")
     var id: Long,
 

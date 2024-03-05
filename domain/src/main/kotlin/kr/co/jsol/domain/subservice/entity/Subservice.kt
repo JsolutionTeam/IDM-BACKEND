@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne
 class Subservice(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "subservice_id")
     @Comment("아이디")
     var id: Long,
 
