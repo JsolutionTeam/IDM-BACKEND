@@ -5,7 +5,8 @@ services:
     image: idm-api-prod
     container_name: idm-api-prod
     restart: always
-    network_mode: host
+    links:
+      - mariadb
     ports:
       - "11402:8080"
     volumes:
