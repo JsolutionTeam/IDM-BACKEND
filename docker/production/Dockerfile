@@ -16,7 +16,7 @@ ARG JAR_FILE=api/build/libs/api.jar
 ADD ${JAR_FILE} idm-prod-server.jar
 
 # Run the jar file
-ENTRYPOINT ["java","-jar","idm-prod-server.jar", "-Duser.timezone=Asia/Seoul"]
+ENTRYPOINT ["java","-jar","/idm-prod-server.jar", "-Duser.timezone=Asia/Seoul"]
 # Example
 #ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/to-do-springboot.jar"]
 # => java -Djava.security.edg=file:/dev/./urandom -jar /to-do-springboot.jar
