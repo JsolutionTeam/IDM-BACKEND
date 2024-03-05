@@ -14,10 +14,6 @@ class InsuranceService(
 
     private final val log = LoggerFactory.getLogger(this.javaClass)
 
-    init {
-        log.info("insurance size : ${repository.count()}")
-    }
-
     @Transactional(readOnly = true)
     fun getById(id: Long) = query.getById(id)
 }

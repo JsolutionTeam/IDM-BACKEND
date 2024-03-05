@@ -1,9 +1,11 @@
 package kr.co.jsol.domain.deviceinfo.application
 
+import kr.co.jsol.common.file.application.FileService
 import kr.co.jsol.domain.color.infrastructure.query.ColorQueryRepository
 import kr.co.jsol.domain.device.infrastructure.query.DeviceQueryRepository
 import kr.co.jsol.domain.deviceinfo.application.dto.CreateDeviceInfoDto
 import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfosDto
+import kr.co.jsol.domain.deviceinfo.application.dto.PostDeviceInfoImage
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoGroupByDeviceSeriesDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.query.DeviceInfoQueryRepository
@@ -17,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional
 class DeviceInfoService(
     private val repository: DeviceInfoRepository,
     private val query: DeviceInfoQueryRepository,
+
+    private val fileService: FileService,
 
     private val deviceQuery: DeviceQueryRepository,
     private val colorQuery: ColorQueryRepository,
@@ -32,6 +36,14 @@ class DeviceInfoService(
                 )
             )
         )
+    }
+
+    @Transactional
+    fun postImage(postDeviceInfoImage: PostDeviceInfoImage): String {
+        val deviceInfo = query.getById(postDeviceInfoImage.id)
+        val uploadFile = fileService.addFile("device_info", postDeviceInfoImage.multipartFile)
+        deviceInfo.imageUrl = uploadFile.filename
+        return repository.save(deviceInfo).imageUrl
     }
 
     @Transactional(readOnly = true)

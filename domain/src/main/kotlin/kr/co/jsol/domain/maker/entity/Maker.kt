@@ -3,6 +3,7 @@ package kr.co.jsol.domain.maker.entity
 import kr.co.jsol.common.domain.BaseEntity
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
+import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -15,6 +16,7 @@ import javax.persistence.Table
 class Maker(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idx")
     @Comment("아이디")
     var id: Long,
 

@@ -2,27 +2,33 @@ package kr.co.jsol.api.controller
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
+import io.swagger.v3.oas.annotations.tags.Tag
 import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.common.paging.PageRequest
 import kr.co.jsol.domain.deviceinfo.application.DeviceInfoService
 import kr.co.jsol.domain.deviceinfo.application.dto.CreateDeviceInfoDto
 import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfosDto
+import kr.co.jsol.domain.deviceinfo.application.dto.PostDeviceInfoImage
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoGroupByDeviceSeriesDto
 import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.multipart.MultipartFile
 import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api/v1/device-info")
+@Tag(name = "단말 상세", description = "단말 상세 관련 API")
 class DeviceInfoController(
     private val service: DeviceInfoService,
 ) {
@@ -38,6 +44,25 @@ class DeviceInfoController(
         createDeviceInfoDto: CreateDeviceInfoDto,
     ): DeviceInfoDto {
         return service.create(createDeviceInfoDto)
+    }
+
+    @Operation(summary = "단말 상세 이미지 등록 (수정, 삭제X) 기존 이미지 파일이 남아있게 됨")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @PostMapping("image", consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
+    @ResponseStatus(HttpStatus.CREATED)
+    fun postImage(
+        @RequestParam("id")
+        id: Long,
+        @RequestParam("file")
+        file: MultipartFile,
+    ): String {
+        return service.postImage(
+            PostDeviceInfoImage(
+                id,
+                file,
+            )
+        )
     }
 
 //    @Operation(summary = "단말 상세 다중 수정")

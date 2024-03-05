@@ -7,11 +7,9 @@ import kr.co.jsol.domain.account.application.AccountService
 import kr.co.jsol.domain.account.application.dto.CreateAccountDto
 import kr.co.jsol.domain.account.infrastructure.dto.AccountDto
 import kr.co.jsol.domain.userdetails.UserDetailsImpl
-import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -22,39 +20,11 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/api/v1/accounts")
 class AccountController(
-    private val accountService: AccountService,
+    private val service: AccountService,
     private val jwtService: JwtService,
 ) {
 
-    @Operation(summary = "JWT Creation TEST")
-    @PostMapping("/jwt/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
-    fun cr(
-        @PathVariable
-        id: String,
-    ): String {
-        val account = accountService.getById(id)
-        return jwtService.createToken(
-            account.id,
-            account.name,
-            account.role.toString(),
-        )
-    }
-
-    @Operation(summary = "JWT Validation TEST")
-//    @PreAuthorize("hasAnyAuthority(\"USER\")")
-    @SecurityRequirement(name = "Bearer Authentication")
-    @GetMapping("")
-    @ResponseStatus(HttpStatus.OK)
-    fun jwtValidationTest(
-        @AuthenticationPrincipal
-        userDetails: UserDetailsImpl,
-    ) {
-        val log = LoggerFactory.getLogger(this.javaClass)
-        log.info("userDetails : $userDetails")
-    }
-
-    @Operation(summary = "Create Account")
+    @Operation(summary = "유저 생성 [추후 IDM 이전시 사용]")
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -65,6 +35,17 @@ class AccountController(
         @AuthenticationPrincipal
         userDetails: UserDetailsImpl,
     ): AccountDto {
-        return accountService.create(createAccountDto)
+        return service.create(createAccountDto)
+    }
+
+    @Operation(summary = "내 정보 조회")
+    @SecurityRequirement(name = "Bearer Authentication")
+    @GetMapping("my-info")
+    @ResponseStatus(HttpStatus.OK)
+    fun getMyInfo(
+        @AuthenticationPrincipal
+        userDetails: UserDetailsImpl,
+    ): AccountDto {
+        return service.getById(userDetails.id)
     }
 }

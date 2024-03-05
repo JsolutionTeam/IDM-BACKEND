@@ -9,7 +9,6 @@ import kr.co.jsol.domain.shopdepot.entity.ShopDepot
 import kr.co.jsol.domain.telecom.entity.Telecom
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
-import org.hibernate.annotations.Table
 import java.time.LocalDateTime
 import javax.persistence.Column
 import javax.persistence.ConstraintMode
@@ -21,11 +20,11 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.Table
 
 @SQLDelete(sql = "UPDATE tb_shop_device SET deleted_at = now() WHERE idx = ?")
 @Entity
-@javax.persistence.Table(name = "tb_shop_device")
-@Table(appliesTo = "tb_shop_device")
+@Table(name = "tb_shop_device", catalog = "idm")
 class ShopDevice(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

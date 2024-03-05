@@ -119,12 +119,14 @@ class DeviceInfoQueryRepository(
                         deviceInfo.device.series,
                         list(
                             QDeviceInfoGroupByDeviceSeriesDto_Device(
+                                device.id,
                                 device.volume,
                                 device.price
                             )
                         ),
                         list(
                             QDeviceInfoGroupByDeviceSeriesDto_Color(
+                                color.id,
                                 color.name,
                                 color.displayValue,
                             )

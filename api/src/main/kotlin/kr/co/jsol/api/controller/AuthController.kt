@@ -1,6 +1,7 @@
 package kr.co.jsol.api.controller
 
 import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.tags.Tag
 import kr.co.jsol.domain.account.application.AccountService
 import kr.co.jsol.domain.auth.application.AuthService
 import kr.co.jsol.domain.auth.application.dto.LoginDto
@@ -13,6 +14,7 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api/v1/auth")
+@Tag(name = "권한, 로그인", description = "로그인, 권한 관련 API")
 class AuthController(
     private val service: AuthService,
     private val accountService: AccountService,

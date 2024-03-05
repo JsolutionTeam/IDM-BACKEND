@@ -25,7 +25,7 @@ class JwtService(
 
     private var secretKey: String =
         Base64.getEncoder()
-            .encodeToString(strSecretKey.toByteArray());
+            .encodeToString(strSecretKey.toByteArray())
 //        Keys.hmacShaKeyFor(strSecretKey.toByteArray())
 //            ?: Keys.secretKeyFor(SignatureAlgorithm.HS512)
 
@@ -66,28 +66,11 @@ class JwtService(
 
     fun getUserPk(token: String): String {
         return Jwts.parserBuilder()
-            .setSigningKey(secretKey)
+            .setSigningKey(secretKey) // Auth 서버에서 사용하는 secretKey와 동일해야 한다.
             .build()
             .parseClaimsJws(token)
             .body
             .subject
-    }
-
-    fun getPayload(token: String): Payload {
-        val claims = Jwts.parserBuilder()
-            .setSigningKey(secretKey)
-            .build()
-            .parseClaimsJws(token)
-            .body
-        return Payload.of(claims)
-    }
-
-    fun getCompanyId(token: String): String {
-        return Jwts.parserBuilder()
-            .setSigningKey(secretKey)
-            .build()
-            .parseClaimsJws(token)
-            .body[companyIdKey].toString()
     }
 
     fun resolveToken(request: HttpServletRequest): String {
@@ -100,9 +83,8 @@ class JwtService(
 
     fun validateToken(token: String): Boolean {
         return try {
-//            val secretKeySpec = SecretKeySpec(strSecretKey.toByteArray(), SignatureAlgorithm.HS256.jcaName)
             val claims = Jwts.parserBuilder()
-                .setSigningKey(secretKey)
+                .setSigningKey(secretKey) // Auth 서버에서 사용하는 secretKey와 동일해야 한다.
 //                .setSigningKey(secretKeySpec)
                 .build()
                 .parseClaimsJws(token)

@@ -5,7 +5,6 @@ import kr.co.jsol.domain.color.entity.Color
 import kr.co.jsol.domain.device.entity.Device
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
-import org.hibernate.annotations.Table
 import javax.persistence.Column
 import javax.persistence.ConstraintMode
 import javax.persistence.Entity
@@ -16,11 +15,11 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.Table
 
 @SQLDelete(sql = "UPDATE tb_device_info SET deleted_at = now() WHERE idx = ?")
 @Entity
-@javax.persistence.Table(name = "tb_device_info")
-@Table(appliesTo = "tb_device_info", comment = "단말 상세")
+@Table(name = "tb_device_info", catalog = "idm")
 class DeviceInfo(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -41,7 +41,7 @@ class ShopService(
                     id = "js",
                     password = "js",
                     name = "권세기",
-                    role = AccountAuthority.COMPANY,
+                    role = AccountAuthority.COMPANY.toString(),
                     phone = "010-0000-0000",
                     shopId = shop.id,
                 )
@@ -57,7 +57,7 @@ class ShopService(
                 id = createCompanyDto.managerId,
                 password = createCompanyDto.managerPassword,
                 name = createCompanyDto.managerName,
-                role = AccountAuthority.COMPANY,
+                role = AccountAuthority.COMPANY.toString(),
                 phone = createCompanyDto.managerPhone,
                 shopId = shop.id,
             )
