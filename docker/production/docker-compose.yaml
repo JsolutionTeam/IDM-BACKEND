@@ -1,0 +1,49 @@
+version: "3.8"
+services:
+  api-server:
+    build: .
+    image: idm-api-prod
+    container_name: idm-api-prod
+    restart: always
+    ports:
+      - "11402:8080"
+    volumes:
+      - idm-prod-api:/api
+    working_dir: /api
+    environment:
+      - TZ=Asia/Seoul
+      - SPRING_PROFILES_ACTIVE=prod
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        parallelism: 1
+        order: start-first
+        delay: 10s
+        failure_action: rollback
+
+#  batch-server:
+#    image: harbor.huclo.co.kr/j-erp/batch-server-prod:latest
+#    ports:
+#      - "10019:8080"
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=dev
+#    restart: always
+
+#  mysql:
+#    image: mariadb:10
+#    ports:
+#      - "10016:3306"
+#    volumes:
+#      - /nfs/volume/j-erp/prod/mysql/data:/var/lib/mysql
+#      - /nfs/volume/j-erp/prod/mysql/conf:/etc/mysql
+#    environment:
+#      MARIADB_DATABASE: "jerp"
+#      MARIADB_USER: "jerp"
+#      MARIADB_PASSWORD: "jsol2023!"
+#      MARIADB_ROOT_PASSWORD: "jsol2023!"
+#      TZ: Asia/Seoul
+#    restart: always
+
+volumes:
+  idm-prod-api:

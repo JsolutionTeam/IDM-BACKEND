@@ -1,17 +1,13 @@
 spring:
   datasource:
-
-    ### docker 컨테이너 배포환경 전, localhost로 접근이 가능하다.
-    #    url: jdbc:mariadb://localhost:58806/integration_mcall?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&userSSL=false&zeroDateTimeBehavior=convertToNull&validationQuery="select 1"
-
-    ### docker container 배포환경, docker host 설정
-    url: jdbc:mariadb://mariadb:3306/integration_idm?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&userSSL=false&zeroDateTimeBehavior=convertToNull&validationQuery="select 1"
-    username: integration
+    url: jdbc:mariadb://localhost:58806/integration_idm_2024?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&userSSL=false&zeroDateTimeBehavior=convertToNull
+    username: root
     password: jsolwpdlthffntus750!@
     driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
+    show-sql: true
 
 catalog:
   config:
@@ -19,15 +15,19 @@ catalog:
     idm: integration_idm
     auth: integration_auth
 
-
 custom:
   api-url:
-    auth: http://172.168.0.1:11001
-    mcall: http://172.168.0.1:11201
-    idm: http://172.168.0.1:11301
+    #    mcall: https://api-mcall.j-sol.co.kr
+    #    idm: https://api-idm.j-sol.co.kr
+    #    auth: https://api-auth.j-sol.co.kr
+    auth: http://localhost:11001
+    mcall: http://localhost:11201
+    idm: http://localhost:11301
 
 secret-key: kGU3Ss72dpWehaSOeFcHuhmYnp80KZbGx2QTcWhBueYCDNovsEzE2jGsYXfqaTyy5MgK3y1XBHhJzeMQsXnrYkYPWnH
 
+
 file:
-  mode: local # local, minio
-  dir: /home/jsolution/files/integration/shop
+  mode: local
+  #미디어 저장 디렉터리
+  dir: /files/idm

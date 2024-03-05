@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   datasource:
     #    url: jdbc:mariadb://210.97.108.4:58806/integration_mcall?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&userSSL=false&zeroDateTimeBehavior=convertToNull
@@ -18,14 +21,6 @@ spring:
 #    username: mcallroot
 #    password: jsolwpdlthffntus750!@
 #    driver-class-name: org.mariadb.jdbc.Driver
-
-param:
-  idm:
-    #    url: http://localhost:3001/api/inout
-    url: https://api-idm.j-sol.co.kr/api
-  auth:
-    #    url: http://172.17.0.1:8088/api
-    url: https://api-auth.j-sol.co.kr/api
 
 catalog:
   config:
