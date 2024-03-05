@@ -5,6 +5,7 @@ services:
     image: idm-api-prod
     container_name: idm-api-prod
     restart: always
+    network_mode: host
     ports:
       - "11402:8080"
     volumes:
