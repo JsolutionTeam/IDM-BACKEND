@@ -8,6 +8,7 @@ import kr.co.jsol.common.exception.domain.deviceinfo.DeviceInfoException
 import kr.co.jsol.common.repository.BaseQueryRepository
 import kr.co.jsol.domain.color.entity.QColor.Companion.color
 import kr.co.jsol.domain.device.entity.QDevice.Companion.device
+import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfoSearchDto
 import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfosDto
 import kr.co.jsol.domain.deviceinfo.entity.DeviceInfo
 import kr.co.jsol.domain.deviceinfo.entity.QDeviceInfo.Companion.deviceInfo
@@ -32,6 +33,17 @@ class DeviceInfoQueryRepository(
                 .and(deviceInfo.deletedAt.isNull)
         )
             .orElseThrow { throw DeviceInfoException.NotFoundByIdException() }
+    }
+
+    fun findBySeriesAndDeviceIdAndColorId(
+        getDeviceInfoSearchDto: GetDeviceInfoSearchDto,
+    ): DeviceInfo? {
+        return repository.findOne(
+            deviceInfo.device.series.eq(getDeviceInfoSearchDto.series)
+                .and(deviceInfo.device.id.eq(getDeviceInfoSearchDto.deviceId))
+                .and(deviceInfo.color.id.eq(getDeviceInfoSearchDto.colorId))
+                .and(deviceInfo.deletedAt.isNull)
+        ).orElse(null)
     }
 
     fun findListByIdList(

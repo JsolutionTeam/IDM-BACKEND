@@ -7,10 +7,12 @@ import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.common.paging.PageRequest
 import kr.co.jsol.domain.deviceinfo.application.DeviceInfoService
 import kr.co.jsol.domain.deviceinfo.application.dto.CreateDeviceInfoDto
+import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfoSearchDto
 import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfosDto
 import kr.co.jsol.domain.deviceinfo.application.dto.PostDeviceInfoImage
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoGroupByDeviceSeriesDto
+import org.springdoc.api.annotations.ParameterObject
 import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -103,6 +105,19 @@ class DeviceInfoController(
     ): Page<DeviceInfoDto> {
         val pageable = pageRequest.of()
         return service.findOffsetPageBySearch(getDeviceInfosDto, pageable)
+    }
+
+    @Operation(summary = "단말 시리즈/단말/색상으로 검색 조회")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @GetMapping("search")
+    @ResponseStatus(HttpStatus.OK)
+    fun getBySearch(
+        @Valid
+        @ParameterObject
+        getDeviceInfoSearchDto: GetDeviceInfoSearchDto,
+    ): DeviceInfoDto? {
+        return service.findBySeriesAndDeviceIdAndColorId(getDeviceInfoSearchDto)
     }
 
     @Operation(summary = "단말 상세 시리즈별 조회")

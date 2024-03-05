@@ -25,7 +25,6 @@ enum class AccountAuthority(
         const val HasCompanyRole = "hasAnyAuthority(\"COMPANY\")"
         const val HasMasterRole = "hasAnyAuthority(\"MASTER\")"
         const val HasMasterAndCompanyRole = "hasAnyAuthority(\"MASTER\", \"COMPANY\")"
-        const val HasCompanyAndUserRole = "hasAnyAuthority(\"MASTER\", \"COMPANY\")"
         const val HasAnyRole = "hasAnyAuthority(\"MASTER\", \"COMPANY\")"
     }
 

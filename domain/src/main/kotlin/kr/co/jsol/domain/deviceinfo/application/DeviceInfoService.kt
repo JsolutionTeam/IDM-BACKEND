@@ -4,6 +4,7 @@ import kr.co.jsol.common.file.application.FileService
 import kr.co.jsol.domain.color.infrastructure.query.ColorQueryRepository
 import kr.co.jsol.domain.device.infrastructure.query.DeviceQueryRepository
 import kr.co.jsol.domain.deviceinfo.application.dto.CreateDeviceInfoDto
+import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfoSearchDto
 import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfosDto
 import kr.co.jsol.domain.deviceinfo.application.dto.PostDeviceInfoImage
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoDto
@@ -53,6 +54,11 @@ class DeviceInfoService(
     ): Page<DeviceInfoDto> {
         return query.findOffsetPageBySearch(getDeviceInfosDto, pageable)
             .map(::DeviceInfoDto)
+    }
+
+    @Transactional(readOnly = true)
+    fun findBySeriesAndDeviceIdAndColorId(getDeviceInfoSearchDto: GetDeviceInfoSearchDto): DeviceInfoDto? {
+        return query.findBySeriesAndDeviceIdAndColorId(getDeviceInfoSearchDto)?.let(::DeviceInfoDto)
     }
 
     @Transactional(readOnly = true)
