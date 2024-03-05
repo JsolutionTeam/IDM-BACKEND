@@ -1,12 +1,12 @@
 package kr.co.jsol.domain.account.application.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
+import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.domain.account.entity.Account
 import kr.co.jsol.domain.auth.application.dto.AuthCreateUserDto
 import kr.co.jsol.domain.shop.entity.Shop
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotBlank
-import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
@@ -27,9 +27,9 @@ data class CreateAccountDto(
     @field:Schema(description = "이름")
     val name: String,
 
-    @field:NotEmpty(message = "권한은 필수 입력값입니다.")
-    @field:Schema(description = "권한, ROLE_로 시작하지 않으면 자동으로 ROLE_가 붙습니다.")
-    val role: String,
+    @field:NotNull(message = "권한은 필수 입력값입니다.")
+    @field:Schema(description = "권한", implementation = AccountAuthority::class)
+    val role: AccountAuthority,
 
     @field:NotNull(message = "관리자 여부는 필수 입력값입니다.")
     @field:Schema(description = "관리자 여부")
@@ -57,7 +57,7 @@ data class CreateAccountDto(
         return Account(
             id = this.id,
             name = name,
-            role = role,
+            role = role.toString(),
             isManager = isManager,
             phone = phone ?: "",
             shop = shop,
