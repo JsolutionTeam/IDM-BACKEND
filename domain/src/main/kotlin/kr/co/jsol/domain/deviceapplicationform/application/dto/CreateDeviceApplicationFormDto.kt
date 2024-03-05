@@ -1,5 +1,6 @@
 package kr.co.jsol.domain.deviceapplicationform.application.dto
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import io.swagger.v3.oas.annotations.media.Schema
 import kr.co.jsol.domain.deviceapplicationform.entity.DeviceApplicationForm
 import kr.co.jsol.domain.deviceinfo.entity.DeviceInfo
@@ -10,6 +11,7 @@ import kr.co.jsol.domain.subservice.entity.Subservice
 import kr.co.jsol.domain.telecom.entity.Telecom
 import kr.co.jsol.domain.telecom.entity.enums.DiscountType
 import kr.co.jsol.domain.telecom.entity.enums.OpenType
+import javax.validation.Valid
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
@@ -84,12 +86,14 @@ data class CreateDeviceApplicationFormDto(
     @field:Schema(description = "보험 아이디")
     var insuranceId: Long,
 
-    @field:NotNull(message = "부가서비 아이디는 필수입니다.")
-    @field:Min(value = 1, message = "부가서비스 아이디는 1 이상으로 입력해주세요.")
+    @field:Valid
     @field:Schema(description = "부가서비스 아이디")
-    var subserviceId: Long,
+    var subserviceIds: List<@NotNull(message = "부가서비 아이디는 필수입니다.")
+    @Min(value = 1, message = "부가서비스 아이디는 1 이상으로 입력해주세요.") Long>,
 ) {
     // shopId는 로그인한 사용자의 업체 아이디를 받아올 예정
+    @Schema(hidden = true)
+    @JsonIgnore
     var shopId: Long = 0L
 
     fun toEntity(
@@ -98,7 +102,7 @@ data class CreateDeviceApplicationFormDto(
         deviceInfo: DeviceInfo,
         phonePlan: PhonePlan,
         insurance: Insurance,
-        subservice: Subservice,
+        subserviceList: MutableList<Subservice>,
     ): DeviceApplicationForm {
         return DeviceApplicationForm(
             phoneNumber = phoneNumber,
@@ -116,7 +120,7 @@ data class CreateDeviceApplicationFormDto(
             deviceInfo = deviceInfo,
             phonePlan = phonePlan,
             insurance = insurance,
-            subservice = subservice,
+            subserviceList = subserviceList,
         )
     }
 }

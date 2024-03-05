@@ -58,7 +58,7 @@ data class DeviceApplicationFormDto(
     var insurance: InsuranceDto,
 
     @field:Schema(description = "부가서비스 아이디")
-    var subservice: SubserviceDto,
+    var subserviceList: List<SubserviceDto>,
 ) {
 
     constructor(deviceApplicationForm: DeviceApplicationForm) : this(
@@ -77,6 +77,6 @@ data class DeviceApplicationFormDto(
         deviceInfo = DeviceInfoDto(deviceApplicationForm.deviceInfo),
         phonePlan = PhonePlanDto(deviceApplicationForm.phonePlan),
         insurance = InsuranceDto(deviceApplicationForm.insurance),
-        subservice = SubserviceDto(deviceApplicationForm.subservice)
+        subserviceList = deviceApplicationForm.subserviceList.map(::SubserviceDto)
     )
 }

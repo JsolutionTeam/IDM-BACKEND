@@ -24,6 +24,7 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.OneToMany
 
 @SQLDelete(sql = "UPDATE tb_device_application_form SET deleted_at = now() WHERE id = ?")
 @Entity
@@ -101,10 +102,7 @@ class DeviceApplicationForm(
     @Comment("보험 아이디")
     var insurance: Insurance,
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "subservice_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @OneToMany(fetch = FetchType.LAZY)
     @Comment("부가서비스 아이디")
-    var subservice: Subservice,
-) : BaseEntity() {
-
-}
+    var subserviceList: MutableList<Subservice>,
+) : BaseEntity()

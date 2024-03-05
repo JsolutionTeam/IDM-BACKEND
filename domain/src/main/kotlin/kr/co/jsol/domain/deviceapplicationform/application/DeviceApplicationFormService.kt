@@ -8,6 +8,7 @@ import kr.co.jsol.domain.deviceinfo.infrastructure.query.DeviceInfoQueryReposito
 import kr.co.jsol.domain.insurance.infrastructure.query.InsuranceQueryRepository
 import kr.co.jsol.domain.phoneplan.infrastructure.query.PhonePlanQueryRepository
 import kr.co.jsol.domain.shop.infrastructure.query.ShopQueryRepository
+import kr.co.jsol.domain.subservice.entity.Subservice
 import kr.co.jsol.domain.subservice.infrastructure.query.SubserviceQueryRepository
 import kr.co.jsol.domain.telecom.infrastructure.query.TelecomQueryRepository
 import org.springframework.stereotype.Service
@@ -28,13 +29,21 @@ class DeviceApplicationFormService(
 
     @Transactional
     fun create(createDeviceApplicationFormDto: CreateDeviceApplicationFormDto): DeviceApplicationFormDto {
+        val subserviceList = mutableListOf<Subservice>()
+
+        createDeviceApplicationFormDto.subserviceIds.forEach {
+            subserviceQuery.findById(it)?.let { subservice ->
+                subserviceList.add(subservice)
+            }
+        }
+
         val deviceApplicationForm = createDeviceApplicationFormDto.toEntity(
             shop = shopQuery.getById(createDeviceApplicationFormDto.shopId),
             telecom = telecomQuery.getById(createDeviceApplicationFormDto.telecomId),
             deviceInfo = deviceInfoQuery.getById(createDeviceApplicationFormDto.deviceInfoId),
             phonePlan = phonePlanQuery.getById(createDeviceApplicationFormDto.phonePlanId),
             insurance = insuranceQuery.getById(createDeviceApplicationFormDto.insuranceId),
-            subservice = subserviceQuery.getById(createDeviceApplicationFormDto.subserviceId)
+            subserviceList = subserviceList,
         )
         repository.save(deviceApplicationForm)
         return DeviceApplicationFormDto(deviceApplicationForm)

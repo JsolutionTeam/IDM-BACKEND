@@ -7,8 +7,10 @@ import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.domain.deviceapplicationform.application.DeviceApplicationFormService
 import kr.co.jsol.domain.deviceapplicationform.application.dto.CreateDeviceApplicationFormDto
 import kr.co.jsol.domain.deviceapplicationform.infrastructure.dto.DeviceApplicationFormDto
+import kr.co.jsol.domain.userdetails.UserDetailsImpl
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -32,7 +34,10 @@ class DeviceApplicationFormController(
         @Valid
         @RequestBody
         createDeviceApplicationFormDto: CreateDeviceApplicationFormDto,
+        @AuthenticationPrincipal
+        userDetails: UserDetailsImpl,
     ): DeviceApplicationFormDto {
+        createDeviceApplicationFormDto.shopId = userDetails.shop.id
         return service.create(createDeviceApplicationFormDto)
     }
 }

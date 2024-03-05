@@ -33,7 +33,7 @@ class JwtAuthenticationFilter(private val jwtService: JwtService) : GenericFilte
             "Origin, Content-Type, Accept, Authorization",
         )
 
-        val token = jwtService.resolveToken(req)
+        val token = jwtService.resolveToken(req).removePrefix("Bearer ")
 
         if (token.isEmpty()) {
             chain.doFilter(request, response)

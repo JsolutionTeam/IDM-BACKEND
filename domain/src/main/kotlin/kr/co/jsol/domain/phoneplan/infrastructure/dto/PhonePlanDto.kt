@@ -19,7 +19,7 @@ data class PhonePlanDto(
     val category: String,
 
     @field:Schema(description = "음성통화 설명")
-    val cellExp: String,
+    val callExp: String,
 
     @field:Schema(description = "데이터 설명")
     val dataExp: String,
@@ -30,13 +30,13 @@ data class PhonePlanDto(
     @field:Schema(description = "통신사 응답")
     val telecom: TelecomDto,
 ) {
-    
+
     constructor(phonePlan: PhonePlan) : this(
         id = phonePlan.id,
         name = phonePlan.name,
         price = phonePlan.price,
         category = phonePlan.category,
-        cellExp = phonePlan.cellExp,
+        callExp = phonePlan.callExp,
         dataExp = phonePlan.dataExp,
         mailExp = phonePlan.mailExp,
         telecom = TelecomDto(phonePlan.telecom),

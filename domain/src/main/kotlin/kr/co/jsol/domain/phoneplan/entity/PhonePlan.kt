@@ -40,8 +40,8 @@ class PhonePlan(
     /**
      * 음성통화 설명
      */
-    @Column(name = "cell_exp", insertable = false, updatable = false)
-    var cellExp: String,
+    @Column(name = "call_exp", insertable = false, updatable = false)
+    var callExp: String,
 
     /**
      * 데이터 설명
