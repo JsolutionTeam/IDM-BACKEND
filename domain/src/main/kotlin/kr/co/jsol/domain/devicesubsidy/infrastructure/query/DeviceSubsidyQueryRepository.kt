@@ -4,7 +4,9 @@ import com.querydsl.core.BooleanBuilder
 import com.querydsl.jpa.impl.JPAQueryFactory
 import kr.co.jsol.common.exception.domain.devicesubsidy.DeviceSubsidyException
 import kr.co.jsol.common.repository.BaseQueryRepository
+import kr.co.jsol.domain.devicesubsidy.application.dto.ExistsDeviceSubsidyDto
 import kr.co.jsol.domain.devicesubsidy.application.dto.GetDeviceSubsidiesDto
+import kr.co.jsol.domain.devicesubsidy.application.dto.GetDeviceSubsidyPriceDto
 import kr.co.jsol.domain.devicesubsidy.entity.DeviceSubsidy
 import kr.co.jsol.domain.devicesubsidy.entity.QDeviceSubsidy.Companion.deviceSubsidy
 import kr.co.jsol.domain.devicesubsidy.infrastructure.repository.DeviceSubsidyRepository
@@ -24,6 +26,32 @@ class DeviceSubsidyQueryRepository(
                 .and(deviceSubsidy.deletedAt.isNull)
         )
             .orElseThrow { throw DeviceSubsidyException.NotFoundByIdException() }
+    }
+
+    fun exists(existsDeviceSubsidyDto: ExistsDeviceSubsidyDto): Boolean {
+        val booleanBuilder = BooleanBuilder()
+            .and(deviceSubsidy.telecom.id.eq(existsDeviceSubsidyDto.telecomId))
+            .and(deviceSubsidy.phonePlan.id.eq(existsDeviceSubsidyDto.phonePlanId))
+            .and(deviceSubsidy.device.id.eq(existsDeviceSubsidyDto.deviceId))
+            .and(deviceSubsidy.deletedAt.isNull)
+
+        return queryFactory.selectOne()
+            .from(deviceSubsidy)
+            .where(booleanBuilder)
+            .fetchFirst() != null
+    }
+
+    fun getPrice(getDeviceSubsidyPriceDto: GetDeviceSubsidyPriceDto): Long {
+        val booleanBuilder = BooleanBuilder()
+            .and(deviceSubsidy.telecom.id.eq(getDeviceSubsidyPriceDto.telecomId))
+            .and(deviceSubsidy.phonePlan.id.eq(getDeviceSubsidyPriceDto.phonePlanId))
+            .and(deviceSubsidy.device.id.eq(getDeviceSubsidyPriceDto.deviceId))
+            .and(deviceSubsidy.deletedAt.isNull)
+
+        return queryFactory.select(deviceSubsidy.price)
+            .from(deviceSubsidy)
+            .where(booleanBuilder)
+            .fetchFirst() ?: throw DeviceSubsidyException.NotFoundBySearchException()
     }
 
     fun findListByIdList(

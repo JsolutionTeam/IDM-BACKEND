@@ -81,13 +81,7 @@ class CompanySubsidyController(
     fun exists(
         @Valid
         existsCompanySubsidyDto: ExistsCompanySubsidyDto,
-//        @AuthenticationPrincipal
-//        userDetails: UserDetailsImpl,
     ): Boolean {
-//        if (!userDetails.isManager) {
-//            throw GeneralClientException.ForbiddenException("관리자만 접근 가능합니다.")
-//        }
-
         return service.exists(existsCompanySubsidyDto)
     }
 
@@ -98,7 +92,7 @@ class CompanySubsidyController(
         @Valid
         getCompanySubsidyPriceDto: GetCompanySubsidyPriceDto,
     ): Long {
-        return service.getCompanySubsidyPrice(getCompanySubsidyPriceDto)
+        return service.getPrice(getCompanySubsidyPriceDto)
     }
 
     @Operation(summary = "회사 지원금 페이지 조회")

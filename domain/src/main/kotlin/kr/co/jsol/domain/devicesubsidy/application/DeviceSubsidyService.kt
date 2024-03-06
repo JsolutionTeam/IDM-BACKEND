@@ -3,7 +3,9 @@ package kr.co.jsol.domain.devicesubsidy.application
 import kr.co.jsol.domain.device.infrastructure.query.DeviceQueryRepository
 import kr.co.jsol.domain.devicesubsidy.application.dto.CreateDeviceSubsidyDto
 import kr.co.jsol.domain.devicesubsidy.application.dto.DeleteDeviceSubsidiesDto
+import kr.co.jsol.domain.devicesubsidy.application.dto.ExistsDeviceSubsidyDto
 import kr.co.jsol.domain.devicesubsidy.application.dto.GetDeviceSubsidiesDto
+import kr.co.jsol.domain.devicesubsidy.application.dto.GetDeviceSubsidyPriceDto
 import kr.co.jsol.domain.devicesubsidy.application.dto.UpdateDeviceSubsidiesDto
 import kr.co.jsol.domain.devicesubsidy.infrastructure.dto.DeviceSubsidyDto
 import kr.co.jsol.domain.devicesubsidy.infrastructure.query.DeviceSubsidyQueryRepository
@@ -71,5 +73,15 @@ class DeviceSubsidyService(
     @Transactional(readOnly = true)
     fun getById(id: Long): DeviceSubsidyDto {
         return DeviceSubsidyDto(query.getById(id))
+    }
+
+    @Transactional(readOnly = true)
+    fun exists(existsDeviceSubsidyDto: ExistsDeviceSubsidyDto): Boolean {
+        return query.exists(existsDeviceSubsidyDto)
+    }
+
+    @Transactional(readOnly = true)
+    fun getPrice(getDeviceSubsidyPriceDto: GetDeviceSubsidyPriceDto): Long {
+        return query.getPrice(getDeviceSubsidyPriceDto)
     }
 }

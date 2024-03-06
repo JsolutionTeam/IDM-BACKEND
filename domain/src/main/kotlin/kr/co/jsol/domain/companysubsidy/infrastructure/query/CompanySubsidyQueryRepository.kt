@@ -28,20 +28,6 @@ class CompanySubsidyQueryRepository(
             .orElseThrow { throw CompanySubsidyException.NotFoundByIdException() }
     }
 
-    fun getCompanySubsidyPrice(getCompanySubsidyPriceDto: GetCompanySubsidyPriceDto): Long {
-        val booleanBuilder = BooleanBuilder()
-            .and(companySubsidy.shop.id.eq(getCompanySubsidyPriceDto.shopId))
-            .and(companySubsidy.telecom.id.eq(getCompanySubsidyPriceDto.telecomId))
-            .and(companySubsidy.phonePlan.id.eq(getCompanySubsidyPriceDto.phonePlanId))
-            .and(companySubsidy.device.id.eq(getCompanySubsidyPriceDto.deviceId))
-            .and(companySubsidy.deletedAt.isNull)
-
-        return queryFactory.select(companySubsidy.price)
-            .from(companySubsidy)
-            .where(booleanBuilder)
-            .fetchFirst() ?: throw CompanySubsidyException.NotFoundBySearchException()
-    }
-
     fun exists(existsCompanySubsidyDto: ExistsCompanySubsidyDto): Boolean {
         val booleanBuilder = BooleanBuilder()
             .and(companySubsidy.shop.id.eq(existsCompanySubsidyDto.shopId))
@@ -54,6 +40,20 @@ class CompanySubsidyQueryRepository(
             .from(companySubsidy)
             .where(booleanBuilder)
             .fetchFirst() != null
+    }
+
+    fun getPrice(getCompanySubsidyPriceDto: GetCompanySubsidyPriceDto): Long {
+        val booleanBuilder = BooleanBuilder()
+            .and(companySubsidy.shop.id.eq(getCompanySubsidyPriceDto.shopId))
+            .and(companySubsidy.telecom.id.eq(getCompanySubsidyPriceDto.telecomId))
+            .and(companySubsidy.phonePlan.id.eq(getCompanySubsidyPriceDto.phonePlanId))
+            .and(companySubsidy.device.id.eq(getCompanySubsidyPriceDto.deviceId))
+            .and(companySubsidy.deletedAt.isNull)
+
+        return queryFactory.select(companySubsidy.price)
+            .from(companySubsidy)
+            .where(booleanBuilder)
+            .fetchFirst() ?: throw CompanySubsidyException.NotFoundBySearchException()
     }
 
     fun findListByIdList(

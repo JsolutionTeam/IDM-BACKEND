@@ -7,7 +7,9 @@ import kr.co.jsol.common.paging.PageRequest
 import kr.co.jsol.domain.devicesubsidy.application.DeviceSubsidyService
 import kr.co.jsol.domain.devicesubsidy.application.dto.CreateDeviceSubsidyDto
 import kr.co.jsol.domain.devicesubsidy.application.dto.DeleteDeviceSubsidiesDto
+import kr.co.jsol.domain.devicesubsidy.application.dto.ExistsDeviceSubsidyDto
 import kr.co.jsol.domain.devicesubsidy.application.dto.GetDeviceSubsidiesDto
+import kr.co.jsol.domain.devicesubsidy.application.dto.GetDeviceSubsidyPriceDto
 import kr.co.jsol.domain.devicesubsidy.application.dto.UpdateDeviceSubsidiesDto
 import kr.co.jsol.domain.devicesubsidy.infrastructure.dto.DeviceSubsidyDto
 import kr.co.jsol.domain.userdetails.UserDetailsImpl
@@ -69,6 +71,26 @@ class DeviceSubsidyController(
         deleteDeviceSubsidiesDto: DeleteDeviceSubsidiesDto,
     ) {
         return service.deleteMultiple(deleteDeviceSubsidiesDto)
+    }
+
+    @Operation(summary = "공시 지원금 중복 조회")
+    @GetMapping("exists")
+    @ResponseStatus(HttpStatus.OK)
+    fun exists(
+        @Valid
+        existsDeviceSubsidyDto: ExistsDeviceSubsidyDto,
+    ): Boolean {
+        return service.exists(existsDeviceSubsidyDto)
+    }
+
+    @Operation(summary = "공시 지원금 가격만 조회")
+    @GetMapping("price")
+    @ResponseStatus(HttpStatus.OK)
+    fun getDeviceSubsidyPrice(
+        @Valid
+        getDeviceSubsidyPriceDto: GetDeviceSubsidyPriceDto,
+    ): Long {
+        return service.getPrice(getDeviceSubsidyPriceDto)
     }
 
     @Operation(summary = "공시 지원금 페이지 조회")

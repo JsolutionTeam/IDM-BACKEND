@@ -92,7 +92,8 @@ class CompanySubsidyService(
         return query.exists(existsCompanySubsidyDto)
     }
 
-    fun getCompanySubsidyPrice(getCompanySubsidyPriceDto: GetCompanySubsidyPriceDto): Long {
-        return query.getCompanySubsidyPrice(getCompanySubsidyPriceDto)
+    @Transactional(readOnly = true)
+    fun getPrice(getCompanySubsidyPriceDto: GetCompanySubsidyPriceDto): Long {
+        return query.getPrice(getCompanySubsidyPriceDto)
     }
 }
