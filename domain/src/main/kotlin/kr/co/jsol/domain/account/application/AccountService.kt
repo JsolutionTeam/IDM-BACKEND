@@ -91,6 +91,12 @@ class AccountService(
         return AccountDto(query.getById(id))
     }
 
+    @Transactional(readOnly = true)
+    fun existsById(id: String): Boolean {
+        return query.existsById(id)
+    }
+
+    @Transactional(readOnly = true)
     fun findOffsetPageBySearch(
         shopCompaniesDto: GetAccountsDto,
         pageable: Pageable,

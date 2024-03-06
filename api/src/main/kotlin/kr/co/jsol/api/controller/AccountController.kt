@@ -50,6 +50,18 @@ class AccountController(
         return service.create(createAccountDto)
     }
 
+    @Operation(summary = "중복 조회")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @GetMapping("exists")
+    @ResponseStatus(HttpStatus.OK)
+    fun existsId(
+        @AuthenticationPrincipal
+        userDetails: UserDetailsImpl,
+    ): Boolean {
+        return service.existsById(userDetails.id)
+    }
+
     @Operation(summary = "내 정보 조회")
     @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
     @SecurityRequirement(name = "Bearer Authentication")

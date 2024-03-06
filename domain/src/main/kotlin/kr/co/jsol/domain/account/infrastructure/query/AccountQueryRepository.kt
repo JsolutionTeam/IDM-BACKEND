@@ -23,6 +23,16 @@ class AccountQueryRepository(
             .orElseThrow { throw AccountException.NotFoundByIdException("계정 정보를 찾을 수 없습니다.") }
     }
 
+    fun existsById(id: String): Boolean {
+        return queryFactory.selectOne()
+            .from(account)
+            .where(
+                account.deletedAt.isNull,
+                account.id.eq(id),
+            )
+            .fetchFirst() != null
+    }
+
     fun findOffsetPageBySearch(
         shopCompaniesDto: GetAccountsDto,
         pageable: Pageable,
