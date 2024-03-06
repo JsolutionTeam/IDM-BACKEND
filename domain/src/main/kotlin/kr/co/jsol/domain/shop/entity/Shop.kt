@@ -27,11 +27,15 @@ class Shop(
     var name: String,
 
     @Comment("권한")
-    var role: String,
+    var role: String = "AGENCY",
+
+    @Column(name = "use_mcall_shop")
+    @Comment("엠콜샵 사용 여부")
+    var useMcallShop: Boolean = true,
 
     @Enumerated(EnumType.STRING)
     @Comment("상태")
-    var status: ShopStatus,
+    var status: ShopStatus = ShopStatus.DONE,
 
     @Column(name = "tel_no")
     @Comment("전화번호")

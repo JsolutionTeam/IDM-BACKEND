@@ -13,6 +13,7 @@
         <introspection-scope>
           <node kind="schema">
             <name qname="@" />
+            <name qname="integration_auth" />
             <name qname="integration_idm_2024" />
             <name qname="integration_mcall" />
             <name qname="mcall_shop" />

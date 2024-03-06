@@ -2,12 +2,18 @@ package kr.co.jsol.api.controller
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
+import io.swagger.v3.oas.annotations.tags.Tag
 import kr.co.jsol.common.domain.AccountAuthority
+import kr.co.jsol.common.paging.PageRequest
 import kr.co.jsol.domain.shop.application.ShopService
 import kr.co.jsol.domain.shop.application.dto.CreateCompanyDto
+import kr.co.jsol.domain.shop.application.dto.GetCompanyDto
 import kr.co.jsol.domain.shop.infrastructure.dto.ShopDto
+import org.springdoc.api.annotations.ParameterObject
+import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -17,14 +23,15 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api/v1/shops")
+@Tag(name = "업체", description = "업체(Shop) 관련 API")
 class ShopController(
     private val service: ShopService,
 ) {
 
-    @Operation(summary = "COMPANY(업체) 등록 - 최종 관리자만 가능")
+    @Operation(summary = "엠콜샵 사용할 업체 신규 등록 - 최종 관리자만 가능")
     @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
     @SecurityRequirement(name = "Bearer Authentication")
-    @PostMapping("company")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun createCompanyShop(
         @Valid
@@ -32,5 +39,19 @@ class ShopController(
         createCompanyDto: CreateCompanyDto,
     ): ShopDto {
         return service.createCompany(createCompanyDto)
+    }
+
+    @Operation(summary = "엠콜샵 사용 업체 페이지 조회")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    fun findCompanyPage(
+        @Valid
+        @ParameterObject
+        getCompanyDto: GetCompanyDto,
+        pageRequest: PageRequest,
+    ): Page<ShopDto> {
+        return service.findCompanyPage(getCompanyDto, pageRequest.of())
     }
 }

@@ -4,11 +4,14 @@ import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.domain.account.application.AccountService
 import kr.co.jsol.domain.account.application.dto.CreateAccountDto
 import kr.co.jsol.domain.shop.application.dto.CreateCompanyDto
+import kr.co.jsol.domain.shop.application.dto.GetCompanyDto
 import kr.co.jsol.domain.shop.entity.Shop
 import kr.co.jsol.domain.shop.entity.enums.ShopStatus
 import kr.co.jsol.domain.shop.infrastructure.dto.ShopDto
 import kr.co.jsol.domain.shop.infrastructure.query.ShopQueryRepository
 import kr.co.jsol.domain.shop.infrastructure.repository.ShopRepository
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -63,5 +66,14 @@ class ShopService(
             )
         )
         return ShopDto(shop)
+    }
+
+    @Transactional(readOnly = true)
+    fun findCompanyPage(
+        getCompanyDto: GetCompanyDto,
+        pageable: Pageable,
+    ): Page<ShopDto> {
+        return query.findCompanyPage(getCompanyDto, pageable)
+            .map(::ShopDto)
     }
 }
