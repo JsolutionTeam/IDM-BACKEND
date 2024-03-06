@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.enums.SecuritySchemeType
 import io.swagger.v3.oas.annotations.security.SecurityScheme
 import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.info.Info
+import io.swagger.v3.oas.models.servers.Server
 import org.springdoc.core.GroupedOpenApi
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -32,6 +33,11 @@ class SwaggerConfig {
                 }",
             )
             .version("0.0.1-SNAPSHOT"),
+    ).servers(
+        listOf(
+            Server().url("https://newshop.j-sol.co.kr/"), //TODO api-shop 으로 변경시 수정해야 함
+            Server().url("http://localhost:11402"),
+        ),
     )
 
     @Bean
