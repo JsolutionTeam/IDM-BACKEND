@@ -55,7 +55,7 @@ data class DeviceApplicationFormDto(
     var phonePlan: PhonePlanDto,
 
     @field:Schema(description = "보험 아이디")
-    var insurance: InsuranceDto,
+    var insurance: InsuranceDto?,
 
     @field:Schema(description = "부가서비스 아이디")
     var subserviceList: List<SubserviceDto>,
@@ -76,7 +76,7 @@ data class DeviceApplicationFormDto(
         telecom = TelecomDto(deviceApplicationForm.telecom),
         deviceInfo = DeviceInfoDto(deviceApplicationForm.deviceInfo),
         phonePlan = PhonePlanDto(deviceApplicationForm.phonePlan),
-        insurance = InsuranceDto(deviceApplicationForm.insurance),
+        insurance = deviceApplicationForm.insurance?.let { InsuranceDto(it) },
         subserviceList = deviceApplicationForm.subserviceList.map(::SubserviceDto)
     )
 }

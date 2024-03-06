@@ -80,23 +80,22 @@ data class CreateDeviceApplicationFormDto(
     @field:Schema(description = "요금제 아이디")
     var phonePlanId: Long,
 
-    @field:NotNull(message = "보험 아이디는 필수입니다.")
     @field:Min(value = 1, message = "보험 아이디는 1 이상으로 입력해주세요.")
     @field:Schema(description = "보험 아이디")
-    var insuranceId: Long,
+    var insuranceId: Long?,
 
     @field:Valid
     @field:Schema(description = "부가서비스 아이디")
     var subserviceIds: List<@NotNull(message = "부가서비 아이디는 필수입니다.")
     @Min(value = 1, message = "부가서비스 아이디는 1 이상으로 입력해주세요.") Long>,
 ) {
-    
+
     fun toEntity(
         shop: Shop,
         telecom: Telecom,
         deviceInfo: DeviceInfo,
         phonePlan: PhonePlan,
-        insurance: Insurance,
+        insurance: Insurance?,
         subserviceList: MutableList<Subservice>,
     ): DeviceApplicationForm {
         return DeviceApplicationForm(

@@ -46,7 +46,7 @@ class DeviceApplicationFormService(
             telecom = telecomQuery.getById(createDeviceApplicationFormDto.telecomId),
             deviceInfo = deviceInfoQuery.getById(createDeviceApplicationFormDto.deviceInfoId),
             phonePlan = phonePlanQuery.getById(createDeviceApplicationFormDto.phonePlanId),
-            insurance = insuranceQuery.getById(createDeviceApplicationFormDto.insuranceId),
+            insurance = createDeviceApplicationFormDto.insuranceId?.let { insuranceQuery.getById(it) },
             subserviceList = subserviceList,
         )
         repository.save(deviceApplicationForm)
@@ -57,6 +57,21 @@ class DeviceApplicationFormService(
     fun update(updateDeviceApplicationFormDto: UpdateDeviceApplicationFormDto): DeviceApplicationFormDto {
         val deviceApplicationForm = query.getById(updateDeviceApplicationFormDto.id)
         deviceApplicationForm.update(updateDeviceApplicationFormDto)
-        return DeviceApplicationFormDto(deviceApplicationForm)
+
+        updateDeviceApplicationFormDto.telecomId?.let {
+            deviceApplicationForm.telecom = telecomQuery.getById(it)
+        }
+        updateDeviceApplicationFormDto.deviceInfoId?.let {
+            deviceApplicationForm.deviceInfo = deviceInfoQuery.getById(it)
+        }
+        updateDeviceApplicationFormDto.phonePlanId?.let {
+            deviceApplicationForm.phonePlan = phonePlanQuery.getById(it)
+        }
+        updateDeviceApplicationFormDto.insuranceId?.let {
+            deviceApplicationForm.insurance = insuranceQuery.getById(it)
+        }
+
+
+        return DeviceApplicationFormDto(repository.save(deviceApplicationForm))
     }
 }

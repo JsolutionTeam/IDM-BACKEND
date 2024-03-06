@@ -101,7 +101,7 @@ class DeviceApplicationForm(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "insurance_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("보험 아이디")
-    var insurance: Insurance,
+    var insurance: Insurance?,
 
     @OneToMany(fetch = FetchType.LAZY)
     @Comment("부가서비스 아이디")
