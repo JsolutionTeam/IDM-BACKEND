@@ -63,7 +63,7 @@ class ShopController(
         val pageable = pageRequest.of()
 
         // 최종 관리자가 아니라면 해당 업체의 데이터만 조회 가능
-        if (userDetails.isNotMaster() || getShopCompaniesDto.shopId == null) {
+        if (userDetails.isNotMaster()) {
             getShopCompaniesDto.shopId = userDetails.shop.id
         }
 

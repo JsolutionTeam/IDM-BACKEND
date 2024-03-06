@@ -1,6 +1,7 @@
 package kr.co.jsol.domain.account.infrastructure.query
 
 import com.querydsl.core.BooleanBuilder
+import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
 import kr.co.jsol.common.exception.domain.account.AccountException
 import kr.co.jsol.common.repository.BaseQueryRepository
@@ -8,6 +9,7 @@ import kr.co.jsol.domain.account.application.dto.GetAccountsDto
 import kr.co.jsol.domain.account.entity.Account
 import kr.co.jsol.domain.account.entity.QAccount.Companion.account
 import kr.co.jsol.domain.account.infrastructure.repository.AccountRepository
+import kr.co.jsol.domain.companysubsidy.entity.QCompanySubsidy
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
@@ -39,7 +41,13 @@ class AccountQueryRepository(
     ): Page<Account> {
         val booleanBuilder = BooleanBuilder()
             .and(account.deletedAt.isNull)
-            .and(account.shop.id.eq(shopCompaniesDto.shopId))
+            .and(shopIdEq(shopCompaniesDto.shopId))
         return repository.findAll(booleanBuilder, pageable)
+    }
+
+    ////
+
+    private fun shopIdEq(shopId: Long?): BooleanExpression? {
+        return shopId?.let { QCompanySubsidy.companySubsidy.shop.id.eq(it) }
     }
 }

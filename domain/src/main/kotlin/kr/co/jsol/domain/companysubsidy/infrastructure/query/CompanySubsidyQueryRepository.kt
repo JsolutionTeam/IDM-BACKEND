@@ -1,6 +1,7 @@
 package kr.co.jsol.domain.companysubsidy.infrastructure.query
 
 import com.querydsl.core.BooleanBuilder
+import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
 import kr.co.jsol.common.exception.domain.companysubsidy.CompanySubsidyException
 import kr.co.jsol.common.repository.BaseQueryRepository
@@ -73,7 +74,7 @@ class CompanySubsidyQueryRepository(
         pageable: Pageable,
     ): Page<CompanySubsidy> {
         val booleanBuilder = BooleanBuilder()
-            .and(companySubsidy.shop.id.eq(getCompanySubsidiesDto.shopId))
+            .and(shopIdEq(getCompanySubsidiesDto.shopId))
             .and(companySubsidy.deletedAt.isNull)
 
         getCompanySubsidiesDto.openType?.let {
@@ -102,5 +103,11 @@ class CompanySubsidyQueryRepository(
             booleanBuilder,
             pageable,
         )
+    }
+
+    /////
+
+    private fun shopIdEq(shopId: Long?): BooleanExpression? {
+        return shopId?.let { companySubsidy.shop.id.eq(it) }
     }
 }
