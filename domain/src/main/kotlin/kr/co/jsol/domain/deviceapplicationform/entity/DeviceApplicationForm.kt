@@ -103,9 +103,10 @@ class DeviceApplicationForm(
     @Comment("보험 아이디")
     var insurance: Insurance?,
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @OneToMany(fetch = FetchType.LAZY)
     @Comment("부가서비스 아이디")
-    var subserviceList: MutableList<Subservice>,
+    var subserviceList: MutableList<Subservice> = mutableListOf(),
 ) : BaseEntity() {
 
     fun update(updateDeviceApplicationFormDto: UpdateDeviceApplicationFormDto) {

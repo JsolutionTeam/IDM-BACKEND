@@ -48,7 +48,7 @@ class ShopController(
     }
 
     @Operation(summary = "엠콜샵 사용 업체 사용자 페이지 조회")
-    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("accounts")
     @ResponseStatus(HttpStatus.OK)

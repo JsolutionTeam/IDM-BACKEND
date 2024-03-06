@@ -21,7 +21,7 @@ class Subservice(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "subservice_id")
     @Comment("아이디")
-    var id: Long,
+    var id: Long = 0,
 
     @Column(name = "name")
     @Comment("이름")
