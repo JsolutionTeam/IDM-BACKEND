@@ -1,6 +1,7 @@
 package kr.co.jsol.domain.deviceapplicationform.application
 
 import kr.co.jsol.domain.deviceapplicationform.application.dto.CreateDeviceApplicationFormDto
+import kr.co.jsol.domain.deviceapplicationform.application.dto.UpdateDeviceApplicationFormDto
 import kr.co.jsol.domain.deviceapplicationform.infrastructure.dto.DeviceApplicationFormDto
 import kr.co.jsol.domain.deviceapplicationform.infrastructure.query.DeviceApplicationFormQueryRepository
 import kr.co.jsol.domain.deviceapplicationform.infrastructure.repository.DeviceApplicationFormRepository
@@ -28,7 +29,10 @@ class DeviceApplicationFormService(
 ) {
 
     @Transactional
-    fun create(createDeviceApplicationFormDto: CreateDeviceApplicationFormDto): DeviceApplicationFormDto {
+    fun create(
+        shopId: Long,
+        createDeviceApplicationFormDto: CreateDeviceApplicationFormDto,
+    ): DeviceApplicationFormDto {
         val subserviceList = mutableListOf<Subservice>()
 
         createDeviceApplicationFormDto.subserviceIds.forEach {
@@ -38,7 +42,7 @@ class DeviceApplicationFormService(
         }
 
         val deviceApplicationForm = createDeviceApplicationFormDto.toEntity(
-            shop = shopQuery.getById(createDeviceApplicationFormDto.shopId),
+            shop = shopQuery.getById(shopId),
             telecom = telecomQuery.getById(createDeviceApplicationFormDto.telecomId),
             deviceInfo = deviceInfoQuery.getById(createDeviceApplicationFormDto.deviceInfoId),
             phonePlan = phonePlanQuery.getById(createDeviceApplicationFormDto.phonePlanId),
@@ -46,6 +50,13 @@ class DeviceApplicationFormService(
             subserviceList = subserviceList,
         )
         repository.save(deviceApplicationForm)
+        return DeviceApplicationFormDto(deviceApplicationForm)
+    }
+
+    @Transactional
+    fun update(updateDeviceApplicationFormDto: UpdateDeviceApplicationFormDto): DeviceApplicationFormDto {
+        val deviceApplicationForm = query.getById(updateDeviceApplicationFormDto.id)
+        deviceApplicationForm.update(updateDeviceApplicationFormDto)
         return DeviceApplicationFormDto(deviceApplicationForm)
     }
 }

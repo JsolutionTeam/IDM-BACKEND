@@ -25,8 +25,13 @@ class AccountService(
 
     @Transactional
     fun create(createAccountDto: CreateAccountDto): AccountDto {
+        if (createAccountDto.shopId == null) {
+            log.error("createAccountDto의 shopId가 null입니다.\n$createAccountDto")
+            throw GeneralServerException.InternalServerException("업체 생성 중 에러가 발생했습니다. 개발자에게 연락주세요.")
+        }
+
         // shopId로 업체 정보를 조회한다
-        val shop = shopQueryRepository.getById(createAccountDto.shopId)
+        val shop = shopQueryRepository.getById(createAccountDto.shopId!!)
 
         return try {
             // auth 서버에 먼저 계정 정보를 등록한다

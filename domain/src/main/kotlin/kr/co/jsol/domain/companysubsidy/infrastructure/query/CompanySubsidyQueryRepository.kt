@@ -4,7 +4,9 @@ import com.querydsl.core.BooleanBuilder
 import com.querydsl.jpa.impl.JPAQueryFactory
 import kr.co.jsol.common.exception.domain.companysubsidy.CompanySubsidyException
 import kr.co.jsol.common.repository.BaseQueryRepository
+import kr.co.jsol.domain.companysubsidy.application.dto.ExistsCompanySubsidyDto
 import kr.co.jsol.domain.companysubsidy.application.dto.GetCompanySubsidiesDto
+import kr.co.jsol.domain.companysubsidy.application.dto.GetCompanySubsidyPriceDto
 import kr.co.jsol.domain.companysubsidy.entity.CompanySubsidy
 import kr.co.jsol.domain.companysubsidy.entity.QCompanySubsidy.Companion.companySubsidy
 import kr.co.jsol.domain.companysubsidy.infrastructure.repository.CompanySubsidyRepository
@@ -24,6 +26,34 @@ class CompanySubsidyQueryRepository(
                 .and(companySubsidy.deletedAt.isNull)
         )
             .orElseThrow { throw CompanySubsidyException.NotFoundByIdException() }
+    }
+
+    fun getCompanySubsidyPrice(getCompanySubsidyPriceDto: GetCompanySubsidyPriceDto): Long {
+        val booleanBuilder = BooleanBuilder()
+            .and(companySubsidy.shop.id.eq(getCompanySubsidyPriceDto.shopId))
+            .and(companySubsidy.telecom.id.eq(getCompanySubsidyPriceDto.telecomId))
+            .and(companySubsidy.phonePlan.id.eq(getCompanySubsidyPriceDto.phonePlanId))
+            .and(companySubsidy.device.id.eq(getCompanySubsidyPriceDto.deviceId))
+            .and(companySubsidy.deletedAt.isNull)
+
+        return queryFactory.select(companySubsidy.price)
+            .from(companySubsidy)
+            .where(booleanBuilder)
+            .fetchFirst() ?: throw CompanySubsidyException.NotFoundBySearchException()
+    }
+
+    fun exists(existsCompanySubsidyDto: ExistsCompanySubsidyDto): Boolean {
+        val booleanBuilder = BooleanBuilder()
+            .and(companySubsidy.shop.id.eq(existsCompanySubsidyDto.shopId))
+            .and(companySubsidy.telecom.id.eq(existsCompanySubsidyDto.telecomId))
+            .and(companySubsidy.phonePlan.id.eq(existsCompanySubsidyDto.phonePlanId))
+            .and(companySubsidy.device.id.eq(existsCompanySubsidyDto.deviceId))
+            .and(companySubsidy.deletedAt.isNull)
+
+        return queryFactory.selectOne()
+            .from(companySubsidy)
+            .where(booleanBuilder)
+            .fetchFirst() != null
     }
 
     fun findListByIdList(

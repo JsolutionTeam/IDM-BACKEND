@@ -13,13 +13,12 @@ data class UserDetailsImpl(
     val id = account.id
     val name = account.name
     val role = account.role
-    val isManager = account.isManager
+    val isManager = account.isManager || isMaster()
     val shop = account.shop
 
-    fun isNotAdmin() = isAdmin().not()
+    fun isNotMaster() = isMaster().not()
 
-    //    fun isAdmin() = role == AccountAuthority.ADMIN
-    fun isAdmin(): Boolean {
+    fun isMaster(): Boolean {
         val upperRole = role.uppercase().removePrefix("ROLE_")
         return upperRole.contains("ADMIN") ||
                 upperRole.contains("JSOL") ||
@@ -38,9 +37,9 @@ data class UserDetailsImpl(
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
 
-        if (isAdmin()) {
-            log.info("role : ADMIN")
-            return mutableListOf<GrantedAuthority>(SimpleGrantedAuthority("ADMIN"))
+        if (isMaster()) {
+            log.info("role : MASTER")
+            return mutableListOf<GrantedAuthority>(SimpleGrantedAuthority("MASTER"))
         }
 
         if (isCompany()) {
@@ -51,9 +50,6 @@ data class UserDetailsImpl(
         log.info("role : $role")
         return mutableListOf<GrantedAuthority>(SimpleGrantedAuthority(role))
     }
-
-    private final val ADMINROLES = listOf("ADMIN", "ROOT", "JSOL")
-    private final val COMPANYROLES = listOf("COMPANY", "AGENCY", "STORE", "PARENT", "BELONG")
 
     override fun isEnabled() = true
 

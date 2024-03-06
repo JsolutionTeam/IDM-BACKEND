@@ -3,7 +3,6 @@ package kr.co.jsol.common.domain
 import io.swagger.v3.oas.annotations.media.Schema
 import org.slf4j.LoggerFactory
 import org.springframework.security.core.GrantedAuthority
-import org.springframework.security.core.authority.SimpleGrantedAuthority
 
 enum class AccountAuthority(
     @field:Schema(description = "권한")
@@ -25,7 +24,6 @@ enum class AccountAuthority(
         const val HasCompanyRole = "hasAnyAuthority(\"COMPANY\")"
         const val HasMasterRole = "hasAnyAuthority(\"MASTER\")"
         const val HasMasterAndCompanyRole = "hasAnyAuthority(\"MASTER\", \"COMPANY\")"
-        const val HasAnyRole = "hasAnyAuthority(\"MASTER\", \"COMPANY\")"
     }
 
     class Response(role: AccountAuthority) {
@@ -39,39 +37,5 @@ enum class AccountAuthority(
 
     companion object {
         private val log = LoggerFactory.getLogger(this::class.java)
-
-        fun of(value: String): GrantedAuthority {
-            log.info("value : $value")
-            log.info("entries : ${entries.joinToString(", ") { it.name }}")
-
-            val role = value.uppercase()
-
-            if (role.contains("MASTER") || role.contains("ADMIN") || role.contains("ROOT") || role.contains("JSOL")) {
-                return MASTER
-            } else if (role.contains("COMPANY") || role.contains("PARENT") || role.contains("AGENCY")) {
-                return COMPANY
-            }
-
-            return entries.find { it.name == role }
-                ?: SimpleGrantedAuthority(value)
-        }
-
-//        fun of(value: String): MutableList<GrantedAuthority> {
-//            log.info("value : $value")
-//            log.info("entries : ${entries.joinToString(", ") { it.name }}")
-//
-//            val role = value.uppercase()
-//
-//            if (role.contains("MASTER") || role.contains("ROOT") || role.contains("JSOL")) {
-//                return mutableListOf(MASTER, COMPANY, USER)
-//            } else if (role.contains("COMPANY") || role.contains("PARENT") || role.contains("AGENCY")) {
-//                return mutableListOf(COMPANY, USER)
-//            } else if (role.contains("USER") || role.contains("BELONG") || role.contains("STORE")) {
-//                return mutableListOf(USER)
-//            }
-//
-//            return mutableListOf(entries.find { it.name == role }
-//                                     ?: SimpleGrantedAuthority(value))
-//        }
     }
 }

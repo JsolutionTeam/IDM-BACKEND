@@ -5,7 +5,6 @@ import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.domain.account.entity.Account
 import kr.co.jsol.domain.auth.application.dto.AuthCreateUserDto
 import kr.co.jsol.domain.shop.entity.Shop
-import javax.validation.constraints.Min
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
@@ -38,10 +37,8 @@ data class CreateAccountDto(
     @field:Schema(description = "전화번호, 없을 경우 null로 입력해주세요.")
     val phone: String? = null,
 
-    @field:NotNull(message = "업체 아이디는 필수 입력값입니다.")
-    @field:Min(value = 1, message = "업체 아이디는 1이상의 값이어야 합니다.")
-    @field:Schema(description = "업체 아이디")
-    val shopId: Long,
+    @field:Schema(description = "업체 아이디, JSOL일 경우 설정 가능하며 아닌 경우 업체는 따라감")
+    var shopId: Long?,
 ) {
 
     fun toAuthDto(): AuthCreateUserDto {

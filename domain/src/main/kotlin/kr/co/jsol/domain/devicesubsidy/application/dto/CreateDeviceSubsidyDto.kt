@@ -8,7 +8,7 @@ import kr.co.jsol.domain.telecom.entity.Telecom
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
 
-@Schema(name = "회사 지원금 등록 요청")
+@Schema(name = "공시 지원금 등록 요청")
 data class CreateDeviceSubsidyDto(
     @field:NotNull(message = "공시 지원금 가격은 필수입력입니다.")
     @field:Min(value = 0, message = "공시 지원금 가격은 0원 이상이어야 합니다.")

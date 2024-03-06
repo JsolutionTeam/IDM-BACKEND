@@ -6,7 +6,7 @@ import kr.co.jsol.domain.telecom.entity.enums.OpenType
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
 
-@Schema(name = "회사 지원금 단일 수정 요청")
+@Schema(name = "공시 지원금 단일 수정 요청")
 data class UpdateDeviceSubsidyDto(
     @field:NotNull(message = "회사 지원금 아이디는 필수입력입니다.")
     @field:Min(value = 1, message = "회사 지원금 아이디는 1 이상이어야 합니다.")

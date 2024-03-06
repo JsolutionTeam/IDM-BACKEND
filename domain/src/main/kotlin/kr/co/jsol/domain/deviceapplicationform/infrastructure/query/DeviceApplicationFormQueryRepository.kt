@@ -1,6 +1,7 @@
 package kr.co.jsol.domain.deviceapplicationform.infrastructure.query
 
 import com.querydsl.jpa.impl.JPAQueryFactory
+import kr.co.jsol.common.exception.domain.deviceapplicationform.DeviceApplicationFormException
 import kr.co.jsol.common.repository.BaseQueryRepository
 import kr.co.jsol.domain.deviceapplicationform.entity.DeviceApplicationForm
 import kr.co.jsol.domain.deviceapplicationform.entity.QDeviceApplicationForm.Companion.deviceApplicationForm
@@ -13,14 +14,8 @@ class DeviceApplicationFormQueryRepository(
     private val queryFactory: JPAQueryFactory,
 ) : BaseQueryRepository<DeviceApplicationForm, Long>(deviceApplicationForm, repository) {
 
-    fun getById(id: Long): DeviceApplicationForm? {
-        return queryFactory
-            .selectFrom(deviceApplicationForm)
-            .where(
-                deviceApplicationForm.id.eq(id)
-                    .and(deviceApplicationForm.deletedAt.isNull)
-            )
-            .fetchOne()
+    fun getById(id: Long): DeviceApplicationForm {
+        return findById(id) ?: throw DeviceApplicationFormException.NotFoundByIdException()
     }
 }
 

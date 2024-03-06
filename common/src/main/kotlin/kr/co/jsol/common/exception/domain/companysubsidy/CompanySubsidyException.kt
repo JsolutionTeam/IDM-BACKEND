@@ -11,4 +11,9 @@ sealed class CompanySubsidyException {
         message: String = "id로 $NAME 정보를 찾을 수 없습니다.",
         e: Throwable? = null,
     ) : CustomException("$CODE-0001", message, HttpStatus.NOT_FOUND, e)
+
+    class NotFoundBySearchException(
+        message: String = "검색 조건에 맞는 $NAME 정보를 찾을 수 없습니다.",
+        e: Throwable? = null,
+    ) : CustomException("$CODE-0002", message, HttpStatus.NOT_FOUND, e)
 }

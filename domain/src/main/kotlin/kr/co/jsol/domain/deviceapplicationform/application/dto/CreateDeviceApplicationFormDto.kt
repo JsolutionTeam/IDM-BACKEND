@@ -1,6 +1,5 @@
 package kr.co.jsol.domain.deviceapplicationform.application.dto
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import io.swagger.v3.oas.annotations.media.Schema
 import kr.co.jsol.domain.deviceapplicationform.entity.DeviceApplicationForm
 import kr.co.jsol.domain.deviceinfo.entity.DeviceInfo
@@ -91,11 +90,7 @@ data class CreateDeviceApplicationFormDto(
     var subserviceIds: List<@NotNull(message = "부가서비 아이디는 필수입니다.")
     @Min(value = 1, message = "부가서비스 아이디는 1 이상으로 입력해주세요.") Long>,
 ) {
-    // shopId는 로그인한 사용자의 업체 아이디를 받아올 예정
-    @Schema(hidden = true)
-    @JsonIgnore
-    var shopId: Long = 0L
-
+    
     fun toEntity(
         shop: Shop,
         telecom: Telecom,

@@ -37,7 +37,6 @@ class DeviceApplicationFormController(
         @AuthenticationPrincipal
         userDetails: UserDetailsImpl,
     ): DeviceApplicationFormDto {
-        createDeviceApplicationFormDto.shopId = userDetails.shop.id
-        return service.create(createDeviceApplicationFormDto)
+        return service.create(userDetails.shop.id, createDeviceApplicationFormDto)
     }
 }

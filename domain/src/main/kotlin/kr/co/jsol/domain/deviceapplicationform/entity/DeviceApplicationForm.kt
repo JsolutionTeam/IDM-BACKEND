@@ -1,6 +1,7 @@
 package kr.co.jsol.domain.deviceapplicationform.entity
 
 import kr.co.jsol.common.domain.BaseEntity
+import kr.co.jsol.domain.deviceapplicationform.application.dto.UpdateDeviceApplicationFormDto
 import kr.co.jsol.domain.deviceinfo.entity.DeviceInfo
 import kr.co.jsol.domain.insurance.entity.Insurance
 import kr.co.jsol.domain.phoneplan.entity.PhonePlan
@@ -105,4 +106,18 @@ class DeviceApplicationForm(
     @OneToMany(fetch = FetchType.LAZY)
     @Comment("부가서비스 아이디")
     var subserviceList: MutableList<Subservice>,
-) : BaseEntity()
+) : BaseEntity() {
+
+    fun update(updateDeviceApplicationFormDto: UpdateDeviceApplicationFormDto) {
+        updateDeviceApplicationFormDto.phoneNumber?.let { phoneNumber = it }
+        updateDeviceApplicationFormDto.openType?.let { openType = it }
+        updateDeviceApplicationFormDto.discountType?.let { discountType = it }
+        updateDeviceApplicationFormDto.companySubsidyPrice?.let { companySubsidyPrice = it }
+        updateDeviceApplicationFormDto.usimChange?.let { usimChange = it }
+        updateDeviceApplicationFormDto.contractMonth?.let { contractMonth = it }
+        updateDeviceApplicationFormDto.deviceSubsidyPrice?.let { deviceSubsidyPrice = it }
+        updateDeviceApplicationFormDto.prePaymentPrice?.let { prePaymentPrice = it }
+        updateDeviceApplicationFormDto.installmentMonth?.let { installmentMonth = it }
+        updateDeviceApplicationFormDto.memo?.let { memo = it }
+    }
+}

@@ -6,7 +6,7 @@ import kr.co.jsol.domain.telecom.entity.enums.OpenType
 import javax.validation.constraints.Min
 import javax.validation.constraints.Size
 
-@Schema(name = "단말 신청서 등록 요청")
+@Schema(name = "단말 신청서 수정 요청")
 data class UpdateDeviceApplicationFormDto(
     @field:Min(value = 1, message = "단말 신청서 아이디는 1 이상으로 입력해주세요.")
     @field:Schema(description = "단말 신청서 아이디")

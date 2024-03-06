@@ -5,7 +5,7 @@ import javax.validation.Valid
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotEmpty
 
-@Schema(name = "회사 지원금 다중 삭제 요청")
+@Schema(name = "공시 지원금 다중 삭제 요청")
 data class DeleteDeviceSubsidiesDto(
     @field:Valid
     @field:NotEmpty(message = "회사 지원금 아이디는 필수 입력입니다.")

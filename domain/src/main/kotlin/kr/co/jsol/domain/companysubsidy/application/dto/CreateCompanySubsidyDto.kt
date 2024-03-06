@@ -14,11 +14,11 @@ import javax.validation.constraints.NotNull
 @Schema(name = "회사 지원금 등록 요청")
 data class CreateCompanySubsidyDto(
     @field:NotNull(message = "개통 유형은 필수입력입니다.")
-    @field:Schema(description = "개통 유형", implementation = OpenType::class)
+    @field:Schema(description = "개통 유형", defaultValue = "NEW", implementation = OpenType::class)
     val openType: OpenType,
 
     @field:NotNull(message = "선약/공시 할인 유형은 필수입력입니다.")
-    @field:Schema(description = "선약/공시 할인 유형", implementation = DiscountType::class)
+    @field:Schema(description = "선약/공시 할인 유형", defaultValue = "PHONE_PLAN", implementation = DiscountType::class)
     val discountType: DiscountType,
 
     @field:NotNull(message = "공시 지원금 가격은 필수입력입니다.")

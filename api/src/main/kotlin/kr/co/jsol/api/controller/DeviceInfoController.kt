@@ -94,8 +94,6 @@ class DeviceInfoController(
 //    }
 
     @Operation(summary = "단말 상세 페이지 조회")
-    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
-    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     fun findOffsetPageBySearch(
@@ -108,8 +106,6 @@ class DeviceInfoController(
     }
 
     @Operation(summary = "단말 시리즈/단말/색상으로 검색 조회")
-    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
-    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("search")
     @ResponseStatus(HttpStatus.OK)
     fun getBySearch(

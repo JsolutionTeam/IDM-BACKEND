@@ -3,7 +3,9 @@ package kr.co.jsol.domain.companysubsidy.application
 import kr.co.jsol.domain.account.infrastructure.query.AccountQueryRepository
 import kr.co.jsol.domain.companysubsidy.application.dto.CreateCompanySubsidyDto
 import kr.co.jsol.domain.companysubsidy.application.dto.DeleteCompanySubsidiesDto
+import kr.co.jsol.domain.companysubsidy.application.dto.ExistsCompanySubsidyDto
 import kr.co.jsol.domain.companysubsidy.application.dto.GetCompanySubsidiesDto
+import kr.co.jsol.domain.companysubsidy.application.dto.GetCompanySubsidyPriceDto
 import kr.co.jsol.domain.companysubsidy.application.dto.UpdateCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.infrastructure.dto.CompanySubsidyDto
 import kr.co.jsol.domain.companysubsidy.infrastructure.query.CompanySubsidyQueryRepository
@@ -72,7 +74,7 @@ class CompanySubsidyService(
     ): Page<CompanySubsidyDto> {
 
         // 최종 관리자가 아니라면 해당 업체의 데이터만 조회 가능
-        if (requester.isNotAdmin()) {
+        if (requester.isNotMaster()) {
             getCompanySubsidiesDto.shopId = requester.shop.id
         }
 
@@ -83,5 +85,14 @@ class CompanySubsidyService(
     @Transactional(readOnly = true)
     fun getById(id: Long): CompanySubsidyDto {
         return CompanySubsidyDto(query.getById(id))
+    }
+
+    @Transactional(readOnly = true)
+    fun exists(existsCompanySubsidyDto: ExistsCompanySubsidyDto): Boolean {
+        return query.exists(existsCompanySubsidyDto)
+    }
+
+    fun getCompanySubsidyPrice(getCompanySubsidyPriceDto: GetCompanySubsidyPriceDto): Long {
+        return query.getCompanySubsidyPrice(getCompanySubsidyPriceDto)
     }
 }

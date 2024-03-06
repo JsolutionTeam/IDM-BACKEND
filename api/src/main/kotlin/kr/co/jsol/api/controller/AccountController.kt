@@ -2,12 +2,14 @@ package kr.co.jsol.api.controller
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
+import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.common.jwt.JwtService
 import kr.co.jsol.domain.account.application.AccountService
 import kr.co.jsol.domain.account.application.dto.CreateAccountDto
 import kr.co.jsol.domain.account.infrastructure.dto.AccountDto
 import kr.co.jsol.domain.userdetails.UserDetailsImpl
 import org.springframework.http.HttpStatus
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -25,6 +27,7 @@ class AccountController(
 ) {
 
     @Operation(summary = "유저 생성 [추후 IDM 이전시 사용]")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasCompanyRole)
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -39,11 +42,15 @@ class AccountController(
         if (!userDetails.isManager) {
             throw IllegalAccessException("관리자만 계정을 생성할 수 있습니다.") // TODO 사용자 정의 예외 처리
         }
+
+        if (userDetails.isNotMaster()) {
+            createAccountDto.shopId = userDetails.shop.id
+        }
+
         return service.create(createAccountDto)
     }
 
     @Operation(summary = "내 정보 조회")
-    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("my-info")
     @ResponseStatus(HttpStatus.OK)
     fun getMyInfo(

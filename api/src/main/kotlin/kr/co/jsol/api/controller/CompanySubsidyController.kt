@@ -8,7 +8,9 @@ import kr.co.jsol.common.paging.PageRequest
 import kr.co.jsol.domain.companysubsidy.application.CompanySubsidyService
 import kr.co.jsol.domain.companysubsidy.application.dto.CreateCompanySubsidyDto
 import kr.co.jsol.domain.companysubsidy.application.dto.DeleteCompanySubsidiesDto
+import kr.co.jsol.domain.companysubsidy.application.dto.ExistsCompanySubsidyDto
 import kr.co.jsol.domain.companysubsidy.application.dto.GetCompanySubsidiesDto
+import kr.co.jsol.domain.companysubsidy.application.dto.GetCompanySubsidyPriceDto
 import kr.co.jsol.domain.companysubsidy.application.dto.UpdateCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.infrastructure.dto.CompanySubsidyDto
 import kr.co.jsol.domain.userdetails.UserDetailsImpl
@@ -73,9 +75,33 @@ class CompanySubsidyController(
         return service.deleteMultiple(deleteCompanySubsidiesDto)
     }
 
+    @Operation(summary = "회사 지원금 중복 조회")
+    @GetMapping("exists")
+    @ResponseStatus(HttpStatus.OK)
+    fun exists(
+        @Valid
+        existsCompanySubsidyDto: ExistsCompanySubsidyDto,
+//        @AuthenticationPrincipal
+//        userDetails: UserDetailsImpl,
+    ): Boolean {
+//        if (!userDetails.isManager) {
+//            throw GeneralClientException.ForbiddenException("관리자만 접근 가능합니다.")
+//        }
+
+        return service.exists(existsCompanySubsidyDto)
+    }
+
+    @Operation(summary = "회사 지원금 가격만 조회")
+    @GetMapping("price")
+    @ResponseStatus(HttpStatus.OK)
+    fun getCompanySubsidyPrice(
+        @Valid
+        getCompanySubsidyPriceDto: GetCompanySubsidyPriceDto,
+    ): Long {
+        return service.getCompanySubsidyPrice(getCompanySubsidyPriceDto)
+    }
+
     @Operation(summary = "회사 지원금 페이지 조회")
-    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
-    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     fun findOffsetPageBySearch(
@@ -90,8 +116,6 @@ class CompanySubsidyController(
     }
 
     @Operation(summary = "회사 지원금 단일 조회")
-    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
-    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     fun getById(
