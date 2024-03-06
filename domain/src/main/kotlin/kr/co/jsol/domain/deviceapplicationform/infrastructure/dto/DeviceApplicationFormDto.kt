@@ -2,6 +2,7 @@ package kr.co.jsol.domain.deviceapplicationform.infrastructure.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
 import kr.co.jsol.domain.deviceapplicationform.entity.DeviceApplicationForm
+import kr.co.jsol.domain.deviceapplicationform.entity.DeviceApplicationFormSubservice
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoDto
 import kr.co.jsol.domain.insurance.infrastructure.dto.InsuranceDto
 import kr.co.jsol.domain.phoneplan.infrastructure.dto.PhonePlanDto
@@ -61,7 +62,10 @@ data class DeviceApplicationFormDto(
     var subserviceList: List<SubserviceDto>,
 ) {
 
-    constructor(deviceApplicationForm: DeviceApplicationForm) : this(
+    constructor(
+        deviceApplicationForm: DeviceApplicationForm,
+        deviceApplicationFormSubserviceList: List<DeviceApplicationFormSubservice>,
+    ) : this(
         id = deviceApplicationForm.id,
         phoneNumber = deviceApplicationForm.phoneNumber,
         openType = deviceApplicationForm.openType,
@@ -77,6 +81,8 @@ data class DeviceApplicationFormDto(
         deviceInfo = DeviceInfoDto(deviceApplicationForm.deviceInfo),
         phonePlan = PhonePlanDto(deviceApplicationForm.phonePlan),
         insurance = deviceApplicationForm.insurance?.let { InsuranceDto(it) },
-        subserviceList = deviceApplicationForm.subserviceList.map(::SubserviceDto)
+        subserviceList = deviceApplicationFormSubserviceList.map {
+            SubserviceDto(it.subservice)
+        },
     )
 }

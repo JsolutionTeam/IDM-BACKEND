@@ -2,9 +2,12 @@ package kr.co.jsol.domain.deviceapplicationform.application
 
 import kr.co.jsol.domain.deviceapplicationform.application.dto.CreateDeviceApplicationFormDto
 import kr.co.jsol.domain.deviceapplicationform.application.dto.UpdateDeviceApplicationFormDto
+import kr.co.jsol.domain.deviceapplicationform.entity.DeviceApplicationFormSubservice
 import kr.co.jsol.domain.deviceapplicationform.infrastructure.dto.DeviceApplicationFormDto
 import kr.co.jsol.domain.deviceapplicationform.infrastructure.query.DeviceApplicationFormQueryRepository
+import kr.co.jsol.domain.deviceapplicationform.infrastructure.query.DeviceApplicationFormSubserviceQueryRepository
 import kr.co.jsol.domain.deviceapplicationform.infrastructure.repository.DeviceApplicationFormRepository
+import kr.co.jsol.domain.deviceapplicationform.infrastructure.repository.DeviceApplicationFormSubserviceRepository
 import kr.co.jsol.domain.deviceinfo.infrastructure.query.DeviceInfoQueryRepository
 import kr.co.jsol.domain.insurance.infrastructure.query.InsuranceQueryRepository
 import kr.co.jsol.domain.phoneplan.infrastructure.query.PhonePlanQueryRepository
@@ -19,6 +22,9 @@ import org.springframework.transaction.annotation.Transactional
 class DeviceApplicationFormService(
     private val repository: DeviceApplicationFormRepository,
     private val query: DeviceApplicationFormQueryRepository,
+
+    private val formSubserviceRepository: DeviceApplicationFormSubserviceRepository,
+    private val formSubserviceQuery: DeviceApplicationFormSubserviceQueryRepository,
 
     private val shopQuery: ShopQueryRepository,
     private val telecomQuery: TelecomQueryRepository,
@@ -47,10 +53,19 @@ class DeviceApplicationFormService(
             deviceInfo = deviceInfoQuery.getById(createDeviceApplicationFormDto.deviceInfoId),
             phonePlan = phonePlanQuery.getById(createDeviceApplicationFormDto.phonePlanId),
             insurance = createDeviceApplicationFormDto.insuranceId?.let { insuranceQuery.getById(it) },
-            subserviceList = subserviceList,
         )
+
+        val deviceApplicationFormSubserviceList = subserviceList.map {
+            formSubserviceRepository.save(
+                DeviceApplicationFormSubservice(
+                    deviceApplicationForm = deviceApplicationForm,
+                    subservice = it,
+                )
+            )
+        }
+
         repository.save(deviceApplicationForm)
-        return DeviceApplicationFormDto(deviceApplicationForm)
+        return DeviceApplicationFormDto(deviceApplicationForm, deviceApplicationFormSubserviceList)
     }
 
     @Transactional
@@ -71,7 +86,27 @@ class DeviceApplicationFormService(
             deviceApplicationForm.insurance = insuranceQuery.getById(it)
         }
 
+        updateDeviceApplicationFormDto.subserviceIds?.let { subserviceIds ->
+            val subserviceList = mutableListOf<Subservice>()
+            subserviceIds.forEach { subserviceId ->
+                subserviceQuery.findById(subserviceId)?.let { subservice ->
+                    subserviceList.add(subservice)
+                }
+            }
 
-        return DeviceApplicationFormDto(repository.save(deviceApplicationForm))
+            subserviceList.map {
+                formSubserviceRepository.save(
+                    DeviceApplicationFormSubservice(
+                        deviceApplicationForm = deviceApplicationForm,
+                        subservice = it,
+                    )
+                )
+            }
+        }
+        
+        return DeviceApplicationFormDto(
+            repository.save(deviceApplicationForm),
+            formSubserviceQuery.getByDeviceApplicationFormId(deviceApplicationForm.id)
+        )
     }
 }

@@ -9,7 +9,6 @@ import kr.co.jsol.domain.account.application.dto.GetAccountsDto
 import kr.co.jsol.domain.account.entity.Account
 import kr.co.jsol.domain.account.entity.QAccount.Companion.account
 import kr.co.jsol.domain.account.infrastructure.repository.AccountRepository
-import kr.co.jsol.domain.companysubsidy.entity.QCompanySubsidy
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
@@ -48,6 +47,6 @@ class AccountQueryRepository(
     ////
 
     private fun shopIdEq(shopId: Long?): BooleanExpression? {
-        return shopId?.let { QCompanySubsidy.companySubsidy.shop.id.eq(it) }
+        return shopId?.let { account.shop.id.eq(it) }
     }
 }

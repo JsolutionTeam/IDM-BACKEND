@@ -6,7 +6,6 @@ import kr.co.jsol.domain.deviceinfo.entity.DeviceInfo
 import kr.co.jsol.domain.insurance.entity.Insurance
 import kr.co.jsol.domain.phoneplan.entity.PhonePlan
 import kr.co.jsol.domain.shop.entity.Shop
-import kr.co.jsol.domain.subservice.entity.Subservice
 import kr.co.jsol.domain.telecom.entity.Telecom
 import kr.co.jsol.domain.telecom.entity.enums.DiscountType
 import kr.co.jsol.domain.telecom.entity.enums.OpenType
@@ -96,7 +95,6 @@ data class CreateDeviceApplicationFormDto(
         deviceInfo: DeviceInfo,
         phonePlan: PhonePlan,
         insurance: Insurance?,
-        subserviceList: MutableList<Subservice>,
     ): DeviceApplicationForm {
         return DeviceApplicationForm(
             phoneNumber = phoneNumber,
@@ -114,7 +112,6 @@ data class CreateDeviceApplicationFormDto(
             deviceInfo = deviceInfo,
             phonePlan = phonePlan,
             insurance = insurance,
-            subserviceList = subserviceList,
         )
     }
 }

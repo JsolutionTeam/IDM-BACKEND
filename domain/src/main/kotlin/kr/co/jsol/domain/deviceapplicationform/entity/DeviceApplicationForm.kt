@@ -6,7 +6,6 @@ import kr.co.jsol.domain.deviceinfo.entity.DeviceInfo
 import kr.co.jsol.domain.insurance.entity.Insurance
 import kr.co.jsol.domain.phoneplan.entity.PhonePlan
 import kr.co.jsol.domain.shop.entity.Shop
-import kr.co.jsol.domain.subservice.entity.Subservice
 import kr.co.jsol.domain.telecom.entity.Telecom
 import kr.co.jsol.domain.telecom.entity.enums.DiscountType
 import kr.co.jsol.domain.telecom.entity.enums.OpenType
@@ -25,7 +24,6 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
-import javax.persistence.OneToMany
 
 @SQLDelete(sql = "UPDATE tb_device_application_form SET deleted_at = now() WHERE id = ?")
 @Entity
@@ -102,11 +100,6 @@ class DeviceApplicationForm(
     @JoinColumn(name = "insurance_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("보험 아이디")
     var insurance: Insurance?,
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @OneToMany(fetch = FetchType.LAZY)
-    @Comment("부가서비스 아이디")
-    var subserviceList: MutableList<Subservice> = mutableListOf(),
 ) : BaseEntity() {
 
     fun update(updateDeviceApplicationFormDto: UpdateDeviceApplicationFormDto) {
