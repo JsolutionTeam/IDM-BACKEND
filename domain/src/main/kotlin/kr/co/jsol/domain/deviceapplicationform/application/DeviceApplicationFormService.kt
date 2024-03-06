@@ -1,6 +1,7 @@
 package kr.co.jsol.domain.deviceapplicationform.application
 
 import kr.co.jsol.domain.deviceapplicationform.application.dto.CreateDeviceApplicationFormDto
+import kr.co.jsol.domain.deviceapplicationform.application.dto.GetDeviceApplicationFormsDto
 import kr.co.jsol.domain.deviceapplicationform.application.dto.UpdateDeviceApplicationFormDto
 import kr.co.jsol.domain.deviceapplicationform.entity.DeviceApplicationFormSubservice
 import kr.co.jsol.domain.deviceapplicationform.infrastructure.dto.DeviceApplicationFormDto
@@ -15,6 +16,8 @@ import kr.co.jsol.domain.shop.infrastructure.query.ShopQueryRepository
 import kr.co.jsol.domain.subservice.entity.Subservice
 import kr.co.jsol.domain.subservice.infrastructure.query.SubserviceQueryRepository
 import kr.co.jsol.domain.telecom.infrastructure.query.TelecomQueryRepository
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -95,6 +98,10 @@ class DeviceApplicationFormService(
             }
 
             subserviceList.map {
+                formSubserviceQuery.getByDeviceApplicationFormId(deviceApplicationForm.id).forEach { formSubservice ->
+                    formSubserviceRepository.delete(formSubservice)
+                }
+
                 formSubserviceRepository.save(
                     DeviceApplicationFormSubservice(
                         deviceApplicationForm = deviceApplicationForm,
@@ -103,10 +110,24 @@ class DeviceApplicationFormService(
                 )
             }
         }
-        
+
         return DeviceApplicationFormDto(
             repository.save(deviceApplicationForm),
             formSubserviceQuery.getByDeviceApplicationFormId(deviceApplicationForm.id)
         )
+    }
+
+    @Transactional(readOnly = true)
+    fun findOffsetPageBySearch(
+        getDeviceApplicationFormsDto: GetDeviceApplicationFormsDto,
+        pageable: Pageable,
+    ): Page<DeviceApplicationFormDto> {
+        return query.findOffsetPageBySearch(getDeviceApplicationFormsDto, pageable)
+            .map {
+                DeviceApplicationFormDto(
+                    it,
+                    formSubserviceQuery.getByDeviceApplicationFormId(it.id)
+                )
+            }
     }
 }

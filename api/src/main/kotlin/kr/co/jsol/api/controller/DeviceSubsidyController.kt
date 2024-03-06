@@ -2,6 +2,7 @@ package kr.co.jsol.api.controller
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
+import io.swagger.v3.oas.annotations.tags.Tag
 import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.common.paging.PageRequest
 import kr.co.jsol.domain.devicesubsidy.application.DeviceSubsidyService
@@ -31,6 +32,7 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api/v1/device-subsidies")
+@Tag(name = "공시 지원금", description = "공시 지원금 관련 API")
 class DeviceSubsidyController(
     private val service: DeviceSubsidyService,
 ) {

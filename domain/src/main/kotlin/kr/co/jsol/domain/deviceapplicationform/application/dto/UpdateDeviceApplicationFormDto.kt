@@ -70,5 +70,5 @@ data class UpdateDeviceApplicationFormDto(
     @field:Valid
     @field:Schema(description = "부가서비스 아이디 리스트 [전체가 넘겨받은 값으로 변경됨, 특정 값만 변경X]")
     var subserviceIds: List<@NotNull(message = "부가서비 아이디는 필수입니다.")
-    @Min(value = 1, message = "부가서비스 아이디는 1 이상으로 입력해주세요.") Long>,
+    @Min(value = 1, message = "부가서비스 아이디는 1 이상으로 입력해주세요.") Long>?,
 )
