@@ -7,22 +7,22 @@ import kr.co.jsol.domain.shop.infrastructure.dto.ShopDto
 @Schema(name = "계정 응답")
 data class AccountDto(
     @field:Schema(description = "아이디", example = "js")
-    val id: String,
+    var id: String,
 
     @field:Schema(description = "이름", example = "권세기")
-    val name: String,
+    var name: String,
 
     @field:Schema(description = "권한")
-    val role: String,
+    var role: String,
 
     @field:Schema(description = "관리자 여부", implementation = Boolean::class)
-    val isManager: Boolean,
+    var isManager: Boolean,
 
     @field:Schema(description = "연락처", example = "010-0000-0000")
-    val phone: String,
+    var phone: String,
 
     @field:Schema(description = "업체 정보")
-    val shop: ShopDto,
+    var shop: ShopDto,
 ) {
 
     constructor(account: Account) : this(
@@ -32,5 +32,12 @@ data class AccountDto(
         isManager = account.isManager,
         phone = account.phone,
         shop = ShopDto(account.shop)
-    )
+    ) {
+        val upperRole = role.uppercase()
+        if (upperRole.contains("JSOL") || upperRole.contains("ADMIN") || upperRole.contains("MASTER")) {
+            this.role = "MASTER"
+        } else {
+            this.role = "COMPANY"
+        }
+    }
 }
