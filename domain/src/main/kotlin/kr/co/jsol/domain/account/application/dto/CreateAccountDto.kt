@@ -34,10 +34,11 @@ data class CreateAccountDto(
     @field:Schema(description = "관리자 여부")
     val isManager: Boolean = false,
 
+    @field:Size(max = 20, message = "전화번호는 20자 이내로 입력해주세요.")
     @field:Schema(description = "전화번호, 없을 경우 null로 입력해주세요.")
     val phone: String? = null,
 
-    @field:Schema(description = "업체 아이디, JSOL일 경우 설정 가능하며 아닌 경우 업체는 따라감")
+    @field:Schema(description = "업체 아이디, 해당 업체의 정보를 조회하나 JSOL이 아닐 경우 해당 업체 아이디로 조회함")
     var shopId: Long?,
 ) {
 

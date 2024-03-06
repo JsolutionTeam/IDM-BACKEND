@@ -4,7 +4,7 @@ import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.domain.account.application.AccountService
 import kr.co.jsol.domain.account.application.dto.CreateAccountDto
 import kr.co.jsol.domain.shop.application.dto.CreateCompanyDto
-import kr.co.jsol.domain.shop.application.dto.GetCompanyDto
+import kr.co.jsol.domain.shop.application.dto.GetShopCompaniesDto
 import kr.co.jsol.domain.shop.entity.Shop
 import kr.co.jsol.domain.shop.entity.enums.ShopStatus
 import kr.co.jsol.domain.shop.infrastructure.dto.ShopDto
@@ -60,6 +60,7 @@ class ShopService(
                 id = createCompanyDto.managerId,
                 password = createCompanyDto.managerPassword,
                 name = createCompanyDto.managerName,
+                isManager = true, // 업체 관리자는 관리자 권한으로 등록
                 role = AccountAuthority.COMPANY,
                 phone = createCompanyDto.managerPhone,
                 shopId = shop.id,
@@ -70,10 +71,10 @@ class ShopService(
 
     @Transactional(readOnly = true)
     fun findCompanyPage(
-        getCompanyDto: GetCompanyDto,
+        getShopCompaniesDto: GetShopCompaniesDto,
         pageable: Pageable,
     ): Page<ShopDto> {
-        return query.findCompanyPage(getCompanyDto, pageable)
+        return query.findCompanyPage(getShopCompaniesDto, pageable)
             .map(::ShopDto)
     }
 }

@@ -3,12 +3,16 @@ package kr.co.jsol.domain.account.application
 import kr.co.jsol.common.exception.CustomException
 import kr.co.jsol.common.exception.GeneralServerException
 import kr.co.jsol.domain.account.application.dto.CreateAccountDto
+import kr.co.jsol.domain.account.application.dto.GetAccountsDto
 import kr.co.jsol.domain.account.infrastructure.dto.AccountDto
 import kr.co.jsol.domain.account.infrastructure.query.AccountQueryRepository
 import kr.co.jsol.domain.account.infrastructure.repository.AccountRepository
 import kr.co.jsol.domain.auth.application.AuthService
 import kr.co.jsol.domain.shop.infrastructure.query.ShopQueryRepository
+import kr.co.jsol.domain.userdetails.UserDetailsImpl
 import org.slf4j.LoggerFactory
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.client.HttpClientErrorException
@@ -85,5 +89,18 @@ class AccountService(
     @Transactional(readOnly = true)
     fun getById(id: String): AccountDto {
         return AccountDto(query.getById(id))
+    }
+
+    fun findOffsetPageBySearch(
+        shopCompaniesDto: GetAccountsDto,
+        pageable: Pageable,
+    ): Page<AccountDto> {
+        if (shopCompaniesDto.shopId == null) {
+            log.error("shopCompaniesDto의 shopId가 null입니다.\n$shopCompaniesDto")
+            throw GeneralServerException.InternalServerException("업체 조회 중 에러가 발생했습니다. 개발자에게 연락주세요.")
+        }
+
+        return query.findOffsetPageBySearch(shopCompaniesDto, pageable)
+            .map { AccountDto(it) }
     }
 }

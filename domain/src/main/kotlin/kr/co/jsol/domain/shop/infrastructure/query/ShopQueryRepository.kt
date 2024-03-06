@@ -5,7 +5,7 @@ import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
 import kr.co.jsol.common.exception.domain.shop.ShopException
 import kr.co.jsol.common.repository.BaseQueryRepository
-import kr.co.jsol.domain.shop.application.dto.GetCompanyDto
+import kr.co.jsol.domain.shop.application.dto.GetShopCompaniesDto
 import kr.co.jsol.domain.shop.entity.QShop.Companion.shop
 import kr.co.jsol.domain.shop.entity.Shop
 import kr.co.jsol.domain.shop.infrastructure.repository.ShopRepository
@@ -31,17 +31,17 @@ class ShopQueryRepository(
     }
 
     fun findCompanyPage(
-        getCompanyDto: GetCompanyDto,
+        getShopCompaniesDto: GetShopCompaniesDto,
         pageable: Pageable,
     ): Page<Shop> {
         val booleanBuilder = BooleanBuilder()
             .and(shop.deletedAt.isNull)
             .and(shop.useMcallShop.isTrue)
-            .and(nameContains(getCompanyDto.name))
-            .and(phoneContains(getCompanyDto.phone))
-            .and(managerIdContains(getCompanyDto.managerId))
-            .and(managerNameContains(getCompanyDto.managerName))
-            .and(managerPhoneContains(getCompanyDto.managerPhone))
+            .and(nameContains(getShopCompaniesDto.name))
+            .and(phoneContains(getShopCompaniesDto.phone))
+            .and(managerIdContains(getShopCompaniesDto.managerId))
+            .and(managerNameContains(getShopCompaniesDto.managerName))
+            .and(managerPhoneContains(getShopCompaniesDto.managerPhone))
 
         return repository.findAll(
             booleanBuilder,

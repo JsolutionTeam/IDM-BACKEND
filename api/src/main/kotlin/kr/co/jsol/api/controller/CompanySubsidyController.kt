@@ -110,7 +110,13 @@ class CompanySubsidyController(
         userDetails: UserDetailsImpl,
     ): Page<CompanySubsidyDto> {
         val pageable = pageRequest.of()
-        return service.findOffsetPageBySearch(getCompanySubsidiesDto, pageable, userDetails)
+
+        // 최종 관리자가 아니라면 해당 업체의 데이터만 조회 가능
+        if (userDetails.isNotMaster() || getCompanySubsidiesDto.shopId == null) {
+            getCompanySubsidiesDto.shopId = userDetails.shop.id
+        }
+
+        return service.findOffsetPageBySearch(getCompanySubsidiesDto, pageable)
     }
 
     @Operation(summary = "회사 지원금 단일 조회")

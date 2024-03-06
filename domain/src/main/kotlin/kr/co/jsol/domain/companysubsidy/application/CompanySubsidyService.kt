@@ -14,7 +14,6 @@ import kr.co.jsol.domain.device.infrastructure.query.DeviceQueryRepository
 import kr.co.jsol.domain.phoneplan.infrastructure.query.PhonePlanQueryRepository
 import kr.co.jsol.domain.shop.infrastructure.query.ShopQueryRepository
 import kr.co.jsol.domain.telecom.infrastructure.query.TelecomQueryRepository
-import kr.co.jsol.domain.userdetails.UserDetailsImpl
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
@@ -70,14 +69,7 @@ class CompanySubsidyService(
     fun findOffsetPageBySearch(
         getCompanySubsidiesDto: GetCompanySubsidiesDto,
         pageable: Pageable,
-        requester: UserDetailsImpl,
     ): Page<CompanySubsidyDto> {
-
-        // 최종 관리자가 아니라면 해당 업체의 데이터만 조회 가능
-        if (requester.isNotMaster() || getCompanySubsidiesDto.shopId == null) {
-            getCompanySubsidiesDto.shopId = requester.shop.id
-        }
-
         return query.findOffsetPageBySearch(getCompanySubsidiesDto, pageable)
             .map { CompanySubsidyDto(it) }
     }
