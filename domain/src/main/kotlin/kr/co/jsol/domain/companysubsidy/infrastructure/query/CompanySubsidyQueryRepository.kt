@@ -53,7 +53,7 @@ class CompanySubsidyQueryRepository(
         return queryFactory.select(companySubsidy.price)
             .from(companySubsidy)
             .where(booleanBuilder)
-            .fetchFirst() ?: throw CompanySubsidyException.NotFoundBySearchException()
+            .fetchFirst() ?: 0L
     }
 
     fun findListByIdList(

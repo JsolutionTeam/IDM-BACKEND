@@ -51,7 +51,7 @@ class DeviceSubsidyQueryRepository(
         return queryFactory.select(deviceSubsidy.price)
             .from(deviceSubsidy)
             .where(booleanBuilder)
-            .fetchFirst() ?: throw DeviceSubsidyException.NotFoundBySearchException()
+            .fetchFirst() ?: 0L
     }
 
     fun findListByIdList(

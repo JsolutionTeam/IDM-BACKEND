@@ -48,7 +48,7 @@ class LocalFileController(
             .body<ResourceRegion>(region)
     }
 
-    @Operation(summary = "로컬 파일 시스템에서 동영상 파일을 한 번에 다운로드")
+    @Operation(summary = "로컬 파일 시스템에서 동영상 파일을 한 번에 조회")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     fun loadFile(
