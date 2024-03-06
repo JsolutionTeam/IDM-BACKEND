@@ -14,6 +14,7 @@ import kr.co.jsol.domain.companysubsidy.application.dto.GetCompanySubsidyPriceDt
 import kr.co.jsol.domain.companysubsidy.application.dto.UpdateCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.infrastructure.dto.CompanySubsidyDto
 import kr.co.jsol.domain.userdetails.UserDetailsImpl
+import org.springdoc.api.annotations.ParameterObject
 import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.prepost.PreAuthorize
@@ -96,10 +97,13 @@ class CompanySubsidyController(
     }
 
     @Operation(summary = "회사 지원금 페이지 조회")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     fun findOffsetPageBySearch(
         @Valid
+        @ParameterObject
         getCompanySubsidiesDto: GetCompanySubsidiesDto,
         pageRequest: PageRequest,
         @AuthenticationPrincipal
@@ -110,6 +114,8 @@ class CompanySubsidyController(
     }
 
     @Operation(summary = "회사 지원금 단일 조회")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     fun getById(

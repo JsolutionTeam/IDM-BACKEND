@@ -74,7 +74,7 @@ class CompanySubsidyService(
     ): Page<CompanySubsidyDto> {
 
         // 최종 관리자가 아니라면 해당 업체의 데이터만 조회 가능
-        if (requester.isNotMaster()) {
+        if (requester.isNotMaster() || getCompanySubsidiesDto.shopId == null) {
             getCompanySubsidiesDto.shopId = requester.shop.id
         }
 

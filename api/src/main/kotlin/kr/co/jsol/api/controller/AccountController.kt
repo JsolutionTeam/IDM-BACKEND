@@ -51,6 +51,8 @@ class AccountController(
     }
 
     @Operation(summary = "내 정보 조회")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("my-info")
     @ResponseStatus(HttpStatus.OK)
     fun getMyInfo(

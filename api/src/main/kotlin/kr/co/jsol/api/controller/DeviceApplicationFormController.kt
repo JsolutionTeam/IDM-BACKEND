@@ -26,7 +26,7 @@ class DeviceApplicationFormController(
 ) {
 
     @Operation(summary = "단말 신청서 등록")
-    @PreAuthorize(AccountAuthority.ROLECHECK.HasCompanyRole)
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

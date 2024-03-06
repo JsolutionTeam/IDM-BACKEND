@@ -106,6 +106,8 @@ class DeviceSubsidyController(
     }
 
     @Operation(summary = "공시 지원금 단일 조회")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     fun getById(
