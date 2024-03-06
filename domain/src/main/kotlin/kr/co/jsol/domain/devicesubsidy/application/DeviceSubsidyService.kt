@@ -44,7 +44,7 @@ class DeviceSubsidyService(
 
     @Transactional
     fun updateMultiple(updateDeviceSubsidiesDto: UpdateDeviceSubsidiesDto) {
-        repository.saveAll(updateDeviceSubsidiesDto.companySubsidies.map { ds ->
+        repository.saveAll(updateDeviceSubsidiesDto.deviceSubsidies.map { ds ->
             val deviceSubsidy = query.getById(ds.id)
 
             ds.telecomId?.let { deviceSubsidy.telecom = telecomQuery.getById(it) }

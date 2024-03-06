@@ -9,5 +9,5 @@ data class UpdateDeviceSubsidiesDto(
     @field:Valid
     @field:NotEmpty(message = "회사 지원금 수정 요청 데이터가 없습니다.")
     @field:Schema(description = "회사 지원금 수정 요청")
-    val companySubsidies: List<UpdateDeviceSubsidyDto>,
+    val deviceSubsidies: List<UpdateDeviceSubsidyDto>,
 )
