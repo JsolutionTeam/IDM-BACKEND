@@ -8,6 +8,7 @@ import kr.co.jsol.domain.companysubsidy.application.dto.GetCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.application.dto.GetCompanySubsidyPriceDto
 import kr.co.jsol.domain.companysubsidy.application.dto.UpdateCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.infrastructure.dto.CompanySubsidyDto
+import kr.co.jsol.domain.companysubsidy.infrastructure.dto.CompanySubsidyGroupByDetailDto
 import kr.co.jsol.domain.companysubsidy.infrastructure.query.CompanySubsidyQueryRepository
 import kr.co.jsol.domain.companysubsidy.infrastructure.repository.CompanySubsidyRepository
 import kr.co.jsol.domain.device.infrastructure.query.DeviceQueryRepository
@@ -84,8 +85,7 @@ class CompanySubsidyService(
     fun findOffsetPageBySearch(
         getCompanySubsidiesDto: GetCompanySubsidiesDto,
         pageable: Pageable,
-    ): Page<CompanySubsidyDto> {
+    ): Page<CompanySubsidyGroupByDetailDto> {
         return query.findOffsetPageBySearch(getCompanySubsidiesDto, pageable)
-            .map { CompanySubsidyDto(it) }
     }
 }

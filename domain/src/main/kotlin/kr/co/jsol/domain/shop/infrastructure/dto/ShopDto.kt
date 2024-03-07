@@ -1,8 +1,9 @@
 package kr.co.jsol.domain.shop.infrastructure.dto
 
+import com.querydsl.core.annotations.QueryProjection
 import kr.co.jsol.domain.shop.entity.Shop
 
-data class ShopDto(
+data class ShopDto @QueryProjection constructor(
     val id: Long,
     val name: String,
     val phone: String,

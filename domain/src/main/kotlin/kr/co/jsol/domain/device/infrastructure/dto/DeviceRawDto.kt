@@ -4,11 +4,10 @@ import com.querydsl.core.annotations.QueryProjection
 import io.swagger.v3.oas.annotations.media.Schema
 import kr.co.jsol.common.annotation.JDateTimeFormat
 import kr.co.jsol.domain.device.entity.Device
-import kr.co.jsol.domain.maker.infrastructure.dto.MakerDto
 import java.time.LocalDateTime
 
-@Schema(name = "디바이스 응답")
-data class DeviceDto @QueryProjection constructor(
+@Schema(name = "디바이스 Raw 응답")
+data class DeviceRawDto @QueryProjection constructor(
     @field:Schema(description = "디바이스 아이디")
     val id: Long,
 
@@ -27,9 +26,6 @@ data class DeviceDto @QueryProjection constructor(
     @field:Schema(description = "시리즈")
     val series: String,
 
-    @field:Schema(description = "제조사")
-    val maker: MakerDto,
-
     @field:JDateTimeFormat
     @field:Schema(description = "등록일시")
     val createdAt: LocalDateTime,
@@ -46,7 +42,6 @@ data class DeviceDto @QueryProjection constructor(
         price = device.price,
         volume = device.volume,
         series = device.series,
-        maker = MakerDto(device.maker),
         createdAt = device.createdAt,
         updatedAt = device.updatedAt,
     )

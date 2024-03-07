@@ -3,7 +3,6 @@ package kr.co.jsol.domain.deviceapplicationform.infrastructure.query
 import com.querydsl.core.BooleanBuilder
 import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
-import kr.co.jsol.common.config.pagination
 import kr.co.jsol.common.exception.domain.deviceapplicationform.DeviceApplicationFormException
 import kr.co.jsol.common.repository.BaseQueryRepository
 import kr.co.jsol.domain.deviceapplicationform.application.dto.GetDeviceApplicationFormsDto
@@ -34,9 +33,6 @@ class DeviceApplicationFormQueryRepository(
         val booleanBuilder = BooleanBuilder()
             .and(deviceApplicationForm.deletedAt.isNull)
             .and(shopIdEq(getDeviceApplicationFormsDto.shopId))
-
-        val query = queryFactory.from(deviceApplicationForm)
-            .pagination(pageable)
 
         getDeviceApplicationFormsDto.phoneNumber?.let {
             booleanBuilder.and(deviceApplicationForm.phoneNumber.contains(it))

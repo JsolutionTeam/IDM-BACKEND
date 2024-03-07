@@ -9,7 +9,7 @@ import kr.co.jsol.domain.telecom.entity.enums.DiscountType
 import kr.co.jsol.domain.telecom.entity.enums.OpenType
 import kr.co.jsol.domain.telecom.infrastructure.dto.TelecomDto
 
-@Schema(name = "회사 지원금 등록 DTO")
+@Schema(name = "회사 지원금 응답")
 data class CompanySubsidyDto(
     @field:Schema(description = "회사 지원금 아이디")
     val id: Long,

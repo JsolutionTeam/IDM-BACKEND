@@ -1,8 +1,11 @@
 package kr.co.jsol.domain.companysubsidy.infrastructure.query
 
 import com.querydsl.core.BooleanBuilder
+import com.querydsl.core.group.GroupBy.groupBy
+import com.querydsl.core.group.GroupBy.list
 import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
+import kr.co.jsol.common.config.pagination
 import kr.co.jsol.common.exception.domain.companysubsidy.CompanySubsidyException
 import kr.co.jsol.common.repository.BaseQueryRepository
 import kr.co.jsol.domain.companysubsidy.application.dto.ExistsCompanySubsidyDto
@@ -10,8 +13,16 @@ import kr.co.jsol.domain.companysubsidy.application.dto.GetCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.application.dto.GetCompanySubsidyPriceDto
 import kr.co.jsol.domain.companysubsidy.entity.CompanySubsidy
 import kr.co.jsol.domain.companysubsidy.entity.QCompanySubsidy.Companion.companySubsidy
+import kr.co.jsol.domain.companysubsidy.infrastructure.dto.CompanySubsidyGroupByDetailDto
+import kr.co.jsol.domain.companysubsidy.infrastructure.dto.QCompanySubsidyGroupByDetailDto
+import kr.co.jsol.domain.companysubsidy.infrastructure.dto.QCompanySubsidyGroupByDetailDto_Detail
 import kr.co.jsol.domain.companysubsidy.infrastructure.repository.CompanySubsidyRepository
+import kr.co.jsol.domain.device.infrastructure.dto.QDeviceRawDto
+import kr.co.jsol.domain.phoneplan.infrastructure.dto.QPhonePlanRawDto
+import kr.co.jsol.domain.shop.infrastructure.dto.QShopSimpleDto
+import kr.co.jsol.domain.telecom.infrastructure.dto.QTelecomDto
 import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
 
@@ -72,7 +83,7 @@ class CompanySubsidyQueryRepository(
     fun findOffsetPageBySearch(
         getCompanySubsidiesDto: GetCompanySubsidiesDto,
         pageable: Pageable,
-    ): Page<CompanySubsidy> {
+    ): Page<CompanySubsidyGroupByDetailDto> {
         val booleanBuilder = BooleanBuilder()
             .and(shopIdEq(getCompanySubsidiesDto.shopId))
             .and(companySubsidy.deletedAt.isNull)
@@ -99,10 +110,77 @@ class CompanySubsidyQueryRepository(
             booleanBuilder.and(companySubsidy.device.id.eq(it))
         }
 
-        return repository.findAll(
-            booleanBuilder,
-            pageable,
-        )
+        val query = queryFactory.from(companySubsidy)
+            .where(booleanBuilder)
+            .pagination(pageable)
+            .groupBy(
+                companySubsidy.telecom,
+                companySubsidy.phonePlan,
+                companySubsidy.device,
+                companySubsidy.shop,
+                companySubsidy.openType,
+                companySubsidy.discountType,
+            )
+
+        val result = query.clone()
+            .select(companySubsidy)
+            .transform(
+                groupBy(
+                    companySubsidy.telecom,
+                    companySubsidy.phonePlan,
+                    companySubsidy.device,
+                    companySubsidy.shop,
+                )
+                    .list(
+                        QCompanySubsidyGroupByDetailDto(
+                            companySubsidy.id,
+                            QTelecomDto(
+                                companySubsidy.telecom.id,
+                                companySubsidy.telecom.name,
+                            ),
+                            QPhonePlanRawDto(
+                                companySubsidy.phonePlan.id,
+                                companySubsidy.phonePlan.name,
+                                companySubsidy.phonePlan.price,
+                                companySubsidy.phonePlan.category,
+                                companySubsidy.phonePlan.callExp,
+                                companySubsidy.phonePlan.dataExp,
+                                companySubsidy.phonePlan.mailExp,
+                            ),
+                            QDeviceRawDto(
+                                companySubsidy.device.id,
+                                companySubsidy.device.petName,
+                                companySubsidy.device.modelName,
+                                companySubsidy.device.price,
+                                companySubsidy.device.volume,
+                                companySubsidy.device.series,
+                                companySubsidy.device.createdAt,
+                                companySubsidy.device.updatedAt,
+                            ),
+                            QShopSimpleDto(
+                                companySubsidy.shop.id,
+                                companySubsidy.shop.name,
+                            ),
+                            list(
+                                QCompanySubsidyGroupByDetailDto_Detail(
+                                    companySubsidy.price,
+                                    companySubsidy.openType,
+                                    companySubsidy.discountType,
+                                )
+                            )
+                        )
+                    )
+            )
+
+        val count = query.clone()
+            .select(companySubsidy.id.count())
+            .fetchOne() ?: 0L
+
+        return PageImpl(result, pageable, count)
+//        return repository.findAll(
+//            booleanBuilder,
+//            pageable,
+//        )
     }
 
     /////

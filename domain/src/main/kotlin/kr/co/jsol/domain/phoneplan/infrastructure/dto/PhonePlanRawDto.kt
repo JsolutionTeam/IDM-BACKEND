@@ -3,10 +3,9 @@ package kr.co.jsol.domain.phoneplan.infrastructure.dto
 import com.querydsl.core.annotations.QueryProjection
 import io.swagger.v3.oas.annotations.media.Schema
 import kr.co.jsol.domain.phoneplan.entity.PhonePlan
-import kr.co.jsol.domain.telecom.infrastructure.dto.TelecomDto
 
-@Schema(name = "요금제 응답")
-data class PhonePlanDto @QueryProjection constructor(
+@Schema(name = "요금제 RAW 응답")
+data class PhonePlanRawDto @QueryProjection constructor(
     @field:Schema(description = "요금제 아이디")
     val id: Long,
 
@@ -27,9 +26,6 @@ data class PhonePlanDto @QueryProjection constructor(
 
     @field:Schema(description = "문자 설명")
     val mailExp: String,
-
-    @field:Schema(description = "통신사 응답")
-    val telecom: TelecomDto,
 ) {
 
     constructor(phonePlan: PhonePlan) : this(
@@ -40,6 +36,5 @@ data class PhonePlanDto @QueryProjection constructor(
         callExp = phonePlan.callExp,
         dataExp = phonePlan.dataExp,
         mailExp = phonePlan.mailExp,
-        telecom = TelecomDto(phonePlan.telecom),
     )
 }

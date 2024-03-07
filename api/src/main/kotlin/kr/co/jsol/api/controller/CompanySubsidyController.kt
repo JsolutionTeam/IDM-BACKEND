@@ -13,6 +13,7 @@ import kr.co.jsol.domain.companysubsidy.application.dto.GetCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.application.dto.GetCompanySubsidyPriceDto
 import kr.co.jsol.domain.companysubsidy.application.dto.UpdateCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.infrastructure.dto.CompanySubsidyDto
+import kr.co.jsol.domain.companysubsidy.infrastructure.dto.CompanySubsidyGroupByDetailDto
 import kr.co.jsol.domain.userdetails.UserDetailsImpl
 import org.springdoc.api.annotations.ParameterObject
 import org.springframework.data.domain.Page
@@ -108,7 +109,7 @@ class CompanySubsidyController(
         pageRequest: PageRequest,
         @AuthenticationPrincipal
         userDetails: UserDetailsImpl,
-    ): Page<CompanySubsidyDto> {
+    ): Page<CompanySubsidyGroupByDetailDto> {
         val pageable = pageRequest.of()
 
         // 최종 관리자가 아니라면 해당 업체의 데이터만 조회 가능

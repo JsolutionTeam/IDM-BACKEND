@@ -9,7 +9,7 @@ data class DeviceInfoGroupByDeviceSeriesDto @QueryProjection constructor(
     val colors: List<Color>,
 ) {
 
-    inner class Device @QueryProjection constructor(
+    data class Device @QueryProjection constructor(
         @field:Schema(description = "Device.id")
         val id: Long,
         @field:Schema(description = "용량", example = "256GB")
@@ -18,7 +18,7 @@ data class DeviceInfoGroupByDeviceSeriesDto @QueryProjection constructor(
         val price: Long,
     )
 
-    inner class Color @QueryProjection constructor(
+    data class Color @QueryProjection constructor(
         @field:Schema(description = "Color.id")
         val id: Long,
         @field:Schema(description = "색상명", example = "화이트")
