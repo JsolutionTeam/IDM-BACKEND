@@ -118,6 +118,15 @@ class DeviceApplicationFormService(
     }
 
     @Transactional(readOnly = true)
+    fun getById(id: Long): DeviceApplicationFormDto {
+        val deviceApplicationForm = query.getById(id)
+        return DeviceApplicationFormDto(
+            deviceApplicationForm,
+            formSubserviceQuery.getByDeviceApplicationFormId(deviceApplicationForm.id)
+        )
+    }
+
+    @Transactional(readOnly = true)
     fun findOffsetPageBySearch(
         getDeviceApplicationFormsDto: GetDeviceApplicationFormsDto,
         pageable: Pageable,

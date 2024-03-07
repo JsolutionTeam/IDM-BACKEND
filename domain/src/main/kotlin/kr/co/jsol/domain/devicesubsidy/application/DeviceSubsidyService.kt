@@ -62,15 +62,6 @@ class DeviceSubsidyService(
     }
 
     @Transactional(readOnly = true)
-    fun findOffsetPageBySearch(
-        getDeviceSubsidiesDto: GetDeviceSubsidiesDto,
-        pageable: Pageable,
-    ): Page<DeviceSubsidyDto> {
-        return query.findOffsetPageBySearch(getDeviceSubsidiesDto, pageable)
-            .map { DeviceSubsidyDto(it) }
-    }
-
-    @Transactional(readOnly = true)
     fun getById(id: Long): DeviceSubsidyDto {
         return DeviceSubsidyDto(query.getById(id))
     }
@@ -83,5 +74,14 @@ class DeviceSubsidyService(
     @Transactional(readOnly = true)
     fun getPrice(getDeviceSubsidyPriceDto: GetDeviceSubsidyPriceDto): Long {
         return query.getPrice(getDeviceSubsidyPriceDto)
+    }
+
+    @Transactional(readOnly = true)
+    fun findOffsetPageBySearch(
+        getDeviceSubsidiesDto: GetDeviceSubsidiesDto,
+        pageable: Pageable,
+    ): Page<DeviceSubsidyDto> {
+        return query.findOffsetPageBySearch(getDeviceSubsidiesDto, pageable)
+            .map { DeviceSubsidyDto(it) }
     }
 }

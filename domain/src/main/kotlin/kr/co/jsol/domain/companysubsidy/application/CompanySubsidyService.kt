@@ -66,15 +66,6 @@ class CompanySubsidyService(
     }
 
     @Transactional(readOnly = true)
-    fun findOffsetPageBySearch(
-        getCompanySubsidiesDto: GetCompanySubsidiesDto,
-        pageable: Pageable,
-    ): Page<CompanySubsidyDto> {
-        return query.findOffsetPageBySearch(getCompanySubsidiesDto, pageable)
-            .map { CompanySubsidyDto(it) }
-    }
-
-    @Transactional(readOnly = true)
     fun getById(id: Long): CompanySubsidyDto {
         return CompanySubsidyDto(query.getById(id))
     }
@@ -87,5 +78,14 @@ class CompanySubsidyService(
     @Transactional(readOnly = true)
     fun getPrice(getCompanySubsidyPriceDto: GetCompanySubsidyPriceDto): Long {
         return query.getPrice(getCompanySubsidyPriceDto)
+    }
+
+    @Transactional(readOnly = true)
+    fun findOffsetPageBySearch(
+        getCompanySubsidiesDto: GetCompanySubsidiesDto,
+        pageable: Pageable,
+    ): Page<CompanySubsidyDto> {
+        return query.findOffsetPageBySearch(getCompanySubsidiesDto, pageable)
+            .map { CompanySubsidyDto(it) }
     }
 }

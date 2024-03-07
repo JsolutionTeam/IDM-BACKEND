@@ -50,6 +50,11 @@ class DeviceInfoService(
     }
 
     @Transactional(readOnly = true)
+    fun getById(id: Long): DeviceInfoDto {
+        return DeviceInfoDto(query.getById(id))
+    }
+
+    @Transactional(readOnly = true)
     fun findOffsetPageBySearch(
         getDeviceInfosDto: GetDeviceInfosDto,
         pageable: Pageable,
@@ -73,10 +78,5 @@ class DeviceInfoService(
     @Transactional(readOnly = true)
     fun findByDeviceSeriesGroupByDeviceSeries(series: String): List<DeviceInfoGroupByDeviceSeriesDto> {
         return query.findByDeviceSeriesGroupByDeviceSeries(series)
-    }
-
-    @Transactional(readOnly = true)
-    fun getById(id: Long): DeviceInfoDto {
-        return DeviceInfoDto(query.getById(id))
     }
 }

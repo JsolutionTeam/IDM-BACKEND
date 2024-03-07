@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -43,6 +44,18 @@ class DeviceApplicationFormController(
         userDetails: UserDetailsImpl,
     ): DeviceApplicationFormDto {
         return service.create(userDetails.shop.id, createDeviceApplicationFormDto)
+    }
+
+    @Operation(summary = "단말 신청서 단일 조회")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @GetMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    fun getById(
+        @PathVariable
+        id: Long,
+    ): DeviceApplicationFormDto {
+        return service.getById(id)
     }
 
     @Operation(summary = "단말 신청서 페이지 조회")
