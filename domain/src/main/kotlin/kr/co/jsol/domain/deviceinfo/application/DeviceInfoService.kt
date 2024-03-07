@@ -4,11 +4,13 @@ import kr.co.jsol.common.file.application.FileService
 import kr.co.jsol.domain.color.infrastructure.query.ColorQueryRepository
 import kr.co.jsol.domain.device.infrastructure.query.DeviceQueryRepository
 import kr.co.jsol.domain.deviceinfo.application.dto.CreateDeviceInfoDto
+import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfoBySeriesAndDeviceIdDto
 import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfoSearchDto
 import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfosDto
 import kr.co.jsol.domain.deviceinfo.application.dto.PostDeviceInfoImage
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoGroupByDeviceSeriesDto
+import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoImageDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.query.DeviceInfoQueryRepository
 import kr.co.jsol.domain.deviceinfo.infrastructure.repository.DeviceInfoRepository
 import org.springframework.data.domain.Page
@@ -54,6 +56,13 @@ class DeviceInfoService(
     ): Page<DeviceInfoDto> {
         return query.findOffsetPageBySearch(getDeviceInfosDto, pageable)
             .map(::DeviceInfoDto)
+    }
+
+    @Transactional(readOnly = true)
+    fun findBySeriesAndDeviceId(getDeviceInfoBySeriesAndDeviceIdDto: GetDeviceInfoBySeriesAndDeviceIdDto): List<DeviceInfoImageDto> {
+        return query.findBySeriesAndDeviceId(getDeviceInfoBySeriesAndDeviceIdDto).map {
+            DeviceInfoImageDto(it.id, it.imageUrl)
+        }
     }
 
     @Transactional(readOnly = true)

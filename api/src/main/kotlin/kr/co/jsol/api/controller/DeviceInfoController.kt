@@ -7,11 +7,13 @@ import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.common.paging.PageRequest
 import kr.co.jsol.domain.deviceinfo.application.DeviceInfoService
 import kr.co.jsol.domain.deviceinfo.application.dto.CreateDeviceInfoDto
+import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfoBySeriesAndDeviceIdDto
 import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfoSearchDto
 import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfosDto
 import kr.co.jsol.domain.deviceinfo.application.dto.PostDeviceInfoImage
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoGroupByDeviceSeriesDto
+import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoImageDto
 import org.springdoc.api.annotations.ParameterObject
 import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
@@ -103,6 +105,16 @@ class DeviceInfoController(
     ): Page<DeviceInfoDto> {
         val pageable = pageRequest.of()
         return service.findOffsetPageBySearch(getDeviceInfosDto, pageable)
+    }
+
+    @Operation(summary = "단말 시리즈/단말/색상으로 이미지 리스트 조회")
+    @GetMapping("images")
+    @ResponseStatus(HttpStatus.OK)
+    fun getDeviceInfoImagesBySearch(
+        @Valid
+        getDeviceInfoBySeriesAndDeviceIdDto: GetDeviceInfoBySeriesAndDeviceIdDto,
+    ): List<DeviceInfoImageDto> {
+        return service.findBySeriesAndDeviceId(getDeviceInfoBySeriesAndDeviceIdDto)
     }
 
     @Operation(summary = "단말 시리즈/단말/색상으로 검색 조회")

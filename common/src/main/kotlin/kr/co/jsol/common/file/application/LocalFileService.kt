@@ -178,6 +178,7 @@ class LocalFileService(
 
     // isFile
     fun existsFile(filename: String): Boolean {
+        log.info("\"$fileDir/$filename\"에서 파일을 찾는 중...")
         return existsFilePath("$fileDir/$filename")
     }
 
