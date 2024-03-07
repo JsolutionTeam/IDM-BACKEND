@@ -40,6 +40,70 @@ class CompanySubsidyQueryRepository(
             .orElseThrow { throw CompanySubsidyException.NotFoundByIdException() }
     }
 
+    fun getWithDetailByIdList(idList: List<Long>): List<CompanySubsidyGroupByDetailDto> {
+        return queryFactory.from(companySubsidy)
+            .where(
+                companySubsidy.id.`in`(idList)
+                    .and(companySubsidy.deletedAt.isNull)
+            )
+            .select(companySubsidy)
+            .groupBy(
+                companySubsidy.telecom,
+                companySubsidy.phonePlan,
+                companySubsidy.device,
+                companySubsidy.shop,
+                companySubsidy.openType,
+                companySubsidy.discountType,
+            )
+            .transform(
+                groupBy(
+                    companySubsidy.telecom,
+                    companySubsidy.phonePlan,
+                    companySubsidy.device,
+                    companySubsidy.shop,
+                )
+                    .list(
+                        QCompanySubsidyGroupByDetailDto(
+                            QTelecomDto(
+                                companySubsidy.telecom.id,
+                                companySubsidy.telecom.name,
+                            ),
+                            QPhonePlanRawDto(
+                                companySubsidy.phonePlan.id,
+                                companySubsidy.phonePlan.name,
+                                companySubsidy.phonePlan.price,
+                                companySubsidy.phonePlan.category,
+                                companySubsidy.phonePlan.callExp,
+                                companySubsidy.phonePlan.dataExp,
+                                companySubsidy.phonePlan.mailExp,
+                            ),
+                            QDeviceRawDto(
+                                companySubsidy.device.id,
+                                companySubsidy.device.petName,
+                                companySubsidy.device.modelName,
+                                companySubsidy.device.price,
+                                companySubsidy.device.volume,
+                                companySubsidy.device.series,
+                                companySubsidy.device.createdAt,
+                                companySubsidy.device.updatedAt,
+                            ),
+                            QShopSimpleDto(
+                                companySubsidy.shop.id,
+                                companySubsidy.shop.name,
+                            ),
+                            list(
+                                QCompanySubsidyGroupByDetailDto_Detail(
+                                    companySubsidy.id,
+                                    companySubsidy.price,
+                                    companySubsidy.openType,
+                                    companySubsidy.discountType,
+                                )
+                            )
+                        )
+                    )
+            ).toList()
+    }
+
     fun exists(existsCompanySubsidyDto: ExistsCompanySubsidyDto): Boolean {
         val booleanBuilder = BooleanBuilder()
             .and(companySubsidy.shop.id.eq(existsCompanySubsidyDto.shopId))
@@ -133,7 +197,6 @@ class CompanySubsidyQueryRepository(
                 )
                     .list(
                         QCompanySubsidyGroupByDetailDto(
-                            companySubsidy.id,
                             QTelecomDto(
                                 companySubsidy.telecom.id,
                                 companySubsidy.telecom.name,
@@ -163,6 +226,7 @@ class CompanySubsidyQueryRepository(
                             ),
                             list(
                                 QCompanySubsidyGroupByDetailDto_Detail(
+                                    companySubsidy.id,
                                     companySubsidy.price,
                                     companySubsidy.openType,
                                     companySubsidy.discountType,

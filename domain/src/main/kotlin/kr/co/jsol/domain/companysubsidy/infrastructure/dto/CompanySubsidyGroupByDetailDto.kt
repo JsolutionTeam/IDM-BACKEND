@@ -11,9 +11,6 @@ import kr.co.jsol.domain.telecom.infrastructure.dto.TelecomDto
 
 @Schema(name = "회사 지원금 페이지 조회 DTO")
 data class CompanySubsidyGroupByDetailDto @QueryProjection constructor(
-    @field:Schema(description = "회사 지원금 아이디")
-    val id: Long,
-
     @field:Schema(description = "idm - telecom")
     val telecom: TelecomDto,
 
@@ -31,6 +28,9 @@ data class CompanySubsidyGroupByDetailDto @QueryProjection constructor(
 
     @Schema(name = "회사 지원금 상세 DTO")
     data class Detail @QueryProjection constructor(
+        @field:Schema(description = "회사 지원금 아이디")
+        val id: Long,
+
         @field:Schema(description = "공시 지원금 가격")
         val price: Long,
 

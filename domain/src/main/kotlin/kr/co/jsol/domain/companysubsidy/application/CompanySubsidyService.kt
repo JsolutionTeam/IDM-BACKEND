@@ -72,6 +72,11 @@ class CompanySubsidyService(
     }
 
     @Transactional(readOnly = true)
+    fun getWithDetailByIdList(idList: List<Long>): List<CompanySubsidyGroupByDetailDto> {
+        return query.getWithDetailByIdList(idList)
+    }
+
+    @Transactional(readOnly = true)
     fun exists(existsCompanySubsidyDto: ExistsCompanySubsidyDto): Boolean {
         return query.exists(existsCompanySubsidyDto)
     }

@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import io.swagger.v3.oas.annotations.tags.Tag
 import kr.co.jsol.common.domain.AccountAuthority
+import kr.co.jsol.common.exception.GeneralClientException
 import kr.co.jsol.common.paging.PageRequest
 import kr.co.jsol.domain.companysubsidy.application.CompanySubsidyService
 import kr.co.jsol.domain.companysubsidy.application.dto.CreateCompanySubsidyDto
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
@@ -120,6 +122,24 @@ class CompanySubsidyController(
         return service.findOffsetPageBySearch(getCompanySubsidiesDto, pageable)
     }
 
+    @Operation(summary = "회사 지원금 단일(Detail) 조회")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @GetMapping("details")
+    @ResponseStatus(HttpStatus.OK)
+    fun getWithDetailById(
+        @RequestParam
+        idList: List<Long>,
+        @AuthenticationPrincipal
+        userDetails: UserDetailsImpl,
+    ): List<CompanySubsidyGroupByDetailDto> {
+        if (idList.isEmpty()) {
+            throw GeneralClientException.BadRequestException("요청을 확인해주세요.")
+        }
+
+        return service.getWithDetailByIdList(idList)
+    }
+
     @Operation(summary = "회사 지원금 단일 조회")
     @PreAuthorize(AccountAuthority.ROLECHECK.HasAnyRole)
     @SecurityRequirement(name = "Bearer Authentication")
@@ -131,7 +151,6 @@ class CompanySubsidyController(
         @AuthenticationPrincipal
         userDetails: UserDetailsImpl,
     ): CompanySubsidyDto {
-        val companySubsidyDto = service.getById(id)
-        return companySubsidyDto
+        return service.getById(id)
     }
 }
