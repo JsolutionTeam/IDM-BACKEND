@@ -10,6 +10,8 @@ services:
       - "11402:8080"
     volumes:
       - idm-prod-api:/api
+      #  host pc의 /files/idm과 컨테이너의 /files/idm을 연결
+      - /files/idm:/files/idm
     working_dir: /api
     environment:
       - TZ=Asia/Seoul
