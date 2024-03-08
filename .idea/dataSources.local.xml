@@ -62,5 +62,24 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
+    <data-source name="14.45.111.18" uuid="cd1f2e27-2478-46c4-b837-b5af609dba0d">
+      <database-info product="MariaDB" version="11.2.2-MariaDB-1:11.2.2+maria~ubu2204" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="3.0.7" dbms="MARIADB" exact-version="11.2.2" exact-driver-version="3.0">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema">
+            <name qname="integration_auth" />
+            <name qname="integration_idm" />
+            <name qname="integration_idm_2024" />
+            <name qname="integration_mcall" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
   </component>
 </project>

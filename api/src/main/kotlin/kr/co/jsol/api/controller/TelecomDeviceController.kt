@@ -4,15 +4,18 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import io.swagger.v3.oas.annotations.tags.Tag
 import kr.co.jsol.common.domain.AccountAuthority
+import kr.co.jsol.common.file.application.dto.FileDto
 import kr.co.jsol.common.paging.PageRequest
 import kr.co.jsol.domain.telecomdevice.application.TelecomDeviceService
 import kr.co.jsol.domain.telecomdevice.application.dto.CreateTelecomDeviceDto
 import kr.co.jsol.domain.telecomdevice.application.dto.GetTelecomDevicesDto
+import kr.co.jsol.domain.telecomdevice.application.dto.PostTelecomDeviceImageDto
 import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDeviceDto
 import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDevicesDto
 import kr.co.jsol.domain.telecomdevice.infrastructure.dto.TelecomDeviceDto
 import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -24,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.multipart.MultipartFile
 import javax.validation.Valid
 
 @RestController
@@ -44,6 +48,25 @@ class TelecomDeviceController(
         createTelecomDeviceDto: CreateTelecomDeviceDto,
     ): TelecomDeviceDto {
         return service.create(createTelecomDeviceDto)
+    }
+
+    @Operation(summary = "통신팀 판매용 단말의 대표 이미지 등록 (수정, 삭제X) 기존 이미지 파일이 남아있게 됨")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @PostMapping("image", consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
+    @ResponseStatus(HttpStatus.CREATED)
+    fun postImage(
+        @RequestParam("id")
+        id: Long,
+        @RequestParam("file")
+        file: MultipartFile,
+    ): FileDto {
+        return service.postImage(
+            PostTelecomDeviceImageDto(
+                id,
+                file,
+            )
+        )
     }
 
     @Operation(summary = "통신 단말 정보 다중 수정")

@@ -1,9 +1,13 @@
 package kr.co.jsol.domain.telecomdevice.application
 
+import kr.co.jsol.common.exception.domain.deviceinfo.DeviceInfoException
+import kr.co.jsol.common.file.application.FileService
+import kr.co.jsol.common.file.application.dto.FileDto
 import kr.co.jsol.domain.device.infrastructure.query.DeviceQueryRepository
 import kr.co.jsol.domain.deviceinfo.infrastructure.query.DeviceInfoQueryRepository
 import kr.co.jsol.domain.telecomdevice.application.dto.CreateTelecomDeviceDto
 import kr.co.jsol.domain.telecomdevice.application.dto.GetTelecomDevicesDto
+import kr.co.jsol.domain.telecomdevice.application.dto.PostTelecomDeviceImageDto
 import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDeviceDto
 import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDevicesDto
 import kr.co.jsol.domain.telecomdevice.infrastructure.dto.TelecomDeviceDto
@@ -19,6 +23,8 @@ class TelecomDeviceService(
     private val repository: TelecomDeviceRepository,
     private val query: TelecomDeviceQueryRepository,
 
+    private val fileService: FileService,
+
     private val deviceQuery: DeviceQueryRepository,
     private val deviceInfoQuery: DeviceInfoQueryRepository,
 ) {
@@ -26,12 +32,16 @@ class TelecomDeviceService(
     @Transactional
     fun create(createTelecomDeviceDto: CreateTelecomDeviceDto): TelecomDeviceDto {
         val device = deviceQuery.getById(createTelecomDeviceDto.deviceId)
-        val deviceInfo = deviceInfoQuery.getFirstByDeviceId(device.id)
+        val imageUrl = try {
+            deviceInfoQuery.getFirstByDeviceId(device.id).imageUrl
+        } catch (e: DeviceInfoException.NotFoundByDeviceIdException) {
+            ""
+        }
         return TelecomDeviceDto(
             repository.save(
                 createTelecomDeviceDto.toEntity(
                     device = device,
-                    imageUrl = deviceInfo.imageUrl,
+                    imageUrl = imageUrl,
                 )
             )
         )
@@ -57,6 +67,15 @@ class TelecomDeviceService(
     @Transactional
     fun delete(id: Long) {
         repository.deleteById(id)
+    }
+
+    @Transactional
+    fun postImage(postTelecomDeviceImageDto: PostTelecomDeviceImageDto): FileDto {
+        val deviceInfo = query.getById(postTelecomDeviceImageDto.id)
+        val uploadFile = fileService.addFile("telecom_device", postTelecomDeviceImageDto.multipartFile)
+        deviceInfo.imageUrl = uploadFile.filename
+        repository.save(deviceInfo)
+        return uploadFile
     }
 
     @Transactional(readOnly = true)
