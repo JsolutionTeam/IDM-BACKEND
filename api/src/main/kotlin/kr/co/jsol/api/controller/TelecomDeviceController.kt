@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
 
 @RestController
-@RequestMapping("/api/v1/telecom-device")
+@RequestMapping("/api/v1/telecom-devices")
 @Tag(name = "통신팀 판매용 단말", description = "통신팀 판매 단말 정보 관리 API")
 class TelecomDeviceController(
     private val service: TelecomDeviceService,

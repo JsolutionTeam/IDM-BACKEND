@@ -4,7 +4,7 @@ import kr.co.jsol.common.exception.CustomException
 import org.springframework.http.HttpStatus
 
 private const val NAME = "단말 상세"
-private const val CODE = ""
+private const val CODE = "DEVICE-INFO"
 
 sealed class DeviceInfoException {
     class NotFoundByIdException(
