@@ -47,4 +47,9 @@ class DeviceInfo(
     @JoinColumn(name = "color_idx", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("색상 아이디")
     var color: Color,
-) : BaseEntity()
+) : BaseEntity() {
+
+    fun update(imageUrl: String) {
+        this.imageUrl = imageUrl
+    }
+}

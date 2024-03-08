@@ -11,6 +11,7 @@ import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfoBySeriesAndDevi
 import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfoSearchDto
 import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfosDto
 import kr.co.jsol.domain.deviceinfo.application.dto.PostDeviceInfoImage
+import kr.co.jsol.domain.deviceinfo.application.dto.UpdateDeviceInfoDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoGroupByDeviceSeriesDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoImageDto
@@ -20,6 +21,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -50,7 +52,8 @@ class DeviceInfoController(
         return service.create(createDeviceInfoDto)
     }
 
-    @Operation(summary = "단말 상세 이미지 등록 (수정, 삭제X) 기존 이미지 파일이 남아있게 됨")
+    // local-file-controller의 파일 등록 후 단말 상세 수정을 통해 이미지 url 세팅하도록 수정필요
+    @Operation(summary = "단말 상세 이미지 등록 (수정, 삭제X) 기존 이미지 파일이 남아있게 됨", description = "추후에 삭제할 예정으로 프론트 로직 수정필요")
     @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("image", consumes = [MediaType.MULTIPART_FORM_DATA_VALUE])
@@ -69,18 +72,18 @@ class DeviceInfoController(
         )
     }
 
-//    @Operation(summary = "단말 상세 다중 수정")
-//    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)
-//    @SecurityRequirement(name = "Bearer Authentication")
-//    @PatchMapping
-//    @ResponseStatus(HttpStatus.OK)
-//    fun updateDeviceSubsidy(
-//        @Valid
-//        @RequestBody
-//        updateDeviceSubsidiesDto: UpdateDeviceSubsidiesDto,
-//    ) {
-//        return service.updateMultiple(updateDeviceSubsidiesDto)
-//    }
+    @Operation(summary = "단말 상세 단일 수정", description = "엠콜샵에선 imageUrl만 변경 가능")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @PatchMapping
+    @ResponseStatus(HttpStatus.OK)
+    fun updateDeviceSubsidy(
+        @Valid
+        @RequestBody
+        updateDeviceInfoDto: UpdateDeviceInfoDto,
+    ): DeviceInfoDto {
+        return service.update(updateDeviceInfoDto)
+    }
 
 //    @Operation(summary = "단말 상세 다중 삭제")
 //    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)

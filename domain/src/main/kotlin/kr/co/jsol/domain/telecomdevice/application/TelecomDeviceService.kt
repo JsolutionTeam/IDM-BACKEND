@@ -37,6 +37,7 @@ class TelecomDeviceService(
         } catch (e: DeviceInfoException.NotFoundByDeviceIdException) {
             ""
         }
+
         return TelecomDeviceDto(
             repository.save(
                 createTelecomDeviceDto.toEntity(

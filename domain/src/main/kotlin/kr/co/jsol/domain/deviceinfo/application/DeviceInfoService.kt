@@ -8,6 +8,7 @@ import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfoBySeriesAndDevi
 import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfoSearchDto
 import kr.co.jsol.domain.deviceinfo.application.dto.GetDeviceInfosDto
 import kr.co.jsol.domain.deviceinfo.application.dto.PostDeviceInfoImage
+import kr.co.jsol.domain.deviceinfo.application.dto.UpdateDeviceInfoDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoGroupByDeviceSeriesDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoImageDto
@@ -39,6 +40,13 @@ class DeviceInfoService(
                 )
             )
         )
+    }
+
+    @Transactional
+    fun update(updateDeviceInfoDto: UpdateDeviceInfoDto): DeviceInfoDto {
+        val deviceInfo = query.getById(updateDeviceInfoDto.id)
+        deviceInfo.update(updateDeviceInfoDto.imageUrl)
+        return DeviceInfoDto(repository.save(deviceInfo))
     }
 
     @Transactional
