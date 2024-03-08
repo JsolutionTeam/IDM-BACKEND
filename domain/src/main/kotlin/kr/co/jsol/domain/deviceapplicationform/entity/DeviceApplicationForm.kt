@@ -87,6 +87,7 @@ class DeviceApplicationForm(
     var telecom: Telecom,
 
     @ManyToOne(fetch = FetchType.LAZY)
+    // device_info_id로 변경 필요
     @JoinColumn(name = "device_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("단말 상세 정보 아이디")
     var deviceInfo: DeviceInfo,

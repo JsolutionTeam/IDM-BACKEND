@@ -183,7 +183,6 @@ class CompanySubsidyQueryRepository(
 
         val query = queryFactory.from(companySubsidy)
             .where(booleanBuilder)
-            .pagination(pageable)
             .groupBy(
                 companySubsidy.telecom,
                 companySubsidy.phonePlan,
@@ -195,6 +194,7 @@ class CompanySubsidyQueryRepository(
 
         val result = query.clone()
             .select(companySubsidy)
+            .pagination(pageable)
             .transform(
                 groupBy(
                     companySubsidy.telecom,
