@@ -23,8 +23,22 @@ data class CompanySubsidyGroupByDetailDto @QueryProjection constructor(
     @field:Schema(description = "idm - shop")
     val shop: ShopSimpleDto,
 
-    val detailList: List<Detail>,
+    var detailList: List<Detail>,
 ) {
+
+    @QueryProjection
+    constructor(
+        telecom: TelecomDto,
+        phonePlan: PhonePlanRawDto,
+        device: DeviceRawDto,
+        shop: ShopSimpleDto,
+    ) : this(
+        telecom = telecom,
+        phonePlan = phonePlan,
+        device = device,
+        shop = shop,
+        detailList = emptyList(),
+    )
 
     @Schema(name = "회사 지원금 상세 DTO")
     data class Detail @QueryProjection constructor(
