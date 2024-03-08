@@ -1,22 +1,26 @@
 package kr.co.jsol.domain.telecomdevice.application.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
+import kr.co.jsol.domain.device.entity.Device
 import kr.co.jsol.domain.telecomdevice.entity.TelecomDevice
 import javax.validation.constraints.NotNull
 
 @Schema(name = "통신팀 판매용 단말 정보 등록 요청")
 data class CreateTelecomDeviceDto(
-    @field:NotNull(message = "단말 모델명은 필수입니다..")
-    @field:Schema(description = "단말 모델명")
-    var modelName: String,
-
-    @field:NotNull(message = "단말 펫네임은 필수입니다.")
-    @field:Schema(description = "단말 펫네임")
-    var petName: String,
-
-    @field:NotNull(message = "대표 이미지 URL은 필수입니다.")
-    @field:Schema(description = "대표 이미지 URL")
-    var imageUrl: String,
+    @field:NotNull(message = "단말 아이디는 필수입니다.")
+    @field:Schema(description = "단말 아이디")
+    var deviceId: Long,
+//    @field:NotNull(message = "단말 모델명은 필수입니다..")
+//    @field:Schema(description = "단말 모델명")
+//    var modelName: String,
+//
+//    @field:NotNull(message = "단말 펫네임은 필수입니다.")
+//    @field:Schema(description = "단말 펫네임")
+//    var petName: String,
+//
+//    @field:NotNull(message = "대표 이미지 URL은 필수입니다.")
+//    @field:Schema(description = "대표 이미지 URL")
+//    var imageUrl: String,
 
     @field:NotNull(message = "출고가 설명은 필수입니다.")
     @field:Schema(description = "출고가 설명")
@@ -57,10 +61,13 @@ data class CreateTelecomDeviceDto(
     var etc6: String? = null,
 ) {
 
-    fun toEntity(): TelecomDevice {
+    fun toEntity(
+        device: Device,
+        imageUrl: String,
+    ): TelecomDevice {
         return TelecomDevice(
-            modelName = modelName,
-            petName = petName,
+            modelName = device.modelName,
+            petName = device.petName,
             imageUrl = imageUrl,
             price = price,
             companySubsidy = companySubsidy,
@@ -73,6 +80,7 @@ data class CreateTelecomDeviceDto(
             etc4 = etc4 ?: "",
             etc5 = etc5 ?: "",
             etc6 = etc6 ?: "",
+            device = device,
         )
     }
 }

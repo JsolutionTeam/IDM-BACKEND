@@ -158,4 +158,12 @@ class DeviceInfoQueryRepository(
                 )
             )
     }
+
+    fun getFirstByDeviceId(deviceId: Long): DeviceInfo {
+        return repository.findOne(
+            deviceInfo.device.id.eq(deviceId)
+                .and(deviceInfo.deletedAt.isNull)
+        )
+            .orElseThrow { throw DeviceInfoException.NotFoundByIdException() }
+    }
 }

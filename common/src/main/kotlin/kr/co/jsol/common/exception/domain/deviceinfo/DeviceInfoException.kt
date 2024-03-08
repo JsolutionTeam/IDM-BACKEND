@@ -11,4 +11,9 @@ sealed class DeviceInfoException {
         message: String = "id로 $NAME 정보를 찾을 수 없습니다.",
         e: Throwable? = null,
     ) : CustomException("$CODE-0001", message, HttpStatus.NOT_FOUND, e)
+
+    class NotFoundByDeviceIdException(
+        message: String = "단말 아이디로 $NAME 정보를 찾을 수 없습니다.",
+        e: Throwable? = null,
+    ) : CustomException("$CODE-0002", message, HttpStatus.NOT_FOUND, e)
 }

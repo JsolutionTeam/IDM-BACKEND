@@ -1,15 +1,21 @@
 package kr.co.jsol.domain.telecomdevice.entity
 
 import kr.co.jsol.common.domain.BaseEntity
+import kr.co.jsol.domain.device.entity.Device
 import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDeviceDto
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.Table
 import javax.persistence.Column
+import javax.persistence.ConstraintMode
 import javax.persistence.Entity
+import javax.persistence.FetchType
+import javax.persistence.ForeignKey
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 
 @SQLDelete(sql = "UPDATE tb_telecom_device SET deleted_at = now() WHERE idx = ?")
 @Entity
@@ -66,6 +72,12 @@ class TelecomDevice(
 
     @Comment("기타 6")
     var etc6: String,
+
+    // 혹시 몰라서 일단 들고있도록 함
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "device_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @Comment("단말 기초 아이디")
+    var device: Device,
 ) : BaseEntity() {
 
     fun update(updateTelecomDeviceDto: UpdateTelecomDeviceDto) {

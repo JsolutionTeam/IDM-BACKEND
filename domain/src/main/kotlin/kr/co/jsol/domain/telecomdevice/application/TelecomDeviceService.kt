@@ -1,5 +1,7 @@
 package kr.co.jsol.domain.telecomdevice.application
 
+import kr.co.jsol.domain.device.infrastructure.query.DeviceQueryRepository
+import kr.co.jsol.domain.deviceinfo.infrastructure.query.DeviceInfoQueryRepository
 import kr.co.jsol.domain.telecomdevice.application.dto.CreateTelecomDeviceDto
 import kr.co.jsol.domain.telecomdevice.application.dto.GetTelecomDevicesDto
 import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDeviceDto
@@ -15,11 +17,23 @@ import org.springframework.transaction.annotation.Transactional
 class TelecomDeviceService(
     private val repository: TelecomDeviceRepository,
     private val query: TelecomDeviceQueryRepository,
+
+    private val deviceQuery: DeviceQueryRepository,
+    private val deviceInfoQuery: DeviceInfoQueryRepository,
 ) {
 
     @Transactional
     fun create(createTelecomDeviceDto: CreateTelecomDeviceDto): TelecomDeviceDto {
-        return TelecomDeviceDto(repository.save(createTelecomDeviceDto.toEntity()))
+        val device = deviceQuery.getById(createTelecomDeviceDto.deviceId)
+        val deviceInfo = deviceInfoQuery.getFirstByDeviceId(device.id)
+        return TelecomDeviceDto(
+            repository.save(
+                createTelecomDeviceDto.toEntity(
+                    device = device,
+                    imageUrl = deviceInfo.imageUrl,
+                )
+            )
+        )
     }
 
     @Transactional
