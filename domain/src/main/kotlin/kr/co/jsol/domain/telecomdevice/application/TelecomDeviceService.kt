@@ -5,6 +5,7 @@ import kr.co.jsol.domain.deviceinfo.infrastructure.query.DeviceInfoQueryReposito
 import kr.co.jsol.domain.telecomdevice.application.dto.CreateTelecomDeviceDto
 import kr.co.jsol.domain.telecomdevice.application.dto.GetTelecomDevicesDto
 import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDeviceDto
+import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDevicesDto
 import kr.co.jsol.domain.telecomdevice.infrastructure.dto.TelecomDeviceDto
 import kr.co.jsol.domain.telecomdevice.infrastructure.query.TelecomDeviceQueryRepository
 import kr.co.jsol.domain.telecomdevice.infrastructure.repository.TelecomDeviceRepository
@@ -37,10 +38,25 @@ class TelecomDeviceService(
     }
 
     @Transactional
+    fun updateMultiple(updateTelecomDevicesDto: UpdateTelecomDevicesDto): List<TelecomDeviceDto> {
+        return updateTelecomDevicesDto.telecomDevices.map(::update)
+    }
+
+    @Transactional
     fun update(updateTelecomDeviceDto: UpdateTelecomDeviceDto): TelecomDeviceDto {
         val telecomDevice = query.getById(updateTelecomDeviceDto.id)
         telecomDevice.update(updateTelecomDeviceDto)
         return TelecomDeviceDto(repository.save(telecomDevice))
+    }
+
+    @Transactional
+    fun deleteMultiple(ids: List<Long>) {
+        repository.deleteAllById(ids)
+    }
+
+    @Transactional
+    fun delete(id: Long) {
+        repository.deleteById(id)
     }
 
     @Transactional(readOnly = true)

@@ -8,15 +8,20 @@ import kr.co.jsol.common.paging.PageRequest
 import kr.co.jsol.domain.telecomdevice.application.TelecomDeviceService
 import kr.co.jsol.domain.telecomdevice.application.dto.CreateTelecomDeviceDto
 import kr.co.jsol.domain.telecomdevice.application.dto.GetTelecomDevicesDto
+import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDeviceDto
+import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDevicesDto
 import kr.co.jsol.domain.telecomdevice.infrastructure.dto.TelecomDeviceDto
 import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
@@ -33,7 +38,7 @@ class TelecomDeviceController(
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(
+    fun createTelecomDevice(
         @Valid
         @RequestBody
         createTelecomDeviceDto: CreateTelecomDeviceDto,
@@ -41,33 +46,45 @@ class TelecomDeviceController(
         return service.create(createTelecomDeviceDto)
     }
 
-//    @Operation(summary = "단말 상세 다중 수정")
-//    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)
-//    @SecurityRequirement(name = "Bearer Authentication")
-//    @PatchMapping
-//    @ResponseStatus(HttpStatus.OK)
-//    fun updateDeviceSubsidy(
-//        @Valid
-//        @RequestBody
-//        updateDeviceSubsidiesDto: UpdateDeviceSubsidiesDto,
-//    ) {
-//        return service.updateMultiple(updateDeviceSubsidiesDto)
-//    }
+    @Operation(summary = "통신 단말 정보 다중 수정")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @PatchMapping("list")
+    @ResponseStatus(HttpStatus.OK)
+    fun updateTelecomDevices(
+        @Valid
+        @RequestBody
+        updateTelecomDevicesDto: UpdateTelecomDevicesDto,
+    ): List<TelecomDeviceDto> {
+        return service.updateMultiple(updateTelecomDevicesDto)
+    }
 
-//    @Operation(summary = "단말 상세 다중 삭제")
-//    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)
-//    @SecurityRequirement(name = "Bearer Authentication")
-//    @DeleteMapping
-//    @ResponseStatus(HttpStatus.OK)
-//    fun deleteDeviceSubsidy(
-//        @Valid
-//        @RequestBody
-//        deleteDeviceSubsidiesDto: DeleteDeviceSubsidiesDto,
-//    ) {
-//        return service.deleteMultiple(deleteDeviceSubsidiesDto)
-//    }
+    @Operation(summary = "통신 단말 정보 단일 수정")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @PatchMapping
+    @ResponseStatus(HttpStatus.OK)
+    fun updateTelecomDevice(
+        @Valid
+        @RequestBody
+        updateTelecomDeviceDto: UpdateTelecomDeviceDto,
+    ): TelecomDeviceDto {
+        return service.update(updateTelecomDeviceDto)
+    }
 
-    @Operation(summary = "단말 상세 페이지 조회")
+    @Operation(summary = "통신 단말 정보 다중 삭제")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @DeleteMapping("list")
+    @ResponseStatus(HttpStatus.OK)
+    fun deleteTelecomDevices(
+        @RequestParam
+        ids: List<Long>,
+    ) {
+        return service.deleteMultiple(ids)
+    }
+
+    @Operation(summary = "통신 단말 정보 페이지 조회")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     fun findOffsetPageBySearch(
@@ -79,7 +96,7 @@ class TelecomDeviceController(
         return service.findOffsetPageBySearch(getTelecomDevicesDto, pageable)
     }
 
-    @Operation(summary = "단말 상세 단일 조회")
+    @Operation(summary = "통신 단말 정보 단일 조회")
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     fun getById(
