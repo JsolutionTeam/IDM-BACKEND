@@ -7,6 +7,7 @@ import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.common.exception.GeneralClientException
 import kr.co.jsol.common.paging.PageRequest
 import kr.co.jsol.domain.companysubsidy.application.CompanySubsidyService
+import kr.co.jsol.domain.companysubsidy.application.dto.CreateCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.application.dto.CreateCompanySubsidyDto
 import kr.co.jsol.domain.companysubsidy.application.dto.DeleteCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.application.dto.ExistsCompanySubsidyDto
@@ -39,6 +40,19 @@ import javax.validation.Valid
 class CompanySubsidyController(
     private val service: CompanySubsidyService,
 ) {
+
+    @Operation(summary = "회사 지원금 다중 등록")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @PostMapping("list")
+    @ResponseStatus(HttpStatus.CREATED)
+    fun createCompanySubsidies(
+        @Valid
+        @RequestBody
+        createCompanySubsidiesDto: CreateCompanySubsidiesDto,
+    ): List<CompanySubsidyDto> {
+        return service.createMultiple(createCompanySubsidiesDto)
+    }
 
     @Operation(summary = "회사 지원금 등록")
     @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
