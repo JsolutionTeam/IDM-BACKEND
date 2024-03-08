@@ -14,6 +14,9 @@ class TelecomDeviceDto(
     @field:Schema(description = "단말 펫네임")
     var petName: String,
 
+    @field:Schema(description = "대표 이미지 URL")
+    var imageUrl: String,
+
     @field:Schema(description = "출고가 설명")
     var price: String,
 
@@ -52,6 +55,7 @@ class TelecomDeviceDto(
         id = telecomDevice.id,
         modelName = telecomDevice.modelName,
         petName = telecomDevice.petName,
+        imageUrl = telecomDevice.imageUrl,
         price = telecomDevice.price,
         companySubsidy = telecomDevice.companySubsidy,
         phonePlan = telecomDevice.phonePlan,
