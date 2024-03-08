@@ -1,6 +1,6 @@
 package kr.co.jsol.domain.companysubsidy.application
 
-import kr.co.jsol.domain.account.infrastructure.query.AccountQueryRepository
+import kr.co.jsol.domain.companysubsidy.application.dto.CreateCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.application.dto.CreateCompanySubsidyDto
 import kr.co.jsol.domain.companysubsidy.application.dto.DeleteCompanySubsidiesDto
 import kr.co.jsol.domain.companysubsidy.application.dto.ExistsCompanySubsidyDto
@@ -25,12 +25,18 @@ class CompanySubsidyService(
     private val repository: CompanySubsidyRepository,
     private val query: CompanySubsidyQueryRepository,
 
-    private val accountQuery: AccountQueryRepository,
     private val shopQuery: ShopQueryRepository,
     private val telecomQuery: TelecomQueryRepository,
     private val phonePlanQuery: PhonePlanQueryRepository,
     private val deviceQuery: DeviceQueryRepository,
 ) {
+
+    @Transactional
+    fun createMultiple(createCompanySubsidiesDto: CreateCompanySubsidiesDto): List<CompanySubsidyDto> {
+        return createCompanySubsidiesDto.companySubsidies.map {
+            create(it)
+        }
+    }
 
     @Transactional
     fun create(createCompanySubsidyDto: CreateCompanySubsidyDto): CompanySubsidyDto {
@@ -72,7 +78,7 @@ class CompanySubsidyService(
     }
 
     @Transactional(readOnly = true)
-    fun getWithDetailByIdList(idList: List<Long>): List<CompanySubsidyGroupByDetailDto> {
+    fun getWithDetailByIdList(idList: List<Long>): CompanySubsidyGroupByDetailDto {
         return query.getWithDetailByIdList(idList)
     }
 

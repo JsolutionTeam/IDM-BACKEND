@@ -132,7 +132,7 @@ class CompanySubsidyController(
         idList: List<Long>,
         @AuthenticationPrincipal
         userDetails: UserDetailsImpl,
-    ): List<CompanySubsidyGroupByDetailDto> {
+    ): CompanySubsidyGroupByDetailDto {
         if (idList.isEmpty()) {
             throw GeneralClientException.BadRequestException("요청을 확인해주세요.")
         }

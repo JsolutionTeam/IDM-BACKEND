@@ -32,6 +32,45 @@ class CompanySubsidyQueryRepository(
     private val queryFactory: JPAQueryFactory,
 ) : BaseQueryRepository<CompanySubsidy, Long>(companySubsidy, repository) {
 
+    val qCompanySubsidyGroupByDetailDto =
+        QCompanySubsidyGroupByDetailDto(
+            QTelecomDto(
+                companySubsidy.telecom.id,
+                companySubsidy.telecom.name,
+            ),
+            QPhonePlanRawDto(
+                companySubsidy.phonePlan.id,
+                companySubsidy.phonePlan.name,
+                companySubsidy.phonePlan.price,
+                companySubsidy.phonePlan.category,
+                companySubsidy.phonePlan.callExp,
+                companySubsidy.phonePlan.dataExp,
+                companySubsidy.phonePlan.mailExp,
+            ),
+            QDeviceRawDto(
+                companySubsidy.device.id,
+                companySubsidy.device.petName,
+                companySubsidy.device.modelName,
+                companySubsidy.device.price,
+                companySubsidy.device.volume,
+                companySubsidy.device.series,
+                companySubsidy.device.createdAt,
+                companySubsidy.device.updatedAt,
+            ),
+            QShopSimpleDto(
+                companySubsidy.shop.id,
+                companySubsidy.shop.name,
+            ),
+            list(
+                QCompanySubsidyGroupByDetailDto_Detail(
+                    companySubsidy.id,
+                    companySubsidy.price,
+                    companySubsidy.openType,
+                    companySubsidy.discountType,
+                )
+            )
+        )
+
     fun getById(id: Long): CompanySubsidy {
         return repository.findOne(
             companySubsidy.id.eq(id)
@@ -40,8 +79,9 @@ class CompanySubsidyQueryRepository(
             .orElseThrow { throw CompanySubsidyException.NotFoundByIdException() }
     }
 
-    fun getWithDetailByIdList(idList: List<Long>): List<CompanySubsidyGroupByDetailDto> {
-        return queryFactory.from(companySubsidy)
+    fun getWithDetailByIdList(idList: List<Long>): CompanySubsidyGroupByDetailDto {
+
+        val result = queryFactory.from(companySubsidy)
             .where(
                 companySubsidy.id.`in`(idList)
                     .and(companySubsidy.deletedAt.isNull)
@@ -63,45 +103,12 @@ class CompanySubsidyQueryRepository(
                     companySubsidy.shop,
                 )
                     .list(
-                        QCompanySubsidyGroupByDetailDto(
-                            QTelecomDto(
-                                companySubsidy.telecom.id,
-                                companySubsidy.telecom.name,
-                            ),
-                            QPhonePlanRawDto(
-                                companySubsidy.phonePlan.id,
-                                companySubsidy.phonePlan.name,
-                                companySubsidy.phonePlan.price,
-                                companySubsidy.phonePlan.category,
-                                companySubsidy.phonePlan.callExp,
-                                companySubsidy.phonePlan.dataExp,
-                                companySubsidy.phonePlan.mailExp,
-                            ),
-                            QDeviceRawDto(
-                                companySubsidy.device.id,
-                                companySubsidy.device.petName,
-                                companySubsidy.device.modelName,
-                                companySubsidy.device.price,
-                                companySubsidy.device.volume,
-                                companySubsidy.device.series,
-                                companySubsidy.device.createdAt,
-                                companySubsidy.device.updatedAt,
-                            ),
-                            QShopSimpleDto(
-                                companySubsidy.shop.id,
-                                companySubsidy.shop.name,
-                            ),
-                            list(
-                                QCompanySubsidyGroupByDetailDto_Detail(
-                                    companySubsidy.id,
-                                    companySubsidy.price,
-                                    companySubsidy.openType,
-                                    companySubsidy.discountType,
-                                )
-                            )
-                        )
+                        qCompanySubsidyGroupByDetailDto
                     )
             ).toList()
+
+        if (result.isNotEmpty()) return result[0]
+        else throw CompanySubsidyException.NotFoundByIdException()
     }
 
     fun exists(existsCompanySubsidyDto: ExistsCompanySubsidyDto): Boolean {
@@ -195,45 +202,7 @@ class CompanySubsidyQueryRepository(
                     companySubsidy.device,
                     companySubsidy.shop,
                 )
-                    .list(
-                        QCompanySubsidyGroupByDetailDto(
-                            QTelecomDto(
-                                companySubsidy.telecom.id,
-                                companySubsidy.telecom.name,
-                            ),
-                            QPhonePlanRawDto(
-                                companySubsidy.phonePlan.id,
-                                companySubsidy.phonePlan.name,
-                                companySubsidy.phonePlan.price,
-                                companySubsidy.phonePlan.category,
-                                companySubsidy.phonePlan.callExp,
-                                companySubsidy.phonePlan.dataExp,
-                                companySubsidy.phonePlan.mailExp,
-                            ),
-                            QDeviceRawDto(
-                                companySubsidy.device.id,
-                                companySubsidy.device.petName,
-                                companySubsidy.device.modelName,
-                                companySubsidy.device.price,
-                                companySubsidy.device.volume,
-                                companySubsidy.device.series,
-                                companySubsidy.device.createdAt,
-                                companySubsidy.device.updatedAt,
-                            ),
-                            QShopSimpleDto(
-                                companySubsidy.shop.id,
-                                companySubsidy.shop.name,
-                            ),
-                            list(
-                                QCompanySubsidyGroupByDetailDto_Detail(
-                                    companySubsidy.id,
-                                    companySubsidy.price,
-                                    companySubsidy.openType,
-                                    companySubsidy.discountType,
-                                )
-                            )
-                        )
-                    )
+                    .list(qCompanySubsidyGroupByDetailDto)
             )
 
         val count = query.clone()
