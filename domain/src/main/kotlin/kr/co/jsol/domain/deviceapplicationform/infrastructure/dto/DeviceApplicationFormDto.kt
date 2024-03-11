@@ -1,11 +1,13 @@
 package kr.co.jsol.domain.deviceapplicationform.infrastructure.dto
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import io.swagger.v3.oas.annotations.media.Schema
 import kr.co.jsol.domain.deviceapplicationform.entity.DeviceApplicationForm
 import kr.co.jsol.domain.deviceapplicationform.entity.DeviceApplicationFormSubservice
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoDto
 import kr.co.jsol.domain.insurance.infrastructure.dto.InsuranceDto
 import kr.co.jsol.domain.phoneplan.infrastructure.dto.PhonePlanDto
+import kr.co.jsol.domain.shop.entity.Shop
 import kr.co.jsol.domain.subservice.infrastructure.dto.SubserviceDto
 import kr.co.jsol.domain.telecom.entity.enums.DiscountType
 import kr.co.jsol.domain.telecom.entity.enums.OpenType
@@ -46,6 +48,10 @@ data class DeviceApplicationFormDto(
     @field:Schema(description = "메모")
     var memo: String,
 
+    @field:Schema(hidden = true)
+    @field:JsonIgnore
+    val shop: Shop,
+
     @field:Schema(description = "통신사 아이디")
     var telecom: TelecomDto,
 
@@ -77,6 +83,7 @@ data class DeviceApplicationFormDto(
         prePaymentPrice = deviceApplicationForm.prePaymentPrice,
         installmentMonth = deviceApplicationForm.installmentMonth,
         memo = deviceApplicationForm.memo,
+        shop = deviceApplicationForm.shop,
         telecom = TelecomDto(deviceApplicationForm.telecom),
         deviceInfo = DeviceInfoDto(deviceApplicationForm.deviceInfo),
         phonePlan = PhonePlanDto(deviceApplicationForm.phonePlan),

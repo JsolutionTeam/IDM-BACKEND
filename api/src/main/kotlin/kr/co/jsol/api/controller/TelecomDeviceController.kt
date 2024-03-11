@@ -61,12 +61,7 @@ class TelecomDeviceController(
         @RequestParam("file")
         file: MultipartFile,
     ): FileDto {
-        return service.postImage(
-            PostTelecomDeviceImageDto(
-                id,
-                file,
-            )
-        )
+        return service.postImage(PostTelecomDeviceImageDto(id, file))
     }
 
     @Operation(summary = "통신 단말 정보 다중 수정")

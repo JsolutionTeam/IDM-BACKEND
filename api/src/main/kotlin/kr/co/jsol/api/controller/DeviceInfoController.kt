@@ -85,19 +85,6 @@ class DeviceInfoController(
         return service.update(updateDeviceInfoDto)
     }
 
-//    @Operation(summary = "단말 상세 다중 삭제")
-//    @PreAuthorize(AccountAuthority.ROLECHECK.HasAdminRole)
-//    @SecurityRequirement(name = "Bearer Authentication")
-//    @DeleteMapping
-//    @ResponseStatus(HttpStatus.OK)
-//    fun deleteDeviceSubsidy(
-//        @Valid
-//        @RequestBody
-//        deleteDeviceSubsidiesDto: DeleteDeviceSubsidiesDto,
-//    ) {
-//        return service.deleteMultiple(deleteDeviceSubsidiesDto)
-//    }
-
     @Operation(summary = "단말 상세 페이지 조회")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)

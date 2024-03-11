@@ -21,7 +21,10 @@ class DeviceApplicationFormSubserviceQueryRepository(
     fun getByDeviceApplicationFormId(deviceApplicationFormId: Long): List<DeviceApplicationFormSubservice> {
         return queryFactory
             .selectFrom(deviceApplicationFormSubservice)
-            .where(deviceApplicationFormSubservice.deviceApplicationForm.id.eq(deviceApplicationFormId))
+            .where(
+                deviceApplicationFormSubservice.deviceApplicationForm.id.eq(deviceApplicationFormId)
+                    .and(deviceApplicationFormSubservice.deletedAt.isNull())
+            )
             .fetch()
     }
 }

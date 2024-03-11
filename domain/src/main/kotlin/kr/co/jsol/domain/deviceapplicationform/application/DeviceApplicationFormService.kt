@@ -16,6 +16,7 @@ import kr.co.jsol.domain.shop.infrastructure.query.ShopQueryRepository
 import kr.co.jsol.domain.subservice.entity.Subservice
 import kr.co.jsol.domain.subservice.infrastructure.query.SubserviceQueryRepository
 import kr.co.jsol.domain.telecom.infrastructure.query.TelecomQueryRepository
+import kr.co.jsol.domain.userdetails.UserDetailsImpl
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
@@ -72,8 +73,16 @@ class DeviceApplicationFormService(
     }
 
     @Transactional
-    fun update(updateDeviceApplicationFormDto: UpdateDeviceApplicationFormDto): DeviceApplicationFormDto {
-        val deviceApplicationForm = query.getById(updateDeviceApplicationFormDto.id)
+    fun update(
+        updateDeviceApplicationFormDto: UpdateDeviceApplicationFormDto,
+        userDetails: UserDetailsImpl,
+    ): DeviceApplicationFormDto {
+
+        // 일반 사용자가 수정할 때는 해당 매장의 신청서만 수정 가능
+        val deviceApplicationForm =
+            if (userDetails.isNotMaster()) query.getByIdAndShopId(updateDeviceApplicationFormDto.id, userDetails.shop.id)
+            else query.getById(updateDeviceApplicationFormDto.id)
+
         deviceApplicationForm.update(updateDeviceApplicationFormDto)
 
         updateDeviceApplicationFormDto.telecomId?.let {
@@ -113,6 +122,18 @@ class DeviceApplicationFormService(
 
         return DeviceApplicationFormDto(
             repository.save(deviceApplicationForm),
+            formSubserviceQuery.getByDeviceApplicationFormId(deviceApplicationForm.id)
+        )
+    }
+
+    @Transactional(readOnly = true)
+    fun getByIdAndShopId(
+        id: Long,
+        shopId: Long,
+    ): DeviceApplicationFormDto {
+        val deviceApplicationForm = query.getByIdAndShopId(id, shopId)
+        return DeviceApplicationFormDto(
+            deviceApplicationForm,
             formSubserviceQuery.getByDeviceApplicationFormId(deviceApplicationForm.id)
         )
     }

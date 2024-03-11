@@ -25,6 +25,24 @@ class DeviceApplicationFormQueryRepository(
         return findById(id) ?: throw DeviceApplicationFormException.NotFoundByIdException()
     }
 
+    fun getByIdAndShopId(
+        id: Long,
+        shopId: Long,
+    ): DeviceApplicationForm {
+        val booleanBuilder = BooleanBuilder()
+            .and(deviceApplicationForm.id.eq(id))
+            .and(deviceApplicationForm.shop.id.eq(shopId))
+            .and(deviceApplicationForm.deletedAt.isNull)
+
+        val optional = repository.findOne(booleanBuilder)
+
+        if (optional.isEmpty) {
+            throw DeviceApplicationFormException.NotFoundByIdException()
+        }
+
+        return optional.get()
+    }
+
     fun findOffsetPageBySearch(
         getDeviceApplicationFormsDto: GetDeviceApplicationFormsDto,
         pageable: Pageable,
@@ -84,18 +102,10 @@ class DeviceApplicationFormQueryRepository(
             booleanBuilder.and(deviceApplicationForm.telecom.name.contains(it))
         }
 
-//        var isLeftJoinedDevice = false
         getDeviceApplicationFormsDto.deviceModelName?.let {
-//            query.leftJoin(deviceApplicationForm.deviceInfo, deviceInfo).fetchJoin()
-//                .leftJoin(deviceInfo.device, device).fetchJoin()
-//            isLeftJoinedDevice = true
             booleanBuilder.and(deviceApplicationForm.deviceInfo.device.modelName.contains(it))
         }
         getDeviceApplicationFormsDto.devicePetName?.let {
-//            if (!isLeftJoinedDevice) {
-//                query.leftJoin(deviceApplicationForm.deviceInfo, deviceInfo).fetchJoin()
-//                    .leftJoin(deviceInfo.device, device).fetchJoin()
-//            }
             booleanBuilder.and(deviceApplicationForm.deviceInfo.device.petName.contains(it))
         }
         getDeviceApplicationFormsDto.phonePlanName?.let {
@@ -105,25 +115,6 @@ class DeviceApplicationFormQueryRepository(
             booleanBuilder.and(insurance.name.contains(it))
         }
 
-//        val result = query.clone()
-//            .select(deviceApplicationForm)
-//            .where(booleanBuilder)
-//            .fetch()
-//
-//        val count = query.clone()
-//            .select(deviceApplicationForm.count())
-//            .fetchOne() ?: 0L
-//
-//        val response = result.map {
-//            DeviceApplicationFormDto(
-//                it,
-//                queryFactory.selectFrom(deviceApplicationFormSubservice)
-//                    .where(deviceApplicationFormSubservice.deviceApplicationForm.id.eq(it.id))
-//                    .fetch()
-//            )
-//        }
-
-//        return PageImpl(response, pageable, count)
         return repository.findAll(booleanBuilder, pageable)
     }
 

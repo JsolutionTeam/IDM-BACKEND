@@ -1,18 +1,13 @@
 package kr.co.jsol.domain.kioskstock.entity
 
 import kr.co.jsol.common.domain.BaseEntity
-import kr.co.jsol.domain.kiosk.entity.Kiosk
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
 import javax.persistence.Column
-import javax.persistence.ConstraintMode
 import javax.persistence.Entity
-import javax.persistence.ForeignKey
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
 
 @SQLDelete(sql = "UPDATE tb_kiosk_stock SET deleted_at = now() WHERE id = ?")
 @Entity
