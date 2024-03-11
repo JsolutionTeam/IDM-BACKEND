@@ -11,6 +11,8 @@ import kr.co.jsol.domain.telecomdevice.application.dto.CreateTelecomDeviceDto
 import kr.co.jsol.domain.telecomdevice.application.dto.GetTelecomDevicesDto
 import kr.co.jsol.domain.telecomdevice.application.dto.PostTelecomDeviceImageDto
 import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDeviceDto
+import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDeviceIsDisplayDto
+import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDeviceIsDisplaysDto
 import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDevicesDto
 import kr.co.jsol.domain.telecomdevice.infrastructure.dto.TelecomDeviceDto
 import org.springframework.data.domain.Page
@@ -88,6 +90,32 @@ class TelecomDeviceController(
         updateTelecomDeviceDto: UpdateTelecomDeviceDto,
     ): TelecomDeviceDto {
         return service.update(updateTelecomDeviceDto)
+    }
+
+    @Operation(summary = "통신 단말 표시 여부 다중 수정")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @PatchMapping("is-displays/list")
+    @ResponseStatus(HttpStatus.OK)
+    fun updateIsDisplayMultiple(
+        @Valid
+        @RequestBody
+        updateTelecomDeviceIsDisplaysDto: UpdateTelecomDeviceIsDisplaysDto,
+    ): List<TelecomDeviceDto> {
+        return service.updateIsDisplayMultiple(updateTelecomDeviceIsDisplaysDto)
+    }
+
+    @Operation(summary = "통신 단말 표시 여부 단일 수정")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @PatchMapping("is-displays")
+    @ResponseStatus(HttpStatus.OK)
+    fun updateIsDisplay(
+        @Valid
+        @RequestBody
+        updateTelecomDeviceIsDisplayDto: UpdateTelecomDeviceIsDisplayDto,
+    ): TelecomDeviceDto {
+        return service.updateIsDisplay(updateTelecomDeviceIsDisplayDto)
     }
 
     @Operation(summary = "통신 단말 정보 다중 삭제")

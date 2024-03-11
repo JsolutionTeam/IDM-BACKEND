@@ -63,7 +63,6 @@ data class CreateTelecomDeviceDto(
 
     fun toEntity(
         imageUrl: String,
-        displayOrder: Int,
         device: Device,
     ): TelecomDevice {
         return TelecomDevice(
@@ -75,7 +74,6 @@ data class CreateTelecomDeviceDto(
             phonePlan = phonePlan,
             totalPrice = totalPrice,
             link = link,
-            displayOrder = displayOrder,
             etc1 = etc1 ?: "",
             etc2 = etc2 ?: "",
             etc3 = etc3 ?: "",

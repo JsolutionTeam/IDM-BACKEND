@@ -37,12 +37,15 @@ class TelecomDevice(
     @Comment("출고가 설명")
     var price: String,
 
+    @Column(name = "company_subsidy")
     @Comment("회사 지원금(행사가) 설명")
     var companySubsidy: String,
 
+    @Column(name = "phone_plan")
     @Comment("요금제 설명")
     var phonePlan: String,
 
+    @Column(name = "total_price")
     @Comment("총 요금 설명")
     var totalPrice: String,
 
@@ -51,7 +54,11 @@ class TelecomDevice(
 
     @Column(name = "display_order")
     @Comment("표시 순서")
-    var displayOrder: Int,
+    var displayOrder: Int = 1,
+
+    @Column(name = "is_display")
+    @Comment("단말 정보 표시 여부")
+    var isDisplay: Boolean = true,
 
     @Comment("기타 1")
     var etc1: String,

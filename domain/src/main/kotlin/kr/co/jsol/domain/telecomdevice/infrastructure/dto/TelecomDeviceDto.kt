@@ -35,6 +35,9 @@ class TelecomDeviceDto(
     @field:Schema(description = "표시 순서")
     var displayOrder: Int,
 
+    @field:Schema(description = "표시 여부")
+    var isDisplay: Boolean,
+
     @field:Schema(description = "기타 1")
     var etc1: String,
 
@@ -65,6 +68,7 @@ class TelecomDeviceDto(
         totalPrice = telecomDevice.totalPrice,
         link = telecomDevice.link,
         displayOrder = telecomDevice.displayOrder,
+        isDisplay = telecomDevice.isDisplay,
         etc1 = telecomDevice.etc1,
         etc2 = telecomDevice.etc2,
         etc3 = telecomDevice.etc3,
