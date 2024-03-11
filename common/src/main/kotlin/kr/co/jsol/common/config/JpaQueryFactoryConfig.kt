@@ -33,11 +33,15 @@ private fun getOffset(pageable: Pageable): Long {
     }
 }
 
+const val MAX_LIMIT: Long = 10_000
 private fun getLimit(pageable: Pageable): Long {
+    // 너무 큰 값이 들어오면 어플리케이션 부하가 커질 수 있으므로 제한을 둔다.
     return if (pageable.isPaged) {
-        pageable.pageSize.toLong()
+        var toLong = pageable.pageSize.toLong()
+        if (toLong > MAX_LIMIT) toLong = MAX_LIMIT
+        toLong
     } else {
-        Long.MAX_VALUE
+        MAX_LIMIT
     }
 }
 

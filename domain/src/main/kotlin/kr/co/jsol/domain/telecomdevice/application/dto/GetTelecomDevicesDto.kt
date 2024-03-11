@@ -24,8 +24,8 @@ data class GetTelecomDevicesDto(
     @field:Schema(description = "총 요금 설명")
     var totalPrice: String? = null,
 
-    @field:Schema(description = "이동 링크")
-    var link: String? = null,
+    @field:Schema(description = "표시 여부")
+    var isDisplay: Boolean? = null,
 
     @field:Schema(description = "기타 1")
     var etc1: String? = null,
