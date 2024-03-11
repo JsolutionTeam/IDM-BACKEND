@@ -50,7 +50,7 @@ class TelecomDeviceQueryRepository(
         val sortBy = Sort.by(
             listOf(
                 Sort.Order(Sort.Direction.ASC, "displayOrder"),
-                Sort.Order(Sort.Direction.DESC, "updatedBy"),
+                Sort.Order(Sort.Direction.DESC, "updatedAt"),
             )
         )
 
