@@ -3,7 +3,7 @@ package kr.co.jsol.domain.telecomdevice.application.dto
 import io.swagger.v3.oas.annotations.media.Schema
 import javax.validation.constraints.NotNull
 
-@Schema(name = "통신팀 판매용 단말 정보 수정 요청")
+@Schema(name = "통신팀 판매용 단말 정보 단일 수정 요청")
 data class UpdateTelecomDeviceDto(
     @field:NotNull(message = "통신팀 판매용 단말 정보 아이디는 필수입니다.")
     @field:Schema(description = "통신팀 판매용 단말 정보 아이디")
@@ -30,8 +30,11 @@ data class UpdateTelecomDeviceDto(
     @field:Schema(description = "총 요금 설명")
     var totalPrice: String? = null,
 
-    @field:Schema(description = "통신사 바로가기 링크")
+    @field:Schema(description = "이동 링크")
     var link: String? = null,
+
+    @field:Schema(description = "표시 순서")
+    var displayOrder: Int? = null,
 
     @field:Schema(description = "기타 1")
     var etc1: String? = null,

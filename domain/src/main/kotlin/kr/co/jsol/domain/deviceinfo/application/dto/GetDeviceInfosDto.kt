@@ -1,7 +1,9 @@
 package kr.co.jsol.domain.deviceinfo.application.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
+import org.springdoc.api.annotations.ParameterObject
 
+@ParameterObject
 @Schema(name = "단말 단일 조회 요청")
 data class GetDeviceInfosDto(
     @field:Schema(description = "바코드 모델 구분")

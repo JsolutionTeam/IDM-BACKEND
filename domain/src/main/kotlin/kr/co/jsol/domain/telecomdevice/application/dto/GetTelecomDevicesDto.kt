@@ -1,7 +1,9 @@
 package kr.co.jsol.domain.telecomdevice.application.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
+import org.springdoc.api.annotations.ParameterObject
 
+@ParameterObject
 @Schema(name = "통신팀 판매용 단말 정보 페이지 조회 요청")
 data class GetTelecomDevicesDto(
     @field:Schema(description = "단말 모델명")
@@ -22,7 +24,7 @@ data class GetTelecomDevicesDto(
     @field:Schema(description = "총 요금 설명")
     var totalPrice: String? = null,
 
-    @field:Schema(description = "통신사 바로가기 링크")
+    @field:Schema(description = "이동 링크")
     var link: String? = null,
 
     @field:Schema(description = "기타 1")

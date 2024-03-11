@@ -1,9 +1,11 @@
 package kr.co.jsol.domain.deviceinfo.application.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
+import org.springdoc.api.annotations.ParameterObject
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
+@ParameterObject
 @Schema(name = "단말 검색 조회 요청")
 data class GetDeviceInfoSearchDto(
     @field:NotBlank(message = "series는 필수입력입니다.")

@@ -2,8 +2,10 @@ package kr.co.jsol.domain.shop.application.dto
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import io.swagger.v3.oas.annotations.media.Schema
+import org.springdoc.api.annotations.ParameterObject
 import javax.validation.constraints.Size
 
+@ParameterObject
 @Schema(name = "업체 계정(사용자) 조회")
 data class GetShopAccountsDto(
     @field:Schema(description = "이름", example = "권세기")

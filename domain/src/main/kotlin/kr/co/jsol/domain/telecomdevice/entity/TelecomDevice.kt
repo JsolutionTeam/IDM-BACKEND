@@ -1,21 +1,15 @@
 package kr.co.jsol.domain.telecomdevice.entity
 
 import kr.co.jsol.common.domain.BaseEntity
-import kr.co.jsol.domain.device.entity.Device
 import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDeviceDto
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.Table
 import javax.persistence.Column
-import javax.persistence.ConstraintMode
 import javax.persistence.Entity
-import javax.persistence.FetchType
-import javax.persistence.ForeignKey
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
 
 @SQLDelete(sql = "UPDATE tb_telecom_device SET deleted_at = now() WHERE idx = ?")
 @Entity
@@ -52,8 +46,12 @@ class TelecomDevice(
     @Comment("총 요금 설명")
     var totalPrice: String,
 
-    @Comment("통신사 바로가기 링크")
+    @Comment("이동 링크")
     var link: String,
+
+    @Column(name = "display_order")
+    @Comment("표시 순서")
+    var displayOrder: Int,
 
     @Comment("기타 1")
     var etc1: String,
@@ -74,10 +72,13 @@ class TelecomDevice(
     var etc6: String,
 
     // 혹시 몰라서 일단 들고있도록 함
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "device_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @Column(name = "device_id")
     @Comment("단말 기초 아이디")
-    var device: Device,
+    val deviceId: Long,
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "device_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
+//    @Comment("단말 기초 아이디")
+//    var device: Device,
 ) : BaseEntity() {
 
     fun update(updateTelecomDeviceDto: UpdateTelecomDeviceDto) {
@@ -89,6 +90,7 @@ class TelecomDevice(
         updateTelecomDeviceDto.phonePlan?.let { phonePlan = it }
         updateTelecomDeviceDto.totalPrice?.let { totalPrice = it }
         updateTelecomDeviceDto.link?.let { link = it }
+        updateTelecomDeviceDto.displayOrder?.let { displayOrder = it }
         updateTelecomDeviceDto.etc1?.let { etc1 = it }
         updateTelecomDeviceDto.etc2?.let { etc2 = it }
         updateTelecomDeviceDto.etc3?.let { etc3 = it }

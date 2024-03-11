@@ -15,7 +15,6 @@ import kr.co.jsol.domain.deviceinfo.application.dto.UpdateDeviceInfoDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoGroupByDeviceSeriesDto
 import kr.co.jsol.domain.deviceinfo.infrastructure.dto.DeviceInfoImageDto
-import org.springdoc.api.annotations.ParameterObject
 import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -112,7 +111,6 @@ class DeviceInfoController(
     @ResponseStatus(HttpStatus.OK)
     fun getBySearch(
         @Valid
-        @ParameterObject
         getDeviceInfoSearchDto: GetDeviceInfoSearchDto,
     ): DeviceInfoDto? {
         return service.findBySeriesAndDeviceIdAndColorId(getDeviceInfoSearchDto)

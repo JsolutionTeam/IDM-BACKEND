@@ -1,8 +1,10 @@
 package kr.co.jsol.domain.devicesubsidy.application.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
+import org.springdoc.api.annotations.ParameterObject
 import javax.validation.constraints.Min
 
+@ParameterObject
 @Schema(name = "공시 지원금 페이지 조회 요청")
 data class GetDeviceSubsidiesDto(
     @field:Min(value = 0, message = "최소 공시 지원금 가격은 0원 이상이어야 합니다.")

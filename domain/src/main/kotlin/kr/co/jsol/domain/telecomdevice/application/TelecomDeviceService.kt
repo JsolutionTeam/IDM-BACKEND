@@ -38,25 +38,38 @@ class TelecomDeviceService(
             ""
         }
 
-        return TelecomDeviceDto(
-            repository.save(
-                createTelecomDeviceDto.toEntity(
-                    device = device,
-                    imageUrl = imageUrl,
-                )
+        val telecomDevice = repository.save(
+            createTelecomDeviceDto.toEntity(
+                imageUrl = imageUrl,
+                displayOrder = 1,
+                device = device,
             )
         )
+
+        reorder()
+
+        return TelecomDeviceDto(telecomDevice)
     }
 
     @Transactional
     fun updateMultiple(updateTelecomDevicesDto: UpdateTelecomDevicesDto): List<TelecomDeviceDto> {
-        return updateTelecomDevicesDto.telecomDevices.map(::update)
+        return updateTelecomDevicesDto.telecomDevices.mapIndexed { index, updateTelecomDeviceDto ->
+            // 마지막 데이터일 경우 재정렬
+            update(updateTelecomDeviceDto, isReorder = index == updateTelecomDevicesDto.telecomDevices.size - 1)
+        }
     }
 
+    /**
+     * @param isReorder 재정렬 여부, 기본값은 true
+     */
     @Transactional
-    fun update(updateTelecomDeviceDto: UpdateTelecomDeviceDto): TelecomDeviceDto {
+    fun update(
+        updateTelecomDeviceDto: UpdateTelecomDeviceDto,
+        isReorder: Boolean = true,
+    ): TelecomDeviceDto {
         val telecomDevice = query.getById(updateTelecomDeviceDto.id)
         telecomDevice.update(updateTelecomDeviceDto)
+        if (isReorder) reorder()
         return TelecomDeviceDto(repository.save(telecomDevice))
     }
 
@@ -77,6 +90,16 @@ class TelecomDeviceService(
         deviceInfo.imageUrl = uploadFile.filename
         repository.save(deviceInfo)
         return uploadFile
+    }
+
+    @Transactional
+    fun reorder() {
+        val list = query.findAllOrderAscAndUpdatedAtDesc()
+
+        list.forEachIndexed { index, telecomDevice ->
+            telecomDevice.displayOrder = index + 1
+        }
+        repository.saveAll(list)
     }
 
     @Transactional(readOnly = true)

@@ -29,8 +29,11 @@ class TelecomDeviceDto(
     @field:Schema(description = "총 요금 설명")
     var totalPrice: String,
 
-    @field:Schema(description = "통신사 바로가기 링크")
+    @field:Schema(description = "이동 링크")
     var link: String,
+
+    @field:Schema(description = "표시 순서")
+    var displayOrder: Int,
 
     @field:Schema(description = "기타 1")
     var etc1: String,
@@ -61,6 +64,7 @@ class TelecomDeviceDto(
         phonePlan = telecomDevice.phonePlan,
         totalPrice = telecomDevice.totalPrice,
         link = telecomDevice.link,
+        displayOrder = telecomDevice.displayOrder,
         etc1 = telecomDevice.etc1,
         etc2 = telecomDevice.etc2,
         etc3 = telecomDevice.etc3,

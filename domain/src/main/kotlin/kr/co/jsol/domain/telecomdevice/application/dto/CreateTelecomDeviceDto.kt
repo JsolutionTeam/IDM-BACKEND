@@ -38,32 +38,33 @@ data class CreateTelecomDeviceDto(
     @field:Schema(description = "총 요금 설명")
     var totalPrice: String,
 
-    @field:NotNull(message = "통신사 바로가기 링크 설명은 필수입니다.")
-    @field:Schema(description = "통신사 바로가기 링크")
+    @field:NotNull(message = "이동 링크 설명은 필수입니다.")
+    @field:Schema(description = "이동 링크")
     var link: String,
 
-    @field:Schema(description = "기타 1")
+    @field:Schema(description = "기타 1", defaultValue = "")
     var etc1: String? = null,
 
-    @field:Schema(description = "기타 2")
+    @field:Schema(description = "기타 2", defaultValue = "")
     var etc2: String? = null,
 
-    @field:Schema(description = "기타 3")
+    @field:Schema(description = "기타 3", defaultValue = "")
     var etc3: String? = null,
 
-    @field:Schema(description = "기타 4")
+    @field:Schema(description = "기타 4", defaultValue = "")
     var etc4: String? = null,
 
-    @field:Schema(description = "기타 5")
+    @field:Schema(description = "기타 5", defaultValue = "")
     var etc5: String? = null,
 
-    @field:Schema(description = "기타 6")
+    @field:Schema(description = "기타 6", defaultValue = "")
     var etc6: String? = null,
 ) {
 
     fun toEntity(
-        device: Device,
         imageUrl: String,
+        displayOrder: Int,
+        device: Device,
     ): TelecomDevice {
         return TelecomDevice(
             modelName = device.modelName,
@@ -74,13 +75,14 @@ data class CreateTelecomDeviceDto(
             phonePlan = phonePlan,
             totalPrice = totalPrice,
             link = link,
+            displayOrder = displayOrder,
             etc1 = etc1 ?: "",
             etc2 = etc2 ?: "",
             etc3 = etc3 ?: "",
             etc4 = etc4 ?: "",
             etc5 = etc5 ?: "",
             etc6 = etc6 ?: "",
-            device = device,
+            deviceId = device.id,
         )
     }
 }

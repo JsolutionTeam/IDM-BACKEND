@@ -14,7 +14,6 @@ import kr.co.jsol.domain.devicesubsidy.application.dto.GetDeviceSubsidyPriceDto
 import kr.co.jsol.domain.devicesubsidy.application.dto.UpdateDeviceSubsidiesDto
 import kr.co.jsol.domain.devicesubsidy.infrastructure.dto.DeviceSubsidyDto
 import kr.co.jsol.domain.userdetails.UserDetailsImpl
-import org.springdoc.api.annotations.ParameterObject
 import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.prepost.PreAuthorize
@@ -101,7 +100,6 @@ class DeviceSubsidyController(
     @ResponseStatus(HttpStatus.OK)
     fun findOffsetPageBySearch(
         @Valid
-        @ParameterObject
         getDeviceSubsidiesDto: GetDeviceSubsidiesDto,
         pageRequest: PageRequest,
     ): Page<DeviceSubsidyDto> {

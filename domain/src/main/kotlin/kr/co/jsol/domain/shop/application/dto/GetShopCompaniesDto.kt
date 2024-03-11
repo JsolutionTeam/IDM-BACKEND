@@ -1,9 +1,11 @@
 package kr.co.jsol.domain.shop.application.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
+import org.springdoc.api.annotations.ParameterObject
 import javax.validation.constraints.Size
 
-@Schema(name = "업체 생성 요청")
+@ParameterObject
+@Schema(name = "업체 페이지 조회 요청")
 data class GetShopCompaniesDto(
     @field:Size(max = 100, message = "업체명은 100자 이내로 입력해주세요.")
     @field:Schema(description = "업체명", example = "제이솔루션")

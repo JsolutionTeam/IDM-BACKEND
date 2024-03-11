@@ -1,6 +1,7 @@
 package kr.co.jsol.domain.device.infrastructure.query
 
 import com.querydsl.jpa.impl.JPAQueryFactory
+import kr.co.jsol.common.exception.domain.device.DeviceException
 import kr.co.jsol.common.repository.BaseQueryRepository
 import kr.co.jsol.domain.device.entity.Device
 import kr.co.jsol.domain.device.entity.QDevice.Companion.device
@@ -18,6 +19,6 @@ class DeviceQueryRepository(
             device.id.eq(id)
                 .and(device.deletedAt.isNull)
         )
-            .orElseThrow { throw IllegalArgumentException("사용자를 찾을 수 없습니다.") }
+            .orElseThrow { DeviceException.NotFoundByIdException() }
     }
 }

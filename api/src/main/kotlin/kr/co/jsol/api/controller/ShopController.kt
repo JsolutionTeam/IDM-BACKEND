@@ -13,7 +13,6 @@ import kr.co.jsol.domain.shop.application.dto.CreateCompanyDto
 import kr.co.jsol.domain.shop.application.dto.GetShopCompaniesDto
 import kr.co.jsol.domain.shop.infrastructure.dto.ShopDto
 import kr.co.jsol.domain.userdetails.UserDetailsImpl
-import org.springdoc.api.annotations.ParameterObject
 import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.prepost.PreAuthorize
@@ -54,7 +53,6 @@ class ShopController(
     @ResponseStatus(HttpStatus.OK)
     fun findAccountPage(
         @Valid
-        @ParameterObject
         getShopCompaniesDto: GetAccountsDto,
         pageRequest: PageRequest,
         @AuthenticationPrincipal
@@ -77,7 +75,6 @@ class ShopController(
     @ResponseStatus(HttpStatus.OK)
     fun findCompanyPage(
         @Valid
-        @ParameterObject
         getShopCompaniesDto: GetShopCompaniesDto,
         pageRequest: PageRequest,
     ): Page<ShopDto> {

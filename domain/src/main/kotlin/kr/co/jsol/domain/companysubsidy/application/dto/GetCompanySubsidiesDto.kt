@@ -3,8 +3,10 @@ package kr.co.jsol.domain.companysubsidy.application.dto
 import io.swagger.v3.oas.annotations.media.Schema
 import kr.co.jsol.domain.telecom.entity.enums.DiscountType
 import kr.co.jsol.domain.telecom.entity.enums.OpenType
+import org.springdoc.api.annotations.ParameterObject
 import javax.validation.constraints.Min
 
+@ParameterObject
 @Schema(name = "회사 지원금 페이지 조회 요청")
 data class GetCompanySubsidiesDto(
     @field:Min(value = 1, message = "idm - shop idx는 1 이상이어야 합니다.")

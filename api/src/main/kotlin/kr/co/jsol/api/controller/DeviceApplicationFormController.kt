@@ -12,7 +12,6 @@ import kr.co.jsol.domain.deviceapplicationform.application.dto.GetDeviceApplicat
 import kr.co.jsol.domain.deviceapplicationform.application.dto.UpdateDeviceApplicationFormDto
 import kr.co.jsol.domain.deviceapplicationform.infrastructure.dto.DeviceApplicationFormDto
 import kr.co.jsol.domain.userdetails.UserDetailsImpl
-import org.springdoc.api.annotations.ParameterObject
 import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.prepost.PreAuthorize
@@ -94,7 +93,6 @@ class DeviceApplicationFormController(
     @ResponseStatus(HttpStatus.OK)
     fun createDeviceApplicationForm(
         @Valid
-        @ParameterObject
         getDeviceApplicationFormsDto: GetDeviceApplicationFormsDto,
         pageRequest: PageRequest,
         @AuthenticationPrincipal

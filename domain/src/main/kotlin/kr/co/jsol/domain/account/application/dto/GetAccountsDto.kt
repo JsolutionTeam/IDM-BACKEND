@@ -1,9 +1,11 @@
 package kr.co.jsol.domain.account.application.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
+import org.springdoc.api.annotations.ParameterObject
 import javax.validation.constraints.Size
 
-@Schema(name = "계정 생성 요청")
+@ParameterObject
+@Schema(name = "계정 조회 요청")
 data class GetAccountsDto(
     @field:Size(min = 6, max = 20, message = "아이디는 6~20자 이내로 입력해야 합니다.")
     @field:Schema(description = "계정 아이디[로그인시 사용]")

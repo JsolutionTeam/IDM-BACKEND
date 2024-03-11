@@ -3,9 +3,11 @@ package kr.co.jsol.domain.deviceapplicationform.application.dto
 import io.swagger.v3.oas.annotations.media.Schema
 import kr.co.jsol.domain.telecom.entity.enums.DiscountType
 import kr.co.jsol.domain.telecom.entity.enums.OpenType
+import org.springdoc.api.annotations.ParameterObject
 import javax.validation.constraints.Min
 import javax.validation.constraints.Size
 
+@ParameterObject
 @Schema(name = "단말 신청서 조회 요청")
 data class GetDeviceApplicationFormsDto(
     @field:Schema(description = "업체 아이디, MASTER 계정만 입력해서 사용 가능")

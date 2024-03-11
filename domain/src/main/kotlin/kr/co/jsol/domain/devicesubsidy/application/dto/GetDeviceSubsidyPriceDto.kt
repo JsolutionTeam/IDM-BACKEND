@@ -1,9 +1,11 @@
 package kr.co.jsol.domain.devicesubsidy.application.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
+import org.springdoc.api.annotations.ParameterObject
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
 
+@ParameterObject
 @Schema(name = "공시 지원금 가격만 조회 요청")
 data class GetDeviceSubsidyPriceDto(
     @field:NotNull(message = "통신사 아이디는 필수입력입니다.")

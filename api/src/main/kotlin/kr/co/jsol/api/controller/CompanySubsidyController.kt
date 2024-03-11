@@ -17,7 +17,6 @@ import kr.co.jsol.domain.companysubsidy.application.dto.UpdateCompanySubsidiesDt
 import kr.co.jsol.domain.companysubsidy.infrastructure.dto.CompanySubsidyDto
 import kr.co.jsol.domain.companysubsidy.infrastructure.dto.CompanySubsidyGroupByDetailDto
 import kr.co.jsol.domain.userdetails.UserDetailsImpl
-import org.springdoc.api.annotations.ParameterObject
 import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.prepost.PreAuthorize
@@ -120,7 +119,6 @@ class CompanySubsidyController(
     @ResponseStatus(HttpStatus.OK)
     fun findOffsetPageBySearch(
         @Valid
-        @ParameterObject
         getCompanySubsidiesDto: GetCompanySubsidiesDto,
         pageRequest: PageRequest,
         @AuthenticationPrincipal

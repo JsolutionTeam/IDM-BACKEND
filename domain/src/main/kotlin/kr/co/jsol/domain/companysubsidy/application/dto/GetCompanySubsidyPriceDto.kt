@@ -3,9 +3,11 @@ package kr.co.jsol.domain.companysubsidy.application.dto
 import io.swagger.v3.oas.annotations.media.Schema
 import kr.co.jsol.domain.telecom.entity.enums.DiscountType
 import kr.co.jsol.domain.telecom.entity.enums.OpenType
+import org.springdoc.api.annotations.ParameterObject
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
 
+@ParameterObject
 @Schema(name = "회사 지원금 가격만 조회 요청")
 data class GetCompanySubsidyPriceDto(
     @field:NotNull(message = "업체 아이디는 필수입니다.")
