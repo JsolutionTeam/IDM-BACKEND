@@ -54,13 +54,15 @@ class TelecomDeviceQueryRepository(
             )
         )
 
+        val pageRequest = PageRequest.of(
+            if (pageable.isPaged) pageable.pageNumber else 0,
+            if (pageable.isPaged) pageable.pageSize else 100_000,
+            sortBy,
+        )
+
         return repository.findAll(
             booleanBuilder,
-            PageRequest.of(
-                pageable.pageNumber,
-                pageable.pageSize,
-                sortBy,
-            ),
+            pageRequest,
         )
     }
 
