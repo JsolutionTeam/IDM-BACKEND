@@ -118,6 +118,13 @@ class TelecomDeviceController(
         return service.updateIsDisplay(updateTelecomDeviceIsDisplayDto)
     }
 
+    @Operation(summary = "통신 단말 순서 재정렬")
+    @PatchMapping("reorder")
+    @ResponseStatus(HttpStatus.OK)
+    fun reorder() {
+        return service.reorder()
+    }
+
     @Operation(summary = "통신 단말 정보 다중 삭제")
     @PreAuthorize(AccountAuthority.ROLECHECK.HasMasterRole)
     @SecurityRequirement(name = "Bearer Authentication")

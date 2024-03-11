@@ -2,6 +2,7 @@ package kr.co.jsol.domain.telecomdevice.entity
 
 import kr.co.jsol.common.domain.BaseEntity
 import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDeviceDto
+import org.hibernate.annotations.BatchSize
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.Table
@@ -14,6 +15,7 @@ import javax.persistence.Id
 @SQLDelete(sql = "UPDATE tb_telecom_device SET deleted_at = now() WHERE idx = ?")
 @Entity
 @javax.persistence.Table(name = "tb_telecom_device")
+@BatchSize(size = 50)
 @Table(appliesTo = "tb_telecom_device", comment = "통신팀 판매용 단말 리스트")
 class TelecomDevice(
     @Id

@@ -9,4 +9,3 @@ import org.springframework.stereotype.Repository
 interface TelecomDeviceRepository :
     CrudRepository<TelecomDevice, Long>,
     QuerydslPredicateExecutor<TelecomDevice>
-

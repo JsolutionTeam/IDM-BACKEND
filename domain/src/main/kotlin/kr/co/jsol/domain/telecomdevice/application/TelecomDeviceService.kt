@@ -12,24 +12,32 @@ import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDeviceDto
 import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDeviceIsDisplayDto
 import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDeviceIsDisplaysDto
 import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDevicesDto
+import kr.co.jsol.domain.telecomdevice.entity.TelecomDevice
 import kr.co.jsol.domain.telecomdevice.infrastructure.dto.TelecomDeviceDto
 import kr.co.jsol.domain.telecomdevice.infrastructure.query.TelecomDeviceQueryRepository
+import kr.co.jsol.domain.telecomdevice.infrastructure.repository.TelecomDeviceJDBCRepository
 import kr.co.jsol.domain.telecomdevice.infrastructure.repository.TelecomDeviceRepository
+import org.slf4j.LoggerFactory.getLogger
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import javax.persistence.EntityManager
 
 @Service
 class TelecomDeviceService(
+    private val em: EntityManager,
     private val repository: TelecomDeviceRepository,
     private val query: TelecomDeviceQueryRepository,
+    private val jdbcRepository: TelecomDeviceJDBCRepository,
 
     private val fileService: FileService,
 
     private val deviceQuery: DeviceQueryRepository,
     private val deviceInfoQuery: DeviceInfoQueryRepository,
 ) {
+
+    private final val log = getLogger(this::class.java)
 
     @Transactional
     fun create(createTelecomDeviceDto: CreateTelecomDeviceDto): TelecomDeviceDto {
@@ -96,12 +104,19 @@ class TelecomDeviceService(
     @Transactional
     fun reorder() {
         val list = query.findAllOrderAscAndUpdatedAtDesc()
-
+        val updatedList = mutableListOf<TelecomDevice>()
         // idx 순으로 변경하는데, 기존과 같다면 list에 포함하지 않는다. (filter 처리)
-        list.filterIndexed { index, telecomDevice -> telecomDevice.displayOrder != index + 1 }
-            .forEachIndexed { index, telecomDevice -> telecomDevice.displayOrder = index + 1 }
-
-        repository.saveAll(list)
+        list.forEachIndexed { index, telecomDevice ->
+            if (telecomDevice.displayOrder != index + 1) {
+                updatedList.add(telecomDevice.apply { displayOrder = index + 1 })
+            }
+        }
+        // jdbc 쿼리로 하게되면 바로 DB에 반영되고 영속성 컨텍스트와 정보가 달라
+        // flush 후 clear로 영속성 컨텍스트의 정보를 날려준다.
+        // 로그엔 보지이 않지만 정상적으로 쿼리가 실행된다.
+        jdbcRepository.batchUpdateDisplayOrder(subItems = updatedList)
+        em.flush() // 없으면 Transactional 어노테이션에 의해 자동으로 업데이트 쿼리가 n회 실행됨
+//        em.clear() // 하게되면 영속성 컨텍스트 정보가 날라가게 되어서 update 쿼리가 n회 실행됨
     }
 
     @Transactional
