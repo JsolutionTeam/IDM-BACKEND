@@ -6,12 +6,17 @@ import org.springframework.stereotype.Component
 
 @Component // @Value annotation를 사용하기 위함
 class TelecomDeviceFactory(
-    @Value("\${custom.api-url.shop:https://api-shop.j-sol.co.kr}")
-    private var shopApiUrl: String,
+    @Value("\${custom.api-url.shop.host:https://api-shop.j-sol.co.kr}")
+    private var host: String,
+
+    @Value("\${custom.api-url.shop.local-files:/api/v2/local-files}")
+    private var localFiles: String,
+
+    @Value("\${custom.api-url.shop.get-local-files:?filename=}")
+    private var getLocalFiles: String,
 ) {
 
     fun create(telecomDevice: TelecomDevice): TelecomDeviceDto {
-//        println("shopApiUrl = ${shopApiUrl}")
         // imageUrl를 풀 경로로 만들기 위해 shopApiUrl을 붙여줌
         val imageUrl = telecomDevice.imageUrl
 
@@ -19,7 +24,7 @@ class TelecomDeviceFactory(
         if (imageUrl.contains("http")) {
             return TelecomDeviceDto(telecomDevice)
         }
-        telecomDevice.imageUrl = "$shopApiUrl/api/v1/local-files?filename=$imageUrl"
+        telecomDevice.imageUrl = "$host$localFiles$getLocalFiles$imageUrl"
         return TelecomDeviceDto(telecomDevice)
     }
 }

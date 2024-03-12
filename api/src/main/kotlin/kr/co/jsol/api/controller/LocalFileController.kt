@@ -28,7 +28,8 @@ import org.springframework.web.multipart.MultipartFile
 import java.util.concurrent.TimeUnit
 
 @RestController
-@RequestMapping("api/v2/local-files")
+//@RequestMapping("api/v2/local-files")
+@RequestMapping("\${custom.api-url.shop.local-files:/api/v2/local-files}")
 @Tag(name = "로컬 파일 관련 공개 API")
 class LocalFileController(
     private val service: FileService,
@@ -55,6 +56,10 @@ class LocalFileController(
             .body<ResourceRegion>(region)
     }
 
+    /**
+     * 아래 API는 기존 시스템에서 사용하는 부분이 있기 때문에 API 스펙을 바꿔선 안되고
+     * 기능이 크게 수정되어야 할 경우 새로운 API를 추가하고 기존 API는 Deprecated 처리해야 합니다.
+     */
     @Operation(summary = "로컬 파일 시스템에서 동영상 파일을 한 번에 조회")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
