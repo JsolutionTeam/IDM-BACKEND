@@ -13,7 +13,7 @@ class TelecomDeviceFactory(
     fun create(telecomDevice: TelecomDevice): TelecomDeviceDto {
 //        println("shopApiUrl = ${shopApiUrl}")
         // imageUrl를 풀 경로로 만들기 위해 shopApiUrl을 붙여줌
-        telecomDevice.imageUrl = "$shopApiUrl/${telecomDevice.imageUrl}"
+        telecomDevice.imageUrl = "$shopApiUrl/api/v1/local-files/${telecomDevice.imageUrl}"
         return TelecomDeviceDto(telecomDevice)
     }
 }
