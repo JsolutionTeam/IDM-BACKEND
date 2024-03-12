@@ -38,9 +38,16 @@ data class CreateTelecomDeviceDto(
     @field:Schema(description = "총 요금 설명")
     var totalPrice: String,
 
-    @field:NotNull(message = "이동 링크 설명은 필수입니다.")
-    @field:Schema(description = "이동 링크")
+    @field:NotNull(message = "통신사 신청 링크 설명은 필수입니다.")
+    @field:Schema(description = "통신사 신청 링크")
     var link: String,
+
+    @field:NotNull(message = "단말신청서 이동 여부는 필수입니다.")
+    @field:Schema(
+        description = "단말신청서 이동 여부, true = 단말신청서 폼으로 이동 false = 통신사 이동 링크로 바로 이동",
+        implementation = Boolean::class
+    )
+    var isForm: Boolean,
 
     @field:Schema(description = "기타 1", defaultValue = "")
     var etc1: String? = null,
@@ -74,6 +81,7 @@ data class CreateTelecomDeviceDto(
             phonePlan = phonePlan,
             totalPrice = totalPrice,
             link = link,
+            isForm = isForm,
             etc1 = etc1 ?: "",
             etc2 = etc2 ?: "",
             etc3 = etc3 ?: "",

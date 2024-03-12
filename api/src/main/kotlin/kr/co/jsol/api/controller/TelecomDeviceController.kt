@@ -118,7 +118,21 @@ class TelecomDeviceController(
         return service.updateIsDisplay(updateTelecomDeviceIsDisplayDto)
     }
 
-    @Operation(summary = "통신 단말 순서 재정렬")
+    @Operation(
+        summary = "통신 단말 순서 재정렬",
+        description = """
+    통신 단말의 displayOrder를 재정렬합니다.
+    순서 정렬 기준은 displayOrder 오름차순, updatedAt 내림차순입니다.
+    
+    ex) display_order   updated_at
+             1          2021-08-01
+             2          2021-08-02
+             3          2021-08-01
+             3          2021-08-02
+                                
+    위와 같은 데이터가 있다면, 3, 2021-08-02의 데이터가 4번이 된다.
+    """,
+    )
     @PatchMapping("reorder")
     @ResponseStatus(HttpStatus.OK)
     fun reorder() {

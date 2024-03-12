@@ -30,8 +30,14 @@ data class UpdateTelecomDeviceDto(
     @field:Schema(description = "총 요금 설명")
     var totalPrice: String? = null,
 
-    @field:Schema(description = "이동 링크")
+    @field:Schema(description = "통신사 신청 링크")
     var link: String? = null,
+
+    @field:Schema(
+        description = "단말신청서 이동 여부, true = 단말신청서 폼으로 이동 false = 통신사 이동 링크로 바로 이동",
+        implementation = Boolean::class
+    )
+    var isForm: Boolean? = null,
 
     @field:Schema(description = "표시 순서")
     var displayOrder: Int? = null,

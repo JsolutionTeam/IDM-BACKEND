@@ -138,7 +138,7 @@ complexity:
   LongParameterList:
     active: true
     functionThreshold:
-    constructorThreshold: 15
+    constructorThreshold: 30
     ignoreDefaultParameters: false
     ignoreDataClasses: true
     ignoreAnnotatedParameter: [ Column, OneToMany, ManyToOne ]

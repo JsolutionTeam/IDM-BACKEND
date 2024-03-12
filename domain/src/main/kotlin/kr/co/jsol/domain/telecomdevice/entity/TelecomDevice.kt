@@ -51,8 +51,12 @@ class TelecomDevice(
     @Comment("총 요금 설명")
     var totalPrice: String,
 
-    @Comment("이동 링크")
+    @Comment("통신사 신청 링크")
     var link: String,
+
+    @Column(name = "is_form")
+    @Comment("단말신청서 이동 여부, true = 단말신청서 폼으로 이동 false = 통신사 이동 링크로 바로 이동")
+    var isForm: Boolean,
 
     @Column(name = "display_order")
     @Comment("표시 순서")
@@ -99,6 +103,7 @@ class TelecomDevice(
         updateTelecomDeviceDto.phonePlan?.let { phonePlan = it }
         updateTelecomDeviceDto.totalPrice?.let { totalPrice = it }
         updateTelecomDeviceDto.link?.let { link = it }
+        updateTelecomDeviceDto.isForm?.let { isForm = it }
         updateTelecomDeviceDto.displayOrder?.let { displayOrder = it }
         updateTelecomDeviceDto.etc1?.let { etc1 = it }
         updateTelecomDeviceDto.etc2?.let { etc2 = it }
