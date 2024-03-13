@@ -18,7 +18,7 @@ class Telecom(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idx")
     @Comment("아이디")
-    var id: Long,
+    var id: Long = 0,
 
     @Comment("이름")
     var name: String,

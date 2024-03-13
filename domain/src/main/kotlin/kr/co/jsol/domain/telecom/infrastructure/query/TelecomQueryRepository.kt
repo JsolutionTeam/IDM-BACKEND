@@ -18,6 +18,6 @@ class TelecomQueryRepository(
             telecom.id.eq(id)
                 .and(telecom.deletedAt.isNull)
         )
-            .orElseThrow { throw IllegalArgumentException("사용자를 찾을 수 없습니다.") }
+            .orElseThrow { throw IllegalArgumentException("통신사를 찾을 수 없습니다.") }
     }
 }
