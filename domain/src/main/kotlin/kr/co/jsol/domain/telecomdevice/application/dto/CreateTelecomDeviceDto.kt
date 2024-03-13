@@ -73,8 +73,6 @@ data class CreateTelecomDeviceDto(
         device: Device,
     ): TelecomDevice {
         return TelecomDevice(
-            modelName = device.modelName,
-            petName = device.petName,
             imageUrl = imageUrl,
             price = price,
             companySubsidy = companySubsidy,
@@ -88,7 +86,7 @@ data class CreateTelecomDeviceDto(
             etc4 = etc4 ?: "",
             etc5 = etc5 ?: "",
             etc6 = etc6 ?: "",
-            deviceId = device.id,
+            device = device,
         )
     }
 }

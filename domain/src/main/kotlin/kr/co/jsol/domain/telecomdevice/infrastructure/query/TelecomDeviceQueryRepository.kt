@@ -5,6 +5,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory
 import kr.co.jsol.common.config.pagination
 import kr.co.jsol.common.exception.domain.deviceinfo.DeviceInfoException
 import kr.co.jsol.common.repository.BaseQueryRepository
+import kr.co.jsol.domain.device.entity.QDevice.Companion.device
 import kr.co.jsol.domain.telecomdevice.application.dto.GetTelecomDevicesDto
 import kr.co.jsol.domain.telecomdevice.entity.QTelecomDevice.Companion.telecomDevice
 import kr.co.jsol.domain.telecomdevice.entity.TelecomDevice
@@ -47,8 +48,8 @@ class TelecomDeviceQueryRepository(
         val booleanBuilder = BooleanBuilder()
             .and(telecomDevice.deletedAt.isNull)
 
-        getTelecomDevicesDto.modelName?.let { booleanBuilder.and(telecomDevice.modelName.contains(it)) }
-        getTelecomDevicesDto.petName?.let { booleanBuilder.and(telecomDevice.petName.contains(it)) }
+        getTelecomDevicesDto.modelName?.let { booleanBuilder.and(device.modelName.contains(it)) }
+        getTelecomDevicesDto.petName?.let { booleanBuilder.and(device.petName.contains(it)) }
         getTelecomDevicesDto.price?.let { booleanBuilder.and(telecomDevice.price.contains(it)) }
         getTelecomDevicesDto.companySubsidy?.let { booleanBuilder.and(telecomDevice.companySubsidy.contains(it)) }
         getTelecomDevicesDto.phonePlan?.let { booleanBuilder.and(telecomDevice.phonePlan.contains(it)) }
@@ -63,6 +64,10 @@ class TelecomDeviceQueryRepository(
 
         val query = queryFactory
             .from(telecomDevice)
+            .leftJoin(device).on(
+                telecomDevice.device.id.eq(device.id),
+                device.deletedAt.isNull,
+            ) // 삭제된 device
             .where(booleanBuilder)
 
         val result = query.clone()

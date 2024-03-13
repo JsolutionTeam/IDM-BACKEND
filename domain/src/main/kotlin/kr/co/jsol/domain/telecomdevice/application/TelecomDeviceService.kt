@@ -81,6 +81,19 @@ class TelecomDeviceService(
     ): TelecomDeviceDto {
         val telecomDevice = query.getById(updateTelecomDeviceDto.id)
         telecomDevice.update(updateTelecomDeviceDto)
+
+        if (updateTelecomDeviceDto.deviceId != null) {
+            val device = deviceQuery.getById(updateTelecomDeviceDto.deviceId!!)
+            telecomDevice.updateDevice(
+                device = device,
+                imageUrl = try {
+                    deviceInfoQuery.getFirstByDeviceId(device.id).imageUrl
+                } catch (e: DeviceInfoException.NotFoundByDeviceIdException) {
+                    ""
+                }
+            )
+        }
+
         if (isReorder) reorder()
         return factory.create(repository.save(telecomDevice))
     }

@@ -4,7 +4,6 @@ import kr.co.jsol.common.domain.BaseEntity
 import kr.co.jsol.domain.shop.entity.Shop
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
-import org.hibernate.annotations.Table
 import javax.persistence.Column
 import javax.persistence.ConstraintMode
 import javax.persistence.Entity
@@ -15,11 +14,11 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.Table
 
 @SQLDelete(sql = "UPDATE shop_depot SET deleted_at = now() WHERE id = ?")
 @Entity
-@javax.persistence.Table(name = "tb_shop_depot")
-@Table(appliesTo = "tb_shop_depot")
+@Table(name = "tb_shop_depot", catalog = "idm")
 class ShopDepot(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

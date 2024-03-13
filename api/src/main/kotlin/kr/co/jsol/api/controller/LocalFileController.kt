@@ -64,6 +64,7 @@ class LocalFileController(
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     fun loadFile(
+        // @PathVariable로 사용하지 않는 이유는, 파일명에 / 가 포함될 수 있기 때문에 충돌이 날 수 있어 사용하지 않음
         @RequestParam
         filename: String,
     ): ResponseEntity<FileSystemResource> {

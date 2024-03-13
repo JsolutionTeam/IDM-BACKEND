@@ -9,17 +9,8 @@ data class UpdateTelecomDeviceDto(
     @field:Schema(description = "통신팀 판매용 단말 정보 아이디")
     val id: Long,
 
-    @field:Schema(description = "단말 모델명")
-    var modelName: String? = null,
-
-    @field:Schema(description = "단말 펫네임")
-    var petName: String? = null,
-
     @field:Schema(description = "출고가 설명")
     var price: String? = null,
-
-    @field:Schema(description = "대표 이미지 URL")
-    var imageUrl: String? = null,
 
     @field:Schema(description = "회사 지원금(행사가) 설명")
     var companySubsidy: String? = null,
@@ -59,4 +50,7 @@ data class UpdateTelecomDeviceDto(
 
     @field:Schema(description = "기타 6")
     var etc6: String? = null,
+
+    @field:Schema(description = "단말(DEVICE) 정보")
+    var deviceId: Long? = null,
 )

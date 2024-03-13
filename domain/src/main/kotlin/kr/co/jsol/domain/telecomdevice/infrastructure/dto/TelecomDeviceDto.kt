@@ -65,11 +65,14 @@ class TelecomDeviceDto(
     var etc6: String = "",
 ) {
 
-    constructor(telecomDevice: TelecomDevice) : this(
+    constructor(
+        telecomDevice: TelecomDevice,
+        imageUrl: String,
+    ) : this(
         id = telecomDevice.id,
-        modelName = telecomDevice.modelName,
-        petName = telecomDevice.petName,
-        imageUrl = telecomDevice.imageUrl,
+        modelName = telecomDevice.device.modelName,
+        petName = telecomDevice.device.petName,
+        imageUrl = imageUrl,
         price = telecomDevice.price,
         companySubsidy = telecomDevice.companySubsidy,
         phonePlan = telecomDevice.phonePlan,

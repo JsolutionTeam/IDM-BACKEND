@@ -18,13 +18,12 @@ class TelecomDeviceFactory(
 
     fun create(telecomDevice: TelecomDevice): TelecomDeviceDto {
         // imageUrl를 풀 경로로 만들기 위해 shopApiUrl을 붙여줌
-        val imageUrl = telecomDevice.imageUrl
+        var imageUrl = telecomDevice.imageUrl
 
-        // 만약 http를 포함하는 경로라면 이미지 경로를 그대로 사용
-        if (imageUrl.contains("http")) {
-            return TelecomDeviceDto(telecomDevice)
+        // http가 있으면 그대로 사용하지만 아니라면 full path 만들어줌
+        if (imageUrl.contains("http").not()) {
+            imageUrl = "$host$localFiles$getLocalFiles$imageUrl"
         }
-        telecomDevice.imageUrl = "$host$localFiles$getLocalFiles$imageUrl"
-        return TelecomDeviceDto(telecomDevice)
+        return TelecomDeviceDto(telecomDevice, imageUrl)
     }
 }

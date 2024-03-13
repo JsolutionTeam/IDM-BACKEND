@@ -202,6 +202,7 @@ class LocalFileService(
     fun createFolderIfNotExists(path: String) {
         val folder = File(path)
         if (!folder.exists()) {
+            log.info("폴더가 없어서 생성합니다. path : {}", path)
             folder.mkdirs()
         }
     }

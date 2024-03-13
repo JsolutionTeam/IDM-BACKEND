@@ -1,16 +1,22 @@
 package kr.co.jsol.domain.telecomdevice.entity
 
 import kr.co.jsol.common.domain.BaseEntity
+import kr.co.jsol.domain.device.entity.Device
 import kr.co.jsol.domain.telecomdevice.application.dto.UpdateTelecomDeviceDto
 import org.hibernate.annotations.BatchSize
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
 import org.hibernate.annotations.Table
 import javax.persistence.Column
+import javax.persistence.ConstraintMode
 import javax.persistence.Entity
+import javax.persistence.FetchType
+import javax.persistence.ForeignKey
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 
 @SQLDelete(sql = "UPDATE tb_telecom_device SET deleted_at = now() WHERE idx = ?")
 @Entity
@@ -23,14 +29,6 @@ class TelecomDevice(
     @Column(name = "idx")
     @Comment("아이디")
     val id: Long = 0,
-
-    @Column(name = "model_name")
-    @Comment("단말 모델명")
-    var modelName: String,
-
-    @Column(name = "pet_name")
-    @Comment("단말 펫네임")
-    var petName: String,
 
     @Column(name = "image_url")
     @Comment("해당 단말에 대한 대표 이미지 URL")
@@ -84,20 +82,13 @@ class TelecomDevice(
     @Comment("기타 6")
     var etc6: String,
 
-    // 혹시 몰라서 일단 들고있도록 함
-    @Column(name = "device_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "device_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
     @Comment("단말 기초 아이디")
-    val deviceId: Long,
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "device_id", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
-//    @Comment("단말 기초 아이디")
-//    var device: Device,
+    var device: Device,
 ) : BaseEntity() {
 
     fun update(updateTelecomDeviceDto: UpdateTelecomDeviceDto) {
-        updateTelecomDeviceDto.modelName?.let { modelName = it }
-        updateTelecomDeviceDto.petName?.let { petName = it }
-        updateTelecomDeviceDto.imageUrl?.let { imageUrl = it }
         updateTelecomDeviceDto.price?.let { price = it }
         updateTelecomDeviceDto.companySubsidy?.let { companySubsidy = it }
         updateTelecomDeviceDto.phonePlan?.let { phonePlan = it }
@@ -111,5 +102,13 @@ class TelecomDevice(
         updateTelecomDeviceDto.etc4?.let { etc4 = it }
         updateTelecomDeviceDto.etc5?.let { etc5 = it }
         updateTelecomDeviceDto.etc6?.let { etc6 = it }
+    }
+
+    fun updateDevice(
+        device: Device,
+        imageUrl: String,
+    ) {
+        this.device = device
+        this.imageUrl = imageUrl
     }
 }
