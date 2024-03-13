@@ -1,10 +1,10 @@
 package kr.co.jsol.domain.telecom.application.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
-import kr.co.jsol.domain.telecom.entity.Telecom
-import javax.validation.constraints.NotBlank
+import org.springdoc.api.annotations.ParameterObject
 import javax.validation.constraints.Size
 
+@ParameterObject
 @Schema(
     name = "통신사 리스트 조회 요청",
     description = """"

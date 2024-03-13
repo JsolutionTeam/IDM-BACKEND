@@ -1,6 +1,7 @@
 package kr.co.jsol.domain.telecom.application
 
 import kr.co.jsol.domain.telecom.application.dto.CreateTelecomDto
+import kr.co.jsol.domain.telecom.application.dto.GetTelecomDto
 import kr.co.jsol.domain.telecom.application.dto.UpdateTelecomDto
 import kr.co.jsol.domain.telecom.infrastructure.dto.TelecomDto
 import kr.co.jsol.domain.telecom.infrastructure.query.TelecomQueryRepository
@@ -42,7 +43,7 @@ class TelecomService(
     }
 
     @Transactional(readOnly = true)
-    fun findAll(): List<TelecomDto> {
-        return query.findAll().map(::TelecomDto)
+    fun findAll(getTelecomDto: GetTelecomDto): List<TelecomDto> {
+        return query.findAll(getTelecomDto).map(::TelecomDto)
     }
 }

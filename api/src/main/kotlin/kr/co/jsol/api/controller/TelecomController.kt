@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import kr.co.jsol.common.domain.AccountAuthority
 import kr.co.jsol.domain.telecom.application.TelecomService
 import kr.co.jsol.domain.telecom.application.dto.CreateTelecomDto
+import kr.co.jsol.domain.telecom.application.dto.GetTelecomDto
 import kr.co.jsol.domain.telecom.application.dto.UpdateTelecomDto
 import kr.co.jsol.domain.telecom.infrastructure.dto.TelecomDto
 import org.springframework.http.HttpStatus
@@ -79,7 +80,9 @@ class TelecomController(
     @Operation(summary = "통신사 전체 조회")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    fun findAll(): List<TelecomDto> {
-        return service.findAll()
+    fun findAll(
+        getTelecomDto: GetTelecomDto,
+    ): List<TelecomDto> {
+        return service.findAll(getTelecomDto)
     }
 }

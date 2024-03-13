@@ -28,15 +28,6 @@ abstract class BaseQueryRepository<T : BaseEntity, ID : Any>(
         return entity
     }
 
-    fun findAll(withDelete: Boolean = false): List<T> {
-        // withDelete가 true라면 삭제된 데이터도 반환
-        val list = crudRepository.findAll()
-        if (withDelete) {
-            return list.toList()
-        }
-        return list.filter { !it.isDeleted() }
-    }
-
     fun DateTimePath<LocalDateTime>.between(
         start: LocalDate,
         end: LocalDate,
