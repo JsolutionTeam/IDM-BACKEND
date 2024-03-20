@@ -35,7 +35,7 @@ class SwaggerConfig {
             .version("0.0.1-SNAPSHOT"),
     ).servers(
         listOf(
-            Server().url("https://newshop.j-sol.co.kr/"), //TODO api-shop 으로 변경시 수정해야 함
+            Server().url("https://api-shop.j-sol.co.kr/"), //TODO api-shop 으로 변경시 수정해야 함
             Server().url("http://localhost:11402"),
         ),
     )
