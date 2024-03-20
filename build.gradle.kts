@@ -67,6 +67,9 @@ subprojects {
         // springboot
         implementation("org.springframework.boot:spring-boot-starter-security")
         implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("org.springframework.boot:spring-boot-starter-actuator")
+//      actuator에서 prometheus가 안먹히는 경우가 있음. 그럴때는 아래를 추가하면 됨.
+//    implementation 'io.micrometer:micrometer-registry-prometheus:1.12.4'
         implementation("org.springframework.boot:spring-boot-starter-websocket")
         implementation("org.springframework.boot:spring-boot-starter-validation")
 

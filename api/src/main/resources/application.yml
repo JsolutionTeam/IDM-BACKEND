@@ -1,3 +1,7 @@
+spring:
+  application:
+    name: idm
+
 server:
   port: 11402
   servlet:
@@ -27,3 +31,23 @@ springdoc:
     doc-expansion: none
     persist-authorization: true
     display-request-duration: true
+
+## springboot-actuator
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: ${spring.application.name}
