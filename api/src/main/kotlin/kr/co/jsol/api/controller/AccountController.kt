@@ -30,7 +30,7 @@ class AccountController(
 ) {
 
     @Operation(summary = "유저 생성 [추후 IDM 이전시 사용]")
-    @PreAuthorize(AccountAuthority.ROLECHECK.HasCompanyRole)
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasUserRole)
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)

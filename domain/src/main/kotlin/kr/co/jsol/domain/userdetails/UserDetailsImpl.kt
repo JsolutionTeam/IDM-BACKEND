@@ -25,8 +25,8 @@ data class UserDetailsImpl(
                 upperRole.contains("ROOT")
     }
 
-    fun isNotCompany() = isCompany().not()
-    fun isCompany(): Boolean {
+    fun isNotUser() = isUser().not()
+    fun isUser(): Boolean {
         val upperRole = role.uppercase().removePrefix("ROLE_")
         return upperRole.contains("COMPANY") ||
                 upperRole.contains("AGENCY") ||
@@ -42,9 +42,9 @@ data class UserDetailsImpl(
             return mutableListOf<GrantedAuthority>(SimpleGrantedAuthority("MASTER"))
         }
 
-        if (isCompany()) {
-            log.info("role : COMPANY")
-            return mutableListOf<GrantedAuthority>(SimpleGrantedAuthority("COMPANY"))
+        if (isUser()) {
+            log.info("role : User")
+            return mutableListOf<GrantedAuthority>(SimpleGrantedAuthority("User"))
         }
 
         log.info("role : $role")

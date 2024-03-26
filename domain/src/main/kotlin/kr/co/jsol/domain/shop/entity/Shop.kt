@@ -27,7 +27,7 @@ class Shop(
     var name: String,
 
     @Comment("권한")
-    var role: String = "AGENCY",
+    var role: String = "COMPANY",
 
     @Column(name = "use_mcall_shop")
     @Comment("엠콜샵 사용 여부")
