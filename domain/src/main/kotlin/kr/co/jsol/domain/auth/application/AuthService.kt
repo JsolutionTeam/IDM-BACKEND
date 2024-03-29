@@ -40,6 +40,7 @@ class AuthService(
 
     @Transactional
     fun patchUsers(authUpdateUserDto: AuthUpdateUserDto) {
+        // application/json 타입에 Unit이 불가능하였음
         authRest.patch<Long>("/api/users", authUpdateUserDto.toMap())
     }
 
