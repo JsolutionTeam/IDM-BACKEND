@@ -3,13 +3,14 @@ package kr.co.jsol.domain.account.application
 import kr.co.jsol.common.exception.CustomException
 import kr.co.jsol.common.exception.GeneralServerException
 import kr.co.jsol.domain.account.application.dto.CreateAccountDto
+import kr.co.jsol.domain.account.application.dto.DeleteAccountsDto
 import kr.co.jsol.domain.account.application.dto.GetAccountsDto
+import kr.co.jsol.domain.account.infrastructure.command.AccountCommandRepository
 import kr.co.jsol.domain.account.infrastructure.dto.AccountDto
 import kr.co.jsol.domain.account.infrastructure.query.AccountQueryRepository
 import kr.co.jsol.domain.account.infrastructure.repository.AccountRepository
 import kr.co.jsol.domain.auth.application.AuthService
 import kr.co.jsol.domain.shop.infrastructure.query.ShopQueryRepository
-import kr.co.jsol.domain.userdetails.UserDetailsImpl
 import org.slf4j.LoggerFactory
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -19,6 +20,7 @@ import org.springframework.web.client.HttpClientErrorException
 
 @Service
 class AccountService(
+    private val command: AccountCommandRepository,
     private val repository: AccountRepository,
     private val query: AccountQueryRepository,
     private val authService: AuthService,
@@ -84,6 +86,20 @@ class AccountService(
     @Transactional
     fun patch() {
         // TODO 작성
+    }
+
+    @Transactional
+    fun deleteMultiple(deleteAccountsDto: DeleteAccountsDto): List<AccountDto> {
+        return deleteAccountsDto.ids.map {
+            delete(it)
+        }
+    }
+
+    @Transactional
+    fun delete(id: String): AccountDto {
+        val account = query.getById(id)
+        command.delete(account)
+        return AccountDto(account)
     }
 
     @Transactional(readOnly = true)

@@ -22,7 +22,7 @@ abstract class BaseEntity(
     @Column(name = "updt_dt")
     @LastModifiedDate
     @Comment("수정일시")
-    var updatedAt: LocalDateTime? = null,
+    open var updatedAt: LocalDateTime? = null,
 
     @Column(name = "deleted_at")
     @Comment("삭제일시")

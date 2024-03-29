@@ -7,7 +7,7 @@ enum class ShopAuthority(
     val description: String,
 ) {
 
-    B("판매점"),
+    BELONG("판매점"),
     P("대리점"),
     ;
 

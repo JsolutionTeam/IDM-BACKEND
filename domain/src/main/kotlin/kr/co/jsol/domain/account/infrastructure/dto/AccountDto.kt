@@ -2,6 +2,7 @@ package kr.co.jsol.domain.account.infrastructure.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
 import kr.co.jsol.domain.account.entity.Account
+import kr.co.jsol.domain.account.entity.enums.AccountRole
 import kr.co.jsol.domain.shop.infrastructure.dto.ShopDto
 
 @Schema(name = "계정 응답")
@@ -13,7 +14,7 @@ data class AccountDto(
     var name: String,
 
     @field:Schema(description = "권한")
-    var role: String,
+    var role: AccountRole,
 
     @field:Schema(description = "관리자 여부", implementation = Boolean::class)
     var isManager: Boolean,
@@ -28,16 +29,9 @@ data class AccountDto(
     constructor(account: Account) : this(
         id = account.id,
         name = account.name,
-        role = account.role,
+        role = AccountRole.of(account.role),
         isManager = account.isManager,
         phone = account.phone,
         shop = ShopDto(account.shop)
-    ) {
-        val upperRole = role.uppercase()
-        if (upperRole.contains("JSOL") || upperRole.contains("ADMIN") || upperRole.contains("MASTER")) {
-            this.role = "MASTER"
-        } else {
-            this.role = "COMPANY"
-        }
-    }
+    )
 }

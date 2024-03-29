@@ -1,4 +1,4 @@
-package kr.co.jsol.common.config.db.db
+package kr.co.jsol.common.config.db
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.stereotype.Component

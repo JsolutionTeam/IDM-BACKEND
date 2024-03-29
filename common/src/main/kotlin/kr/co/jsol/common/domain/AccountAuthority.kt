@@ -21,10 +21,10 @@ enum class AccountAuthority(
     }
 
     object ROLECHECK {
-        const val HasCompanyRole = "hasAnyAuthority(\"COMPANY\")"
+        const val HasUserRole = "hasAnyAuthority(\"User\")"
         const val HasMasterRole = "hasAnyAuthority(\"MASTER\")"
-        const val HasMasterAndCompanyRole = "hasAnyAuthority(\"MASTER\", \"COMPANY\")"
-        const val HasAnyRole = "hasAnyAuthority(\"MASTER\", \"COMPANY\")"
+        const val HasMasterAndUserRole = "hasAnyAuthority(\"MASTER\", \"User\")"
+        const val HasAnyRole = "hasAnyAuthority(\"MASTER\", \"User\")"
     }
 
     class Response(role: AccountAuthority) {

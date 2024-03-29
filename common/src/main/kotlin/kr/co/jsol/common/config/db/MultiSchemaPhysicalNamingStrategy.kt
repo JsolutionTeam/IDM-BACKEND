@@ -1,4 +1,4 @@
-package kr.co.jsol.common.config.db.db
+package kr.co.jsol.common.config.db
 
 import org.hibernate.boot.model.naming.Identifier
 import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl

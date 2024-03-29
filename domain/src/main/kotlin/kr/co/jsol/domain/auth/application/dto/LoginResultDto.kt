@@ -1,6 +1,7 @@
 package kr.co.jsol.domain.auth.application.dto
 
 import io.swagger.v3.oas.annotations.media.Schema
+import kr.co.jsol.domain.account.entity.enums.AccountRole
 import kr.co.jsol.domain.shop.infrastructure.dto.ShopDto
 
 @Schema(name = "로그인 결과")
@@ -11,8 +12,8 @@ data class LoginResultDto(
     @field:Schema(description = "이름", example = "권세기")
     val name: String,
 
-    @field:Schema(description = "권한")
-    val role: String,
+    @field:Schema(description = "권한", implementation = AccountRole::class)
+    val role: AccountRole,
 
     @field:Schema(description = "관리자 여부, true = 회사, false = 사용자", implementation = Boolean::class)
     val isManager: Boolean,

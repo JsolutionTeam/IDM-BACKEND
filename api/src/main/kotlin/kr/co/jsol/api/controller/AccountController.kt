@@ -4,14 +4,15 @@ import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import io.swagger.v3.oas.annotations.tags.Tag
 import kr.co.jsol.common.domain.AccountAuthority
-import kr.co.jsol.common.jwt.JwtService
 import kr.co.jsol.domain.account.application.AccountService
 import kr.co.jsol.domain.account.application.dto.CreateAccountDto
+import kr.co.jsol.domain.account.application.dto.DeleteAccountsDto
 import kr.co.jsol.domain.account.infrastructure.dto.AccountDto
 import kr.co.jsol.domain.userdetails.UserDetailsImpl
 import org.springframework.http.HttpStatus
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.core.annotation.AuthenticationPrincipal
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -26,11 +27,10 @@ import javax.validation.Valid
 @Tag(name = "계정", description = "계정 관련 API")
 class AccountController(
     private val service: AccountService,
-    private val jwtService: JwtService,
 ) {
 
     @Operation(summary = "유저 생성 [추후 IDM 이전시 사용]")
-    @PreAuthorize(AccountAuthority.ROLECHECK.HasCompanyRole)
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasUserRole)
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
@@ -51,6 +51,26 @@ class AccountController(
         }
 
         return service.create(createAccountDto)
+    }
+
+    @Operation(summary = "유저 삭제")
+    @PreAuthorize(AccountAuthority.ROLECHECK.HasUserRole)
+    @SecurityRequirement(name = "Bearer Authentication")
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    fun deleteAccounts(
+        @Valid
+        @RequestBody
+        deleteAccountsDto: DeleteAccountsDto,
+        @AuthenticationPrincipal
+        userDetails: UserDetailsImpl,
+    ): List<AccountDto> {
+        // 요청자가 관리자인지 확인
+        if (!userDetails.isManager) {
+            throw IllegalAccessException("관리자만 계정을 생성할 수 있습니다.") // TODO 사용자 정의 예외 처리
+        }
+
+        return service.deleteMultiple(deleteAccountsDto)
     }
 
     @Operation(summary = "중복 조회")
