@@ -30,6 +30,23 @@ class AuthRest : CustomRestTemplate() {
         return restTemplate.postForEntity(requestUrl, requestMessage, T::class.java)
     }
 
+    final inline fun <reified T> patch(
+        endpoint: String,
+        body: Map<String, Any?> = mapOf(),
+    ): ResponseEntity<T> {
+        var requestEndpoint = endpoint
+
+        val restTemplate = RestTemplate()
+        val headers = defaultHeaders()
+        val requestMessage = HttpEntity(body, headers)
+
+        requestEndpoint = parseEndpoint(requestEndpoint)
+
+        val requestUrl = "$authApiUrl/$requestEndpoint"
+
+        return restTemplate.postForEntity(requestUrl, requestMessage, T::class.java)
+    }
+
     // https://api-auth.j-sol.co.kr/api/users/login
     // https://api-auth.jsol.co.kr/api/users/login
 

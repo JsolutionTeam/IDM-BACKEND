@@ -3,6 +3,7 @@ package kr.co.jsol.domain.auth.application
 import kr.co.jsol.common.exception.GeneralClientException
 import kr.co.jsol.domain.auth.application.dto.AuthCreateUserDto
 import kr.co.jsol.domain.auth.application.dto.AuthLoginResultDto
+import kr.co.jsol.domain.auth.application.dto.AuthUpdateUserDto
 import kr.co.jsol.domain.auth.application.dto.LoginDto
 import kr.co.jsol.domain.auth.restapi.AuthRest
 import org.springframework.http.ResponseEntity
@@ -35,6 +36,11 @@ class AuthService(
         }
 
         return loginResult.body!!
+    }
+
+    @Transactional
+    fun patchUsers(authUpdateUserDto: AuthUpdateUserDto) {
+        authRest.patch<Unit>("/api/users", authUpdateUserDto.toMap())
     }
 
     @Transactional
