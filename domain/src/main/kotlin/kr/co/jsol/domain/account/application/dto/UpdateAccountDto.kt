@@ -11,7 +11,7 @@ data class UpdateAccountDto(
     @field:Schema(description = "계정 아이디[로그인시 사용]")
     var id: String,
 
-    @field:Size(min = 8, max = 20, message = "비밀번호는 8~20자 이내로 입력해야 합니다.")
+    @field:Size(max = 255, message = "비밀번호는 255자 이내로 입력해야 합니다.")
     @field:Schema(description = "비밀번호")
     val password: String? = null,
 
