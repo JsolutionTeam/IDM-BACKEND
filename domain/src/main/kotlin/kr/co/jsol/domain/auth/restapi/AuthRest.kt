@@ -4,6 +4,7 @@ import kr.co.jsol.common.customresttemplate.CustomRestTemplate
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
 import org.springframework.http.ResponseEntity
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 
@@ -19,7 +20,7 @@ class AuthRest : CustomRestTemplate() {
     ): ResponseEntity<T> {
         var requestEndpoint = endpoint
 
-        val restTemplate = RestTemplate()
+        val restTemplate = RestTemplate(HttpComponentsClientHttpRequestFactory())
         val headers = defaultHeaders()
         val requestMessage = HttpEntity(body, headers)
 
@@ -33,18 +34,19 @@ class AuthRest : CustomRestTemplate() {
     final inline fun <reified T> patch(
         endpoint: String,
         body: Map<String, Any?> = mapOf(),
-    ): ResponseEntity<T> {
+    ): T? {
         var requestEndpoint = endpoint
 
-        val restTemplate = RestTemplate()
+        val restTemplate = RestTemplate(HttpComponentsClientHttpRequestFactory())
         val headers = defaultHeaders()
+        headers["X-HTTP-Method-Override"] = listOf("PATCH")
         val requestMessage = HttpEntity(body, headers)
 
         requestEndpoint = parseEndpoint(requestEndpoint)
 
         val requestUrl = "$authApiUrl/$requestEndpoint"
 
-        return restTemplate.postForEntity(requestUrl, requestMessage, T::class.java)
+        return restTemplate.patchForObject(requestUrl, requestMessage, T::class.java)
     }
 
     // https://api-auth.j-sol.co.kr/api/users/login
@@ -55,7 +57,7 @@ class AuthRest : CustomRestTemplate() {
         body: Map<String, Any>? = mapOf(),
     ) {
         var requestEndpoint = endpoint
-        val restTemplate = RestTemplate()
+        val restTemplate = RestTemplate(HttpComponentsClientHttpRequestFactory())
         val headers = defaultHeaders()
         val requestMessage = HttpEntity(body, headers)
         requestEndpoint = parseEndpoint(requestEndpoint)

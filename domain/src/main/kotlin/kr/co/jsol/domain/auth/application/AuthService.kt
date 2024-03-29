@@ -40,7 +40,7 @@ class AuthService(
 
     @Transactional
     fun patchUsers(authUpdateUserDto: AuthUpdateUserDto) {
-        authRest.patch<Unit>("/api/users", authUpdateUserDto.toMap())
+        authRest.patch<Long>("/api/users", authUpdateUserDto.toMap())
     }
 
     @Transactional
