@@ -5,11 +5,13 @@ import kr.co.jsol.common.exception.GeneralServerException
 import kr.co.jsol.domain.account.application.dto.CreateAccountDto
 import kr.co.jsol.domain.account.application.dto.DeleteAccountsDto
 import kr.co.jsol.domain.account.application.dto.GetAccountsDto
+import kr.co.jsol.domain.account.application.dto.UpdateAccountDto
 import kr.co.jsol.domain.account.infrastructure.command.AccountCommandRepository
 import kr.co.jsol.domain.account.infrastructure.dto.AccountDto
 import kr.co.jsol.domain.account.infrastructure.query.AccountQueryRepository
 import kr.co.jsol.domain.account.infrastructure.repository.AccountRepository
 import kr.co.jsol.domain.auth.application.AuthService
+import kr.co.jsol.domain.auth.application.dto.AuthUpdateUserDto
 import kr.co.jsol.domain.shop.infrastructure.query.ShopQueryRepository
 import org.slf4j.LoggerFactory
 import org.springframework.data.domain.Page
@@ -84,8 +86,18 @@ class AccountService(
     }
 
     @Transactional
-    fun patch() {
-        // TODO 작성
+    fun update(updateAccountDto: UpdateAccountDto): AccountDto {
+        val account = query.getById(updateAccountDto.id)
+        account.update(updateAccountDto)
+
+        if (
+            updateAccountDto.password != null ||
+            updateAccountDto.name != null ||
+            updateAccountDto.phone != null
+        ) {
+            authService.patchUsers(AuthUpdateUserDto(updateAccountDto))
+        }
+        return AccountDto(command.save(account))
     }
 
     @Transactional

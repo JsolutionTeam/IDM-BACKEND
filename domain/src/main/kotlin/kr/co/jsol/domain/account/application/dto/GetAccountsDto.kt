@@ -19,6 +19,10 @@ data class GetAccountsDto(
     @field:Schema(description = "전화번호")
     val phone: String? = null,
 
+    @field:Size(max = 255, message = "메모는 255자 이내로 입력해주세요.")
+    @field:Schema(description = "메모")
+    val memo: String? = null,
+
     @field:Schema(description = "업체 아이디, 해당 업체의 정보를 조회하나 JSOL이 아닐 경우 해당 업체 아이디로 조회함")
     var shopId: Long? = null,
 )

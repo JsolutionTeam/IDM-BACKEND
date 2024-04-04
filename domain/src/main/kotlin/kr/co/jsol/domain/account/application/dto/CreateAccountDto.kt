@@ -17,7 +17,7 @@ data class CreateAccountDto(
     val id: String,
 
     @field:NotBlank(message = "비밀번호는 필수 입력값입니다.")
-    @field:Size(min = 8, max = 20, message = "비밀번호는 8~20자 이내로 입력해야 합니다.")
+    @field:Size(max = 255, message = "비밀번호는 255자 이내로 입력해야 합니다.")
     @field:Schema(description = "비밀번호")
     val password: String,
 
@@ -35,8 +35,12 @@ data class CreateAccountDto(
     val isManager: Boolean = false,
 
     @field:Size(max = 20, message = "전화번호는 20자 이내로 입력해주세요.")
-    @field:Schema(description = "전화번호, 없을 경우 null로 입력해주세요.")
+    @field:Schema(description = "전화번호, null로 입력시 빈 문자열로 입력 됨")
     val phone: String? = null,
+
+    @field:Size(max = 255, message = "메모는 255자 이내로 입력해주세요.")
+    @field:Schema(description = "메모, null로 입력시 빈 문자열로 입력 됨")
+    val memo: String? = null,
 
     @field:Schema(description = "업체 아이디, 해당 업체의 정보를 조회하나 JSOL이 아닐 경우 해당 업체 아이디로 조회함")
     var shopId: Long?,
@@ -58,6 +62,7 @@ data class CreateAccountDto(
             role = role.toString(),
             isManager = isManager,
             phone = phone ?: "",
+            memo = memo ?: "",
             shop = shop,
         )
     }

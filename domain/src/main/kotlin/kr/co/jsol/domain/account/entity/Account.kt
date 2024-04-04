@@ -1,6 +1,7 @@
 package kr.co.jsol.domain.account.entity
 
 import kr.co.jsol.common.domain.BaseEntity
+import kr.co.jsol.domain.account.application.dto.UpdateAccountDto
 import kr.co.jsol.domain.shop.entity.Shop
 import org.hibernate.annotations.Comment
 import org.hibernate.annotations.SQLDelete
@@ -14,7 +15,7 @@ import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.Table
 
-@SQLDelete(sql = "UPDATE tb_account SET deleted_at = now() WHERE id = ?")
+@SQLDelete(sql = "UPDATE integration_idm.tb_account SET deleted_at = now() WHERE id = ?")
 @Entity
 @Table(name = "tb_account", catalog = "idm")
 class Account(
@@ -37,7 +38,11 @@ class Account(
 
     @Column(name = "tel_no")
     @Comment("전화번호")
-    val phone: String,
+    var phone: String,
+
+    @Column(name = "memo")
+    @Comment("전화번호")
+    var memo: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shop_idx", foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT))
@@ -45,7 +50,13 @@ class Account(
     var shop: Shop,
 ) : BaseEntity() {
 
+    fun update(updateAccountDto: UpdateAccountDto) {
+        updateAccountDto.name?.let { this.name = it }
+        updateAccountDto.phone?.let { this.phone = it }
+        updateAccountDto.memo?.let { this.memo = it }
+    }
+
     override fun toString(): String {
-        return "Account(id='$id', name='$name', role='$role', phone='$phone', shop=$shop)"
+        return "Account(id='$id', name='$name', role='$role', phone='$phone', memo='$memo', shop=$shop)"
     }
 }

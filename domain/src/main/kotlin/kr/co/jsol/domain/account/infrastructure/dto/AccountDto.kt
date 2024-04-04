@@ -22,6 +22,9 @@ data class AccountDto(
     @field:Schema(description = "연락처", example = "010-0000-0000")
     var phone: String,
 
+    @field:Schema(description = "메모", example = "")
+    var memo: String,
+
     @field:Schema(description = "업체 정보")
     var shop: ShopDto,
 ) {
@@ -32,6 +35,7 @@ data class AccountDto(
         role = AccountRole.of(account.role),
         isManager = account.isManager,
         phone = account.phone,
+        memo = account.memo,
         shop = ShopDto(account.shop)
     )
 }

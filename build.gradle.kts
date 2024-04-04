@@ -114,6 +114,10 @@ subprojects {
         annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
         annotationProcessor("com.querydsl:querydsl-apt:$querydslVersion:jpa")
 
+        // use to springboot rest template patch method
+//        implementation("org.apache.httpcomponents.client5:httpclient5:5.3.1")
+        implementation("org.apache.httpcomponents:httpclient:4.5.14")
+
         // okhttp
         implementation("com.squareup.okhttp3:okhttp:4.9.1")
 

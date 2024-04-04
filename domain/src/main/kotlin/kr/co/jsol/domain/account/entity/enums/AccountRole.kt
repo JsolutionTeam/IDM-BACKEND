@@ -3,7 +3,7 @@ package kr.co.jsol.domain.account.entity.enums
 enum class AccountRole(
     val description: String,
 ) {
-    USER("사용자"),
+    COMPANY("사용자"),
     MASTER("마스터")
     ;
 
@@ -30,7 +30,7 @@ enum class AccountRole(
             ) {
                 MASTER
             } else {
-                USER
+                COMPANY
             }
         }
     }
